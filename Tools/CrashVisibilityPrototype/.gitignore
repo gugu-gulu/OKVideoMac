@@ -1,0 +1,9 @@
+.build/
+build/
+.swiftpm/
+private.env
+*.profraw
+__pycache__/
+*.env
+
+Sources/CrashVisibilityApp/RehearsalLease.generated.swift
