@@ -1,0 +1,45 @@
+{
+  "devicesAndConfigurations" : [
+    {
+      "device" : {
+        "architecture" : "arm64",
+        "deviceId" : "00008103-0010791A3E3B001E",
+        "deviceName" : "My Mac",
+        "modelName" : "iMac",
+        "osVersion" : "14.8.9",
+        "platform" : "macOS"
+      },
+      "expectedFailures" : 0,
+      "failedTests" : 0,
+      "passedTests" : 401,
+      "skippedTests" : 5,
+      "testPlanConfiguration" : {
+        "configurationId" : "1",
+        "configurationName" : "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription" : "OKVideoMac · Built with macOS 14.8.9",
+  "expectedFailures" : 0,
+  "failedTests" : 0,
+  "finishTime" : 1791805276.148,
+  "passedTests" : 401,
+  "result" : "Passed",
+  "skippedTests" : 5,
+  "startTime" : 1791805246.167,
+  "statistics" : [
+
+  ],
+  "testFailures" : [
+
+  ],
+  "title" : "Test - OKVideoMac",
+  "topInsights" : [
+    {
+      "category" : "Longest Test Runs",
+      "impact" : "39% of duration",
+      "text" : "7 longest test runs with outlier durations exceeding 0.67s (three standard deviations)"
+    }
+  ],
+  "totalTestCount" : 406
+}

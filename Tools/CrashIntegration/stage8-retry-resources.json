@@ -1,0 +1,322 @@
+{
+  "status": "PASS",
+  "scope": "30 actual adapter failures in same Release process; no SwiftUI business initialization; real UI loop separate",
+  "probe": {
+    "cacheExists": false,
+    "callbacks": 30,
+    "consent": true,
+    "fds": [
+      6,
+      6
+    ],
+    "maxMainGap": 0.013519333384465426,
+    "outcomes": [
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending",
+      "pending"
+    ],
+    "pending": 1,
+    "seconds": 9.288604000001214,
+    "ticks": 928
+  },
+  "revoked": {
+    "businessInitialized": false,
+    "cacheExists": false,
+    "captureAvailable": true,
+    "consent": false,
+    "pending": 0,
+    "status": "revoked"
+  },
+  "samples": [
+    {
+      "seconds": 0.062,
+      "rss_kib": 352,
+      "cpu_percent": 0.0,
+      "threads": 1,
+      "file_descriptors": 5,
+      "children": 0
+    },
+    {
+      "seconds": 0.373,
+      "rss_kib": 23920,
+      "cpu_percent": 9.4,
+      "threads": 5,
+      "file_descriptors": 7,
+      "children": 0
+    },
+    {
+      "seconds": 0.683,
+      "rss_kib": 24240,
+      "cpu_percent": 3.7,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 0.987,
+      "rss_kib": 24576,
+      "cpu_percent": 3.4,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 1.289,
+      "rss_kib": 24592,
+      "cpu_percent": 2.4,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 1.591,
+      "rss_kib": 24608,
+      "cpu_percent": 3.5,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 1.892,
+      "rss_kib": 24608,
+      "cpu_percent": 3.6,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 2.205,
+      "rss_kib": 24608,
+      "cpu_percent": 3.3,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 2.505,
+      "rss_kib": 24640,
+      "cpu_percent": 3.5,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 2.805,
+      "rss_kib": 24736,
+      "cpu_percent": 3.0,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 3.105,
+      "rss_kib": 24736,
+      "cpu_percent": 3.4,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 3.416,
+      "rss_kib": 24768,
+      "cpu_percent": 2.2,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 3.719,
+      "rss_kib": 24816,
+      "cpu_percent": 2.1,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 0
+    },
+    {
+      "seconds": 4.021,
+      "rss_kib": 24816,
+      "cpu_percent": 2.4,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 0
+    },
+    {
+      "seconds": 4.326,
+      "rss_kib": 24832,
+      "cpu_percent": 1.7,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 0
+    },
+    {
+      "seconds": 4.637,
+      "rss_kib": 24864,
+      "cpu_percent": 2.5,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 0
+    },
+    {
+      "seconds": 4.954,
+      "rss_kib": 25152,
+      "cpu_percent": 1.7,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 5.259,
+      "rss_kib": 25152,
+      "cpu_percent": 2.1,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 5.578,
+      "rss_kib": 25152,
+      "cpu_percent": 1.9,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 5.88,
+      "rss_kib": 25200,
+      "cpu_percent": 2.1,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 6.186,
+      "rss_kib": 25200,
+      "cpu_percent": 3.9,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 6.487,
+      "rss_kib": 25200,
+      "cpu_percent": 1.8,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 6.788,
+      "rss_kib": 25232,
+      "cpu_percent": 3.9,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 7.093,
+      "rss_kib": 25248,
+      "cpu_percent": 1.8,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 7.406,
+      "rss_kib": 25248,
+      "cpu_percent": 2.5,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    },
+    {
+      "seconds": 7.718,
+      "rss_kib": 25248,
+      "cpu_percent": 1.8,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 0
+    },
+    {
+      "seconds": 8.029,
+      "rss_kib": 25248,
+      "cpu_percent": 1.8,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 0
+    },
+    {
+      "seconds": 8.336,
+      "rss_kib": 25248,
+      "cpu_percent": 1.5,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 0
+    },
+    {
+      "seconds": 8.653,
+      "rss_kib": 25264,
+      "cpu_percent": 1.6,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 0
+    },
+    {
+      "seconds": 8.963,
+      "rss_kib": 25264,
+      "cpu_percent": 1.6,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 0
+    },
+    {
+      "seconds": 9.27,
+      "rss_kib": 25264,
+      "cpu_percent": 2.5,
+      "threads": 6,
+      "file_descriptors": 7,
+      "children": 1
+    }
+  ],
+  "root": "/private/tmp/OKVideoMac-8B3B-stage8-retries-a3pjfv48",
+  "binary": "/private/tmp/OKVideoMac-CrashIntegration/Stage7Acceptance/OKVideoMac.app/Contents/MacOS/OKVideoMac",
+  "resource_summary": {
+    "early_steady_rss_kib": 24736.0,
+    "late_rss_kib": 25248,
+    "steady_growth_kib": 512.0,
+    "max_rss_kib": 25264,
+    "max_threads": 6,
+    "max_children": 1,
+    "after_exit_matching_processes": 0,
+    "idle_fd_start_end": [
+      6,
+      6
+    ]
+  }
+}

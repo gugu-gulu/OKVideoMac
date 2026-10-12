@@ -1,0 +1,166 @@
+{
+  "status": "PASS",
+  "runs": [
+    {
+      "iteration": 0,
+      "first_visible_window_seconds": 0.405241542,
+      "samples": [
+        {
+          "rss_kib": 89616,
+          "cpu_percent": 3.0,
+          "threads": 8,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 89616,
+          "cpu_percent": 0.0,
+          "threads": 8,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 89616,
+          "cpu_percent": 0.0,
+          "threads": 8,
+          "file_descriptors": 16,
+          "children": 0
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "first_visible_window_seconds": 0.3540217910000001,
+      "samples": [
+        {
+          "rss_kib": 90000,
+          "cpu_percent": 2.2,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 90000,
+          "cpu_percent": 0.0,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 90000,
+          "cpu_percent": 0.0,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        }
+      ]
+    },
+    {
+      "iteration": 2,
+      "first_visible_window_seconds": 0.3759103340000003,
+      "samples": [
+        {
+          "rss_kib": 90352,
+          "cpu_percent": 2.8,
+          "threads": 10,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 90352,
+          "cpu_percent": 0.0,
+          "threads": 10,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 90352,
+          "cpu_percent": 0.0,
+          "threads": 10,
+          "file_descriptors": 16,
+          "children": 0
+        }
+      ]
+    },
+    {
+      "iteration": 3,
+      "first_visible_window_seconds": 0.36222500000000046,
+      "samples": [
+        {
+          "rss_kib": 90432,
+          "cpu_percent": 3.0,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 90432,
+          "cpu_percent": 0.0,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 90432,
+          "cpu_percent": 0.0,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        }
+      ]
+    },
+    {
+      "iteration": 4,
+      "first_visible_window_seconds": 0.3571205830000004,
+      "samples": [
+        {
+          "rss_kib": 90336,
+          "cpu_percent": 3.3,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 90336,
+          "cpu_percent": 0.0,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 90336,
+          "cpu_percent": 0.0,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        }
+      ]
+    }
+  ],
+  "median_first_window_seconds": 0.36222500000000046,
+  "median_idle": {
+    "rss_kib": 90336,
+    "cpu_percent": 0.0,
+    "threads": 9,
+    "file_descriptors": 16,
+    "children": 0
+  },
+  "checks": {
+    "first_window": true,
+    "children": true,
+    "rss_kib": true,
+    "cpu_percent": true,
+    "threads": true,
+    "file_descriptors": true
+  },
+  "locked_limits": {
+    "first_window_seconds": 0.7344457500000008,
+    "idle_rss_kib": 105216,
+    "idle_threads": 9,
+    "idle_file_descriptors": 19,
+    "idle_cpu_percent": 2.2,
+    "idle_upload_children": 0,
+    "post_retry_resources": "return to the same idle bounds after worker reaping and cache cleanup"
+  },
+  "measurement_scope": "capture enabled in isolated acceptance ID/data; compared against unchanged absolute stage 1 bounds; database admission includes acceptance policy; same passive window counter as baseline, no UI interaction; termination is not part of this measurement"
+}
