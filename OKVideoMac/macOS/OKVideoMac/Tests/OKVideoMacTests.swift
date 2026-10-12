@@ -13,6 +13,123 @@ import OKVideoCore
 import OKVideoPersistence
 @testable import OKVideoMac
 
+final class DanmakuTextRasterizationTests: XCTestCase {
+    func testChineseAndLatinForegroundSurvivesContrastDecoration() throws {
+        for text in ["中文弹幕测试，清晰显示每一个字", "彈幕測試，繁體中文", "Danmaku x2♡5"] {
+            for size: CGFloat in [13, 18, 28, 42, 58] {
+                for scale: CGFloat in [1, 2] {
+                    let font = NSFont.systemFont(ofSize: size, weight: .semibold)
+                    let plain = try rasterize(text, attributes: [.font: font, .foregroundColor: NSColor.white], scale: scale)
+                    let decorated = try rasterize(text, attributes: DanmakuTextStyle.attributes(font: font, color: .white, scale: scale), scale: scale)
+                    var foregroundPixels = 0
+                    var damagedPixels = 0
+                    var shadowPixels = 0
+                    for y in 0..<plain.pixelsHigh {
+                        for x in 0..<plain.pixelsWide {
+                            let reference = try XCTUnwrap(plain.colorAt(x: x, y: y)?.usingColorSpace(.deviceRGB))
+                            let actual = try XCTUnwrap(decorated.colorAt(x: x, y: y)?.usingColorSpace(.deviceRGB))
+                            if reference.alphaComponent > 0.95 {
+                                foregroundPixels += 1
+                                if min(actual.redComponent, actual.greenComponent, actual.blueComponent, actual.alphaComponent) < 0.9 {
+                                    damagedPixels += 1
+                                }
+                            }
+                            if reference.alphaComponent < 0.01 && actual.alphaComponent > 0.05
+                                && max(actual.redComponent, actual.greenComponent, actual.blueComponent) < 0.1 {
+                                shadowPixels += 1
+                            }
+                        }
+                    }
+                    XCTAssertGreaterThan(foregroundPixels, 20, "Missing text: \(text)")
+                    XCTAssertLessThan(Double(damagedPixels) / Double(max(1, foregroundPixels)), 0.01,
+                                      "Damaged glyph fill: \(text), size=\(size), scale=\(scale)")
+                    XCTAssertGreaterThan(shadowPixels, 0, "Text needs contrast against bright video")
+                }
+            }
+        }
+    }
+
+    func testDecorationPreservesColoredCommentFill() throws {
+        let font = NSFont.systemFont(ofSize: 28, weight: .semibold)
+        let color = NSColor(calibratedRed: 0.2, green: 0.8, blue: 0.4, alpha: 1)
+        let plain = try rasterize("中文 Color", attributes: [.font: font, .foregroundColor: color], scale: 2)
+        let decorated = try rasterize("中文 Color", attributes: DanmakuTextStyle.attributes(font: font, color: color, scale: 2), scale: 2)
+        var compared = 0
+        for y in 0..<plain.pixelsHigh {
+            for x in 0..<plain.pixelsWide {
+                let reference = try XCTUnwrap(plain.colorAt(x: x, y: y)?.usingColorSpace(.deviceRGB))
+                guard reference.alphaComponent > 0.99 else { continue }
+                let actual = try XCTUnwrap(decorated.colorAt(x: x, y: y)?.usingColorSpace(.deviceRGB))
+                XCTAssertEqual(actual.redComponent, reference.redComponent, accuracy: 0.02)
+                XCTAssertEqual(actual.greenComponent, reference.greenComponent, accuracy: 0.02)
+                XCTAssertEqual(actual.blueComponent, reference.blueComponent, accuracy: 0.02)
+                compared += 1
+            }
+        }
+        XCTAssertGreaterThan(compared, 20)
+    }
+
+
+    func testShadowHasConsistentLogicalExtentAtRetinaScale() throws {
+        let font = NSFont.systemFont(ofSize: 58, weight: .semibold)
+        let extents = try [CGFloat(1), 2].map { scale -> CGFloat in
+            let plain = try rasterize("H", attributes: [.font: font, .foregroundColor: NSColor.white], scale: scale)
+            let decorated = try rasterize("H",
+                attributes: DanmakuTextStyle.attributes(font: font, color: .white, scale: scale), scale: scale)
+            let y = plain.pixelsHigh / 2
+            let fillEdge = try XCTUnwrap((0..<plain.pixelsWide).last {
+                (plain.colorAt(x: $0, y: y)?.alphaComponent ?? 0) > 0.01
+            })
+            let shadowEdge = try XCTUnwrap((0..<decorated.pixelsWide).last {
+                (decorated.colorAt(x: $0, y: y)?.alphaComponent ?? 0) > 0.01
+            })
+            return CGFloat(shadowEdge - fillEdge) / scale
+        }
+        XCTAssertGreaterThan(extents[0], 1, "Keep visible contrast outside the glyph")
+        XCTAssertEqual(extents[0], extents[1], accuracy: 0.5, "Retina must preserve the shadow's point size")
+    }
+
+    func testShadowFitsExistingSpritePadding() throws {
+        for size: CGFloat in [13, 58] {
+            for scale: CGFloat in [1, 2] {
+                let font = NSFont.systemFont(ofSize: size, weight: .semibold)
+                let attributes = DanmakuTextStyle.attributes(font: font, color: .white, scale: scale)
+                let sprite = try rasterize("中文彈幕 Agjy", attributes: attributes, scale: scale)
+                let roomy = try rasterize("中文彈幕 Agjy", attributes: attributes, scale: scale, padding: 12)
+                let inset = Int(8 * scale)
+                var maximumClippedAlpha: CGFloat = 0
+                for y in 0..<roomy.pixelsHigh {
+                    for x in 0..<roomy.pixelsWide {
+                        guard x < inset || x >= inset + sprite.pixelsWide
+                            || y < inset || y >= inset + sprite.pixelsHigh else { continue }
+                        maximumClippedAlpha = max(maximumClippedAlpha,
+                            try XCTUnwrap(roomy.colorAt(x: x, y: y)).alphaComponent)
+                    }
+                }
+                XCTAssertLessThanOrEqual(maximumClippedAlpha, 1.0 / 255,
+                                         "Clipped shadow: size=\(size), scale=\(scale)")
+            }
+        }
+    }
+
+    private func rasterize(_ text: String, attributes: [NSAttributedString.Key: Any], scale: CGFloat, padding: CGFloat = 4) throws -> NSBitmapImageRep {
+        let size = (text as NSString).size(withAttributes: attributes)
+        let width = Int(ceil((ceil(size.width) + 2 * padding) * scale))
+        let height = Int(ceil((ceil(size.height) + 2 * padding) * scale))
+        let bitmap = try XCTUnwrap(NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: width, pixelsHigh: height,
+            bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false,
+            colorSpaceName: .deviceRGB, bytesPerRow: width * 4, bitsPerPixel: 32))
+        let graphics = try XCTUnwrap(NSGraphicsContext(bitmapImageRep: bitmap))
+        NSGraphicsContext.saveGraphicsState()
+        defer { NSGraphicsContext.restoreGraphicsState() }
+        NSGraphicsContext.current = graphics
+        graphics.cgContext.clear(CGRect(x: 0, y: 0, width: width, height: height))
+        graphics.cgContext.scaleBy(x: scale, y: scale)
+        (text as NSString).draw(at: CGPoint(x: padding, y: padding), withAttributes: attributes)
+        return bitmap
+    }
+}
+
 final class QuarkMediaFailurePolicyTests: XCTestCase {
     func testAutomaticRecoveryIsConsumedOncePerPlaybackAndResetForUserRetry() {
         var gate = NodePlaybackRecoveryGate()
