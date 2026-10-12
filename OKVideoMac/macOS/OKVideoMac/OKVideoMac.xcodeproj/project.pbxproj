@@ -91,10 +91,12 @@
 		DC4A5F6740E30611013F079E /* PlayerEpisodeNavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAE534A1AE9A12B967D27EF /* PlayerEpisodeNavigationTests.swift */; };
 		E2DEA74B241320B8961DD695 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACA134A51B5EAC0085C4BDA /* HistoryView.swift */; };
 		E52889A73B1E20D6D311931C /* SeekAcceptanceHarness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3673D60112EC33FB72415BC4 /* SeekAcceptanceHarness.swift */; };
+		E922E544FF4255799732AD50 /* CrashSparkleProbe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353D91BDF12C89AA7B745FA6 /* CrashSparkleProbe.swift */; };
 		EB38C679BF2A786E9E0B233D /* THIRD_PARTY_LICENSES.md in Resources */ = {isa = PBXBuildFile; fileRef = 8AB307256CE6590A5494384D /* THIRD_PARTY_LICENSES.md */; };
 		F1A9FDB53D20B5C5272E6A7A /* LiveBackgroundActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA77A8309686173F871CCF05 /* LiveBackgroundActivityView.swift */; };
 		F273093DD87842950A570540 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 7EF68AA115AD6EBE42D32CFD /* Localizable.xcstrings */; };
 		F2A70D874EEC25BD5CFE40C4 /* NativeLibraryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF29AA322D857AB9E21D04AA /* NativeLibraryList.swift */; };
+		F2FF7DC4F68E713783B3D764 /* CrashSparkleDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589C3DDFE98C3D2DC30D5704 /* CrashSparkleDriver.swift */; };
 		F4DEEAC19BFEDE7C89FBF225 /* AppStartupContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD36178CCCB7B5463EEC346 /* AppStartupContext.swift */; };
 		F63AD70FD38EE59E2BE0D5D7 /* AndroidRuntimeMaintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6055A4D0EC00D86134284B /* AndroidRuntimeMaintenance.swift */; };
 		F9A62BFE4EEF88BE1259A1EB /* CrashUploadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12113115D88C58163B704D7D /* CrashUploadController.swift */; };
@@ -158,6 +160,7 @@
 		2C3BF25784D5872B7541D458 /* AppLaunchSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunchSession.swift; sourceTree = "<group>"; };
 		2FCD5BAE841A2751ADA5E6F2 /* BrowserKeyboardSurface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserKeyboardSurface.swift; sourceTree = "<group>"; };
 		303F9D189B3E37ACA85D261E /* PlayerInteractionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInteractionTests.swift; sourceTree = "<group>"; };
+		353D91BDF12C89AA7B745FA6 /* CrashSparkleProbe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashSparkleProbe.swift; sourceTree = "<group>"; };
 		35A6A775D7274DF9364E7772 /* CrashDiagnosticsControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashDiagnosticsControls.swift; sourceTree = "<group>"; };
 		3673D60112EC33FB72415BC4 /* SeekAcceptanceHarness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekAcceptanceHarness.swift; sourceTree = "<group>"; };
 		3D3A1A89473AFD33AAF47D01 /* MPVLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPVLibrary.swift; sourceTree = "<group>"; };
@@ -173,6 +176,7 @@
 		5262185C72774473ACDDA44A /* FullscreenCompositionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenCompositionTests.swift; sourceTree = "<group>"; };
 		5707873F641B0221D67B9CBC /* VideoGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoGrid.swift; sourceTree = "<group>"; };
 		579EA0116028BFAB72EEFC1F /* AppStartupControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStartupControllerTests.swift; sourceTree = "<group>"; };
+		589C3DDFE98C3D2DC30D5704 /* CrashSparkleDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashSparkleDriver.swift; sourceTree = "<group>"; };
 		5C6055A4D0EC00D86134284B /* AndroidRuntimeMaintenance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndroidRuntimeMaintenance.swift; sourceTree = "<group>"; };
 		617A00084B74B412C7C3ACB9 /* NodeHTTPSpiderSiteProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeHTTPSpiderSiteProvider.swift; sourceTree = "<group>"; };
 		63284B4134B72C9ECD12EE1B /* ImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRepository.swift; sourceTree = "<group>"; };
@@ -460,6 +464,8 @@
 				A180D1CDDCE2B5DAB03466F4 /* AppUpdateUserDriver.swift */,
 				B9188C791786442939BA4B1A /* CrashAcceptance.swift */,
 				35A6A775D7274DF9364E7772 /* CrashDiagnosticsControls.swift */,
+				589C3DDFE98C3D2DC30D5704 /* CrashSparkleDriver.swift */,
+				353D91BDF12C89AA7B745FA6 /* CrashSparkleProbe.swift */,
 				12113115D88C58163B704D7D /* CrashUploadController.swift */,
 				1D81D0783F057CC4665E2170 /* CrashUploadProbe.swift */,
 				63284B4134B72C9ECD12EE1B /* ImageRepository.swift */,
@@ -874,6 +880,8 @@
 				547E70EE1CB6395E47E23C62 /* ConfigurationView.swift in Sources */,
 				AE0A65EF4E50F51FC4E75423 /* CrashAcceptance.swift in Sources */,
 				709C9F0B66C52AC58AA80AE7 /* CrashDiagnosticsControls.swift in Sources */,
+				F2FF7DC4F68E713783B3D764 /* CrashSparkleDriver.swift in Sources */,
+				E922E544FF4255799732AD50 /* CrashSparkleProbe.swift in Sources */,
 				F9A62BFE4EEF88BE1259A1EB /* CrashUploadController.swift in Sources */,
 				B63308E4FFE7F258ABED42F7 /* CrashUploadProbe.swift in Sources */,
 				583DC2F09698FCCB016FCE3C /* DanmakuPlayerSupport.swift in Sources */,

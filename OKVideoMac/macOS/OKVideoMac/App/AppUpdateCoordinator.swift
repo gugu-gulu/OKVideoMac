@@ -5,6 +5,10 @@ import Sparkle
 @MainActor
 final class AppUpdateCoordinator: NSObject, ObservableObject, SPUUpdaterDelegate, @preconcurrency SPUStandardUserDriverDelegate {
     static let shared = AppUpdateCoordinator()
+#if OKVIDEO_CRASH_ACCEPTANCE
+    static var acceptanceInitializationCount = 0
+    override init() { super.init(); Self.acceptanceInitializationCount += 1 }
+#endif
     @Published private(set) var canCheckForUpdates = false
     @Published private(set) var automaticallyChecksForUpdates = false
     @Published private(set) var availableVersion: String?

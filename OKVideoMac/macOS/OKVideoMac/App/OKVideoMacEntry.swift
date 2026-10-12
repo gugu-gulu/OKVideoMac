@@ -16,6 +16,9 @@ enum OKVideoMacEntry {
             SentryUploadWorker.main()
 #endif
         }
+#if OKVIDEO_CRASH_ACCEPTANCE
+        CrashAcceptance.establishFixtureEnvironmentIfRequested()
+#endif
         let session = AppLaunchSession.prepare()
         AppLaunchSession.current = session
 #if OKVIDEO_CRASH_ACCEPTANCE

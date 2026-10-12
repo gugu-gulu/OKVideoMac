@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "name": "recovery Quit replies once without constructing updater, database or player",
+      "status": "PASS"
+    },
+    {
+      "name": "closing the recovery window awaits diagnostics cleanup and starts no business",
+      "status": "PASS"
+    },
+    {
+      "name": "Quit before delayed initialization cancels business creation",
+      "status": "PASS"
+    },
+    {
+      "name": "recovery Quit cancels active upload, reaps child and keeps consent/unsent report",
+      "status": "PASS",
+      "seconds": 0.10123841599999928
+    },
+    {
+      "name": "business Quit during upload executes existing cleanup once, replies once and leaves no child",
+      "status": "PASS",
+      "quit_requests_sent": 3,
+      "delegate_requests_observed": 1
+    },
+    {
+      "name": "clean idle business shutdown still flushes history, destroys player and stops both runtimes",
+      "status": "PASS"
+    }
+  ],
+  "app_path": "/private/tmp/OKVideoMac-CrashIntegration/Stage6-44etbegu/OKVideoMac.app",
+  "scope": "real AppKit Quit/Close with normal business cleanup; Sparkle installation is a separate fixture"
+}

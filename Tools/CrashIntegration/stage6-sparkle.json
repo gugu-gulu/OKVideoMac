@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "scenario": "idle",
+      "status": "PASS",
+      "root": "/private/tmp/OKVideoMac-8B3B-sparkle-2qt4cg6d",
+      "app_path": "/private/tmp/OKVideoMac-CrashIntegration/Stage6Sparkle-hgyucbol/Installed/OKVideoMac.app",
+      "history_count": 0,
+      "saved_position": 0,
+      "installer": "unmodified Sparkle 2.10.0",
+      "archive_sha256": "33232822cc18471bd332bd7c6a48204d9440dd384a55c7864a040ff73a786aa4",
+      "termination_replies": 1
+    },
+    {
+      "scenario": "playing",
+      "status": "PASS",
+      "root": "/private/tmp/OKVideoMac-8B3B-sparkle-6508t070",
+      "app_path": "/private/tmp/OKVideoMac-CrashIntegration/Stage6Sparkle-7wy5b4b6/Installed/OKVideoMac.app",
+      "history_count": 1,
+      "saved_position": 24.033246001333435,
+      "installer": "unmodified Sparkle 2.10.0",
+      "archive_sha256": "8cd28dcd6726be0ff77bf5b7bfc9b61580c117e7f19cdc458aa06899640b11e8",
+      "termination_replies": 1
+    },
+    {
+      "scenario": "paused",
+      "status": "PASS",
+      "root": "/private/tmp/OKVideoMac-8B3B-sparkle-wvwtq3b7",
+      "app_path": "/private/tmp/OKVideoMac-CrashIntegration/Stage6Sparkle-p8duh4bo/Installed/OKVideoMac.app",
+      "history_count": 1,
+      "saved_position": 21.22014583333339,
+      "installer": "unmodified Sparkle 2.10.0",
+      "archive_sha256": "77e63e348e8c6553a39005da762dc32a3f2c51d20a43117dd874cae9b527d9f0",
+      "termination_replies": 1
+    },
+    {
+      "scenario": "playing-slow-cleanup",
+      "status": "PASS",
+      "root": "/private/tmp/OKVideoMac-8B3B-sparkle-oa927rbj",
+      "app_path": "/private/tmp/OKVideoMac-CrashIntegration/Stage6Sparkle-0ig6y82b/Installed/OKVideoMac.app",
+      "history_count": 1,
+      "saved_position": 36.15405000266676,
+      "installer": "unmodified Sparkle 2.10.0",
+      "archive_sha256": "3eb23b2c4ed0ba87e277e1047f8b5c67f4c5b45f7ae6c64516940a43f28b4081",
+      "termination_replies": 1
+    }
+  ],
+  "scope": "signed local updates of actual App with muted WAV, no notarization or public feed; active Node/emulator workloads excluded"
+}

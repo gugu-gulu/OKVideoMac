@@ -67,6 +67,9 @@ private struct BusinessRootView: View {
                     guard startup.canRunBusinessEvents else { return }
                     await state.start()
                     await SeekAcceptanceHarness.runIfRequested(state)
+#if OKVIDEO_CRASH_ACCEPTANCE
+                    await CrashSparkleProbe.runIfRequested(state)
+#endif
                 }
                 .onChange(of: scenePhase) { phase in
                     guard startup.canRunBusinessEvents else { return }
@@ -250,28 +253,43 @@ final class OKVideoMacAppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldTerminate(
         _ sender: NSApplication
     ) -> NSApplication.TerminateReply {
+#if OKVIDEO_CRASH_ACCEPTANCE
+        CrashAcceptance.trace("termination-requested", ["updateInitializations": AppUpdateCoordinator.acceptanceInitializationCount])
+#endif
         switch terminationState {
         case .completed:
             return .terminateNow
         case .waiting:
             return .terminateLater
         case .idle:
-            guard let business = appState ?? startupController?.business else {
-                startupController?.requestTermination()
-                return .terminateNow
+            let business = appState ?? startupController?.business
+            if business != nil {
+                let updates = AppUpdateCoordinator.shared
+                guard updates.terminationPolicy.permitsTermination else {
+                    updates.focusInstallationChoice()
+                    return .terminateCancel
+                }
+                allowsTerminationTimeoutFallback = updates.terminationPolicy.permitsTimeoutFallback
+            } else {
+                // Recovery owns no updater, player or database; stop its worker only.
+                allowsTerminationTimeoutFallback = true
             }
-            let updates = AppUpdateCoordinator.shared
-            guard updates.terminationPolicy.permitsTermination else {
-                updates.focusInstallationChoice()
-                return .terminateCancel
-            }
-            allowsTerminationTimeoutFallback = updates.terminationPolicy.permitsTimeoutFallback
             let appState = business
+            let diagnostics = AppLaunchSession.current?.diagnostics
             startupController?.requestTermination()
             terminationState = .waiting
             orderOutVisibleWindowsForTermination(sender)
             terminationTask = Task { @MainActor [weak self, weak appState] in
+#if OKVIDEO_CRASH_ACCEPTANCE
+                await CrashAcceptance.delayShutdownIfRequested()
+#endif
                 await appState?.shutdown()
+                await diagnostics?.shutdown()
+#if OKVIDEO_CRASH_ACCEPTANCE
+                CrashAcceptance.trace("diagnostics-stopped", ["sending": diagnostics?.sending ?? false,
+                    "cacheExists": diagnostics?.store.map { FileManager.default.fileExists(atPath: $0.cache.path) } ?? false])
+                CrashAcceptance.trace("shutdown-complete")
+#endif
                 guard !Task.isCancelled else { return }
                 self?.finishTerminationAfterShutdown()
             }
@@ -331,11 +349,17 @@ final class OKVideoMacAppDelegate: NSObject, NSApplicationDelegate {
         window.center()
         window.makeKeyAndOrderFront(nil)
         updateShutdownWindow = window
+#if OKVIDEO_CRASH_ACCEPTANCE
+        CrashAcceptance.trace("update-cleanup-wait")
+#endif
     }
 
     private func replyToTerminationRequest() {
         guard terminationState == .waiting else { return }
         terminationState = .completed
+#if OKVIDEO_CRASH_ACCEPTANCE
+        CrashAcceptance.trace("termination-replied")
+#endif
         NSApp.reply(toApplicationShouldTerminate: true)
     }
 }

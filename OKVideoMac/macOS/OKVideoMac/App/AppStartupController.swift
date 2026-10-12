@@ -45,6 +45,9 @@ final class AppStartupController: ObservableObject {
         guard phase == .starting, !hasStarted, bootstrapTask == nil else { return }
         bootstrapTask = Task { @MainActor [weak self] in
             await Task.yield()
+#if OKVIDEO_CRASH_ACCEPTANCE
+            await CrashAcceptance.delayBootstrapIfRequested()
+#endif
             guard let self, !Task.isCancelled, self.phase == .starting, !self.hasStarted else { return }
             self.hasStarted = true
             let business = self.bootstrap()
