@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "normal_release_sha256": "b914fb46ea03ddd78fc6ceea769e73e8142b20948c2731cc9a7ee02e9cb91f75",
+  "test_fault_entries_present": false,
+  "scope": "Release test host boundary and signed Sparkle fixtures; final package verification remains stage 9",
+  "verified_update_artifacts": [
+    {
+      "scenario": "idle",
+      "strict_signature": "PASS",
+      "executable_sha256": "1ec2c0f54a40257b0a182db0197cbcd6b646fd7499622351ecb4f664ee1f7474"
+    },
+    {
+      "scenario": "playing",
+      "strict_signature": "PASS",
+      "executable_sha256": "42f0f036faa9afaeb161b7184fcc3519ffd4c9bc90d6639b8118d695ce69b280"
+    },
+    {
+      "scenario": "paused",
+      "strict_signature": "PASS",
+      "executable_sha256": "0390c9eb63b912adf643019ee0ddef324473d4647a97a81b935ce40090d55858"
+    },
+    {
+      "scenario": "playing-slow-cleanup",
+      "strict_signature": "PASS",
+      "executable_sha256": "7103ab0cafdd8902357529c38d20e657bfbfa627e15be9ea0e8457d4903e725c"
+    }
+  ],
+  "lifecycle_bundle_signature": "NOT_A_RELEASE_PACKAGE: Xcode test copy has a modified Sparkle seal; lifecycle behavior evidence only",
+  "slow_update_cleanup_seconds": 12.142357625009026
+}

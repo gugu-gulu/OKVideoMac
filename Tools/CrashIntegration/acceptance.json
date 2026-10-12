@@ -99,7 +99,37 @@
         "stage5-normal-test-summary.json",
         "stage5-production-boundary.json"
       ]
+    },
+    "6": {
+      "status": "PASS",
+      "implementation_commit": "c0c3a9c",
+      "acceptance_release_tests": 81,
+      "normal_release_tests": 81,
+      "failures": 0,
+      "skipped": 0,
+      "actual_termination_cases": 6,
+      "signed_sparkle_update_cases": 4,
+      "update_scenarios": [
+        "idle",
+        "playing",
+        "paused",
+        "playing-slow-cleanup"
+      ],
+      "production_fault_entries": "absent",
+      "evidence": [
+        "stage6-lifecycle.json",
+        "stage6-sparkle.json",
+        "stage6-test-summary.json",
+        "stage6-normal-test-summary.json",
+        "stage6-production-boundary.json"
+      ],
+      "limits": [
+        "Repeated Quit requests were coalesced by AppKit into one observed delegate call.",
+        "Muted local WAV used for playback; active Node/emulator workload shutdown not exercised.",
+        "Lifecycle App is a test host, not a verified package. All four signed Sparkle fixture bundles passed strict signature verification.",
+        "No public feed, notarization, Desktop installation or publication."
+      ]
     }
   },
-  "next_stage": 6
+  "next_stage": 7
 }
