@@ -1,0 +1,169 @@
+{
+  "status": "PASS_WITH_COVERAGE_GAPS",
+  "kind": "acceptance",
+  "identity": {
+    "CFBundleIdentifier": "com.okvideomac.OKVideoMac.acceptance8b3b",
+    "CFBundleShortVersionString": "0.8.4",
+    "CFBundleVersion": "1377001"
+  },
+  "source": {
+    "commit": "738a6aef435eeab8656cccda575ca059988009ec",
+    "dirty": true,
+    "working_files_sha256": "15bd44b7ee66eb343eea16830fd1103d7717a9746f0c4c3b1c5af1833672e0f0"
+  },
+  "images": [
+    {
+      "path": "Contents/Frameworks/CrashReporter.framework/Versions/A/CrashReporter",
+      "uuids": {
+        "arm64": "7DEF4EB4-C27D-3C0C-B1A8-300E2E76A1DC"
+      },
+      "sha256": "206483aad73b7b6ba0f7104683ae7cc65dc9300b13b4775019154731cbf6512d",
+      "symbols": [],
+      "symbol_status": "MISSING_DSYM"
+    },
+    {
+      "path": "Contents/Frameworks/Sentry.framework/Versions/A/Sentry",
+      "uuids": {
+        "arm64": "605F74FD-ACBA-37C7-9C66-8975D4ADCB84"
+      },
+      "sha256": "34f97ee092f9d97b780e8a09f096e90c73262fded157dd23fdce86dacfeee76a",
+      "symbols": [],
+      "symbol_status": "MISSING_DSYM"
+    },
+    {
+      "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Autoupdate",
+      "uuids": {
+        "x86_64": "23548720-D588-38BB-9006-1D2E3DE1F25D",
+        "arm64": "14702111-FF34-3BF9-AA91-39B533091C57"
+      },
+      "sha256": "154b11ccaedf78e3f898264bc18e4b5d5a778c3177a0b3e251979332a2b7e6fe",
+      "symbols": [],
+      "symbol_status": "MISSING_DSYM"
+    },
+    {
+      "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Sparkle",
+      "uuids": {
+        "x86_64": "E04B0A91-CF69-3108-B9A3-83ED9803E5D4",
+        "arm64": "9E5E3434-F756-3739-9635-4C82FC263D55"
+      },
+      "sha256": "a19e5b673a14781fc97c49e2e382ab261a2acf2c7a5912fd94794cb320f16372",
+      "symbols": [],
+      "symbol_status": "MISSING_DSYM"
+    },
+    {
+      "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/MacOS/Updater",
+      "uuids": {
+        "x86_64": "11F9EB52-D437-3AC9-BB67-BCFCF94B2CB7",
+        "arm64": "E856A9FB-DBB1-35C0-A91A-24B6B33C8B05"
+      },
+      "sha256": "efa84758362603e3cf4dd8fc957c18d698d93ba1ee649c57b20097d4a3bc45d9",
+      "symbols": [],
+      "symbol_status": "MISSING_DSYM"
+    },
+    {
+      "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Downloader.xpc/Contents/MacOS/Downloader",
+      "uuids": {
+        "x86_64": "B6875F2B-4ACD-35A5-971E-930FDE69B101",
+        "arm64": "7981878D-3B14-3BA3-A618-9B52FF983E3F"
+      },
+      "sha256": "aef9e17b445e8a5a0481dccb02e4b76d1929f2815706201f3e2c0da7041d9f49",
+      "symbols": [],
+      "symbol_status": "MISSING_DSYM"
+    },
+    {
+      "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Installer.xpc/Contents/MacOS/Installer",
+      "uuids": {
+        "x86_64": "21041C5C-BE98-352A-9631-083F34B939DA",
+        "arm64": "4AC9E836-9ABB-3917-9954-3346AC1B5482"
+      },
+      "sha256": "58ae6210af0b8e5c0a51b814b99f2ef32b5cdfd921d532adc5cd4afd6d58ef9f",
+      "symbols": [],
+      "symbol_status": "MISSING_DSYM"
+    },
+    {
+      "path": "Contents/Frameworks/libCrashAcceptanceFixture.dylib",
+      "uuids": {
+        "arm64": "E35B5921-B68B-3FD2-8308-D96DF20E140D"
+      },
+      "sha256": "b3e009b3bc8b6fa4b3bc937220951b262cf4e12c1cd05318b5c77a71056d2f3d",
+      "symbols": [
+        {
+          "architecture": "arm64",
+          "uuid": "E35B5921-B68B-3FD2-8308-D96DF20E140D",
+          "dwarf": "symbols/00-libCrashAcceptanceFixture.dylib.dSYM/Contents/Resources/DWARF/libCrashAcceptanceFixture.dylib",
+          "sha256": "26acc7f17e22cfa35a0f9955cfb81b310b7cf5d4d93d2614ce73ed4784401bc2"
+        }
+      ],
+      "symbol_status": "MATCHED"
+    },
+    {
+      "path": "Contents/Frameworks/libOKMPVBridge.dylib",
+      "uuids": {
+        "arm64": "F33432C5-2E62-344E-A512-3BE3228CBBFB"
+      },
+      "sha256": "c285fb83862130cd6ff3fb3d5249a15a369178c65c42758c4bce80d9f289c945",
+      "symbols": [],
+      "symbol_status": "MISSING_DSYM"
+    },
+    {
+      "path": "Contents/Frameworks/libOKQuickJS.dylib",
+      "uuids": {
+        "arm64": "D8197EBD-11FA-3B91-BF2A-03B141E71687"
+      },
+      "sha256": "bc11582cbb68a7dcdf5d3e077a4b82557d42d3c5425b42556741dcffb952c5d8",
+      "symbols": [],
+      "symbol_status": "MISSING_DSYM"
+    },
+    {
+      "path": "Contents/Frameworks/libmpv.dylib",
+      "uuids": {
+        "arm64": "342C8BC5-C6E1-374D-A04E-9AE9BEDE7800"
+      },
+      "sha256": "9383f9ce0abd25904739ce7680c703a18b20f514631dd07f11eb302462148c1c",
+      "symbols": [],
+      "symbol_status": "MISSING_DSYM"
+    },
+    {
+      "path": "Contents/Helpers/OKVideoMacRelauncher",
+      "uuids": {
+        "arm64": "744A559D-9E94-3A0A-BCFD-8360F68836EA"
+      },
+      "sha256": "1c75d61c9aaea72367850310f587420312e7f76eb3222b84cc8197af9b701956",
+      "symbols": [
+        {
+          "architecture": "arm64",
+          "uuid": "744A559D-9E94-3A0A-BCFD-8360F68836EA",
+          "dwarf": "symbols/01-OKVideoMacRelauncher.dSYM/Contents/Resources/DWARF/OKVideoMacRelauncher",
+          "sha256": "b7f46f3e7149c9eaf7ce939fcde44e11821b4ad8f824ca36ae4809476b179d99"
+        }
+      ],
+      "symbol_status": "MATCHED"
+    },
+    {
+      "path": "Contents/MacOS/OKVideoMac",
+      "uuids": {
+        "arm64": "B98A5388-16F7-391C-B618-D641A4721197"
+      },
+      "sha256": "727b7d278c1129e16d8e43cc1d25b58f20116301b5cfd48b3a03a450634566f2",
+      "symbols": [
+        {
+          "architecture": "arm64",
+          "uuid": "B98A5388-16F7-391C-B618-D641A4721197",
+          "dwarf": "symbols/02-OKVideoMac.app.dSYM/Contents/Resources/DWARF/OKVideoMac",
+          "sha256": "0c38a82f70d815a77f7f5449b9d9c9f1ef29441600923f3875b4eb73138edd6c"
+        }
+      ],
+      "symbol_status": "MATCHED"
+    },
+    {
+      "path": "Contents/Resources/NodeRuntime/node",
+      "uuids": {
+        "arm64": "904163D9-5499-3946-A90A-DE221823FA29"
+      },
+      "sha256": "2dbcbbbff1dfa99cb8f937bc5419aed4454cc7c5c964a60b68298e927e4bd25b",
+      "symbols": [],
+      "symbol_status": "MISSING_DSYM"
+    }
+  ],
+  "symbolication": "NOT_TESTED: backend verification is separate"
+}

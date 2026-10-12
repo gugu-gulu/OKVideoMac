@@ -129,6 +129,41 @@
         "Lifecycle App is a test host, not a verified package. All four signed Sparkle fixture bundles passed strict signature verification.",
         "No public feed, notarization, Desktop installation or publication."
       ]
+    },
+    "7": {
+      "status": "WAITING_REMOTE_VALIDATION",
+      "local_symbol_gate": "PASS_WITH_DOCUMENTED_NATIVE_GAPS",
+      "normal_release_tests": 82,
+      "acceptance_release_tests": 82,
+      "failures": 0,
+      "symbol_archive_positive_negative_cases": 7,
+      "actual_local_crash_symbolication_cases": 2,
+      "sentry_requests": 0,
+      "release": "com.okvideomac.OKVideoMac@0.8.4+1377001",
+      "environment": "okvideomac-crash-integration-acceptance",
+      "artifact_root": "Tools/CrashIntegration/build/stage7-20261012",
+      "ordinary_build_is_final_delivery": false,
+      "symbols_matched": {
+        "normal_release": [
+          "App",
+          "Relauncher"
+        ],
+        "acceptance": [
+          "App",
+          "Relauncher",
+          "C crash fixture"
+        ]
+      },
+      "next_required": "Authorize existing private Sentry session access and exact acceptance dSYM/event upload, then verify backend source lines, UUIDs, retries and revocation. Do not enter stage 8 yet.",
+      "evidence": [
+        "stage7-normal-test-summary.json",
+        "stage7-acceptance-test-summary.json",
+        "stage7-symbol-gates.json",
+        "stage7-local-symbolication.json",
+        "stage7-normal-symbols.json",
+        "stage7-acceptance-symbols.json",
+        "stage7-diagnostic-c-symbol.json"
+      ]
     }
   },
   "next_stage": 7

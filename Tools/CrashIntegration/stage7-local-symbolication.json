@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "kind": "swift",
+      "root": "/private/tmp/OKVideoMac-8B3B-symbol-swift-o7qmxeqh",
+      "event_id": "aa93569f6cea519eb05ce3274d429416",
+      "uuid": "B98A5388-16F7-391C-B618-D641A4721197",
+      "local_frames": [
+        "main (in OKVideoMac) (OKVideoMacEntry.swift:0)",
+        "specialized static OKVideoMacEntry.main() (in OKVideoMac) (OKVideoMacEntry.swift:25)",
+        "specialized static CrashAcceptance.runEntryIfRequested(session:) (in OKVideoMac) (CrashAcceptance.swift:115)",
+        "specialized static CrashAcceptance.faultIfRequested(_:) (in OKVideoMac) (CrashAcceptance.swift:91)"
+      ],
+      "loopback_http": 503,
+      "retry_pending": true,
+      "status": "PASS"
+    },
+    {
+      "kind": "c",
+      "root": "/private/tmp/OKVideoMac-8B3B-symbol-c-grjbs50s",
+      "event_id": "ae7254fa0402a631c23f7334e8d3c938",
+      "uuid": "E35B5921-B68B-3FD2-8308-D96DF20E140D",
+      "local_frames": [
+        "ok_crash_acceptance_fault (in libCrashAcceptanceFixture.dylib) (CrashFixture.c:4)"
+      ],
+      "loopback_http": 503,
+      "retry_pending": true,
+      "status": "PASS"
+    }
+  ],
+  "sentry_requests": 0,
+  "backend_symbolication": "NOT_TESTED",
+  "app": "/private/tmp/OKVideoMac-CrashIntegration/Stage7Acceptance/OKVideoMac.app",
+  "environment": "okvideomac-crash-integration-acceptance",
+  "release": "com.okvideomac.OKVideoMac@0.8.4+1377001"
+}

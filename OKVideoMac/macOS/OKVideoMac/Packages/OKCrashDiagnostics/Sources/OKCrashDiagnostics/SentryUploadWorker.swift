@@ -8,6 +8,14 @@ import Darwin
 /// invalidating a session under a live Sentry queue would crash on late data-task creation.
 public enum SentryUploadWorker {
     private static var parentWatchdog: DispatchSourceTimer?
+    // The acceptance binary cannot pollute the production event environment.
+    static var reportEnvironment: String {
+#if OKVIDEO_CRASH_ACCEPTANCE
+        "okvideomac-crash-integration-acceptance"
+#else
+        "okvideomac-crash-reports"
+#endif
+    }
     struct Input: Codable {
         let record: CrashRecord
         let dsn: String
@@ -77,7 +85,7 @@ public enum SentryUploadWorker {
         let options = Options()
         options.dsn = dsn
         options.debug = false
-        options.environment = "okvideomac-crash-reports"
+        options.environment = reportEnvironment
         options.sendDefaultPii = false
         options.enableCrashHandler = false
         options.enableUncaughtNSExceptionReporting = false
@@ -160,7 +168,7 @@ public enum SentryUploadWorker {
         event.platform = "cocoa"
         event.releaseName = "com.okvideomac.OKVideoMac@\(record.version)+\(record.build)"
         event.dist = record.build
-        event.environment = "okvideomac-crash-reports"
+        event.environment = reportEnvironment
         event.context = ["os": ["name": "macOS", "version": record.osVersion], "device": ["arch": record.architecture]]
         let ownImageBases = Set(record.images.filter {
             $0.name == "OKVideoMac"

@@ -7,6 +7,17 @@ final class CrashDiagnosticsTests: XCTestCase {
     func record(id: Int = 1, date: Date = Date()) -> CrashRecord {
         .init(id: String(format: "%032x", id), timestamp: date, version: "0.1.0", build: "1", osVersion: "14.8.9", architecture: "arm64", signal: "SIGTRAP", signalCode: "TRAP_BRKPT", threads: [.init(number: 0, crashed: true, frames: [.init(pc: 0x100001004, imageBase: 0x100000000)])], images: [.init(uuid: "12345678-1234-1234-1234-123456789ABC", base: 0x100000000, size: 0x2000, name: "OKVideoMac", vmaddr: 0x100000000)])
     }
+    func testAcceptanceAndNormalEventEnvironmentsStaySeparate() {
+        let event = SentryUploadWorker.event(record())
+#if OKVIDEO_CRASH_ACCEPTANCE
+        XCTAssertEqual(event.environment, "okvideomac-crash-integration-acceptance")
+#else
+        XCTAssertEqual(event.environment, "okvideomac-crash-reports")
+#endif
+        XCTAssertEqual(event.releaseName, "com.okvideomac.OKVideoMac@0.1.0+1")
+        XCTAssertEqual(event.dist, "1")
+    }
+
     func testFreshStoreDeniesUpload() throws {
         let r=root();defer { try? FileManager.default.removeItem(at:r) }
         let s=try ReportStore(root:r);XCTAssertFalse(s.consent);XCTAssertTrue(try s.records().isEmpty)

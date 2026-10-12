@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "cases": [
+    "matching App/helper archive",
+    "immutable archive refuses overwrite",
+    "UUID match survives strip and ad-hoc sign",
+    "modified dSYM hash rejected",
+    "version mismatch rejected",
+    "different binary UUID rejected",
+    "stale dSYM cannot satisfy required image"
+  ]
+}

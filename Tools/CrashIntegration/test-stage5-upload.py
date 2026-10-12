@@ -90,7 +90,7 @@ try:
     assert r['pending']==0 and r['consent'] and not r['cacheExists']
     event=s.events()[0]
     assert event['event_id']==record['id'] and event['release']=='com.okvideomac.OKVideoMac@0.8.4+137'
-    assert event['environment']=='okvideomac-crash-reports' and event['dist']=='137'
+    assert event['environment']=='okvideomac-crash-integration-acceptance' and event['dist']=='137'
     assert set(event)=={'contexts','debug_meta','dist','environment','event_id','exception','level','platform','release','threads','timestamp'}
     assert set(event['contexts'])=={'os','device'}
     for bad in [b'DO_NOT_SEND',b'/Users/',b'example.invalid',b'token=secret',b'"user"',b'"request"',b'"breadcrumbs"',b'"logentry"']:

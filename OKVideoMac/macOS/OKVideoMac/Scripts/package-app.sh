@@ -284,6 +284,12 @@ fi
 
 mkdir -p "$ARTIFACTS"
 cp -R "$APP_SOURCE" "$APP_DESTINATION"
+# Keep debug files outside the distributable before any stripping. A new directory
+# prevents a later build with the same version from replacing earlier symbols.
+CRASH_SYMBOL_ARCHIVE="$(mktemp -d "$ARTIFACTS/CrashSymbols.XXXXXX")"
+PYTHONDONTWRITEBYTECODE=1 python3 "$SCRIPT_DIR/crash-symbols.py" archive \
+  --app "$APP_SOURCE" --symbols "$DERIVED_DATA/Build/Products/Release" \
+  --repo "$REPOSITORY_ROOT" --kind delivery --output "$CRASH_SYMBOL_ARCHIVE"
 # Xcode keeps DWARF sections in unsigned Release executables even when it also
 # emits external dSYMs. Strip those sections before signing so absolute build
 # paths cannot leak into either project-owned executable; runtime symbols remain.
@@ -585,6 +591,9 @@ sign_code "$NODE_RUNTIME" "$NODE_ENTITLEMENTS"
 sign_code "$RELAUNCHER"
 sign_code "$EXECUTABLE" "$APP_ENTITLEMENTS"
 
+# Include libraries added during dependency normalization in crash image metadata.
+PYTHONDONTWRITEBYTECODE=1 python3 "$SCRIPT_DIR/crash-image-metadata.py" "$APP_DESTINATION"
+
 # Generate the release SBOMs after nested-code signatures are final. The main
 # executable intentionally has no SBOM hash because signing the outer bundle
 # rewrites its embedded signature; all other Mach-O and APK artifacts are
@@ -651,6 +660,9 @@ if [[ "$PACKAGE_MODE" == "distribution" ]]; then
 fi
 "$SCRIPT_DIR/verify-bundle.sh" "$APP_DESTINATION"
 "$SCRIPT_DIR/verify-release-signing.sh" --mode "$SIGNING_MODE" "$APP_DESTINATION"
+PYTHONDONTWRITEBYTECODE=1 python3 "$SCRIPT_DIR/crash-symbols.py" verify \
+  --app "$APP_DESTINATION" --archive "$CRASH_SYMBOL_ARCHIVE" \
+  --output "$CRASH_SYMBOL_ARCHIVE/verified-package.json"
 
 create_archive() {
   rm -f "$ARCHIVE" "$ARCHIVE.sha256"
