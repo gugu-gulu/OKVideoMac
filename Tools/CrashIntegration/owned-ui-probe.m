@@ -8,9 +8,9 @@ static id value(AXUIElementRef e,NSString *key){CFTypeRef raw=NULL;if(AXUIElemen
 static void walk(AXUIElementRef e,unsigned depth){
  if(depth>16||++visited>3000)return;
  NSMutableDictionary *row=[NSMutableDictionary dictionary];row[@"depth"]=@(depth);
- for(NSString *key in @[@"AXRole",@"AXSubrole",@"AXTitle",@"AXIdentifier",@"AXEnabled",@"AXValue"]){id v=value(e,key);if([v isKindOfClass:[NSString class]]||[v isKindOfClass:[NSNumber class]])row[key]=v;}
+ for(NSString *key in @[@"AXRole",@"AXSubrole",@"AXTitle",@"AXDescription",@"AXIdentifier",@"AXEnabled",@"AXValue"]){id v=value(e,key);if([v isKindOfClass:[NSString class]]||[v isKindOfClass:[NSNumber class]])row[key]=v;}
  [rows addObject:row];
- if(match && ([row[@"AXIdentifier"] isEqual:match]||[row[@"AXTitle"] isEqual:match]||[row[@"AXSubrole"] isEqual:match]) && [row[@"AXRole"] isEqual:@"AXButton"] && !found)found=(AXUIElementRef)CFRetain(e);
+ if(match && ([row[@"AXIdentifier"] isEqual:match]||[row[@"AXTitle"] isEqual:match]||[row[@"AXDescription"] isEqual:match]||[row[@"AXSubrole"] isEqual:match]) && ([row[@"AXRole"] isEqual:@"AXButton"] || [row[@"AXRole"] isEqual:@"AXCheckBox"]) && !found)found=(AXUIElementRef)CFRetain(e);
  NSArray *children=value(e,@"AXChildren");if([children isKindOfClass:[NSArray class]])for(id child in children)walk((__bridge AXUIElementRef)child,depth+1);
 }
 int main(int argc,char **argv){@autoreleasepool {

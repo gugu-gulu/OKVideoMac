@@ -1,0 +1,94 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "name": "no consent means no SDK request and no business bootstrap",
+      "status": "PASS"
+    },
+    {
+      "name": "grant sends a single actual allowlisted SDK event with formal App identity",
+      "status": "PASS"
+    },
+    {
+      "name": "missing DSN allows local capture and preference changes without sending",
+      "status": "PASS"
+    },
+    {
+      "name": "503 keeps the same event ID for retry; only an HTTP receipt removes the record",
+      "status": "PASS"
+    },
+    {
+      "name": "refused connection preserves report and removes SDK cache",
+      "status": "PASS"
+    },
+    {
+      "name": "real upload worker fault: spawnFailure",
+      "status": "PASS",
+      "seconds": 0.0400171666406095,
+      "max_main_gap": 0.025569458317477256
+    },
+    {
+      "name": "real upload worker fault: exitBeforeRead",
+      "status": "PASS",
+      "seconds": 0.09081420832080767,
+      "max_main_gap": 0.015032166673336178
+    },
+    {
+      "name": "real upload worker fault: exitAfterRead",
+      "status": "PASS",
+      "seconds": 0.20108916668687016,
+      "max_main_gap": 0.0150217916816473
+    },
+    {
+      "name": "real upload worker fault: invalidReply",
+      "status": "PASS",
+      "seconds": 0.20196274999761954,
+      "max_main_gap": 0.014467166678514332
+    },
+    {
+      "name": "real upload worker fault: oversizedReply",
+      "status": "PASS",
+      "seconds": 0.1478612083592452,
+      "max_main_gap": 0.013104749959893525
+    },
+    {
+      "name": "real upload worker fault: noRead",
+      "status": "PASS",
+      "seconds": 8.02952654164983,
+      "max_main_gap": 0.01504966663196683
+    },
+    {
+      "name": "real upload worker fault: noReply",
+      "status": "PASS",
+      "seconds": 8.030017666635104,
+      "max_main_gap": 0.014976791630033404
+    },
+    {
+      "name": "full nonreading pipe obeys eight-second deadline without blocking main runloop",
+      "status": "PASS",
+      "bytes": 1039968,
+      "max_main_gap": 0.07423333334736526
+    },
+    {
+      "name": "revocation cancels/reaps the active worker and clears reports before completion",
+      "status": "PASS"
+    },
+    {
+      "name": "twenty real workers do not accumulate file descriptors",
+      "status": "PASS"
+    },
+    {
+      "name": "actual recovery and settings toggles share consent; Continue remains responsive during sending",
+      "status": "PASS"
+    },
+    {
+      "name": "parent exit retires both worker phases; next launch clears abandoned cache",
+      "status": "PASS"
+    }
+  ],
+  "app_path": "/private/tmp/OKVideoMac-CrashIntegration/Stage5-s_6ays2e/OKVideoMac.app",
+  "scope": "synthetic formal App crashes and actual SDK HTTP payloads; no external Sentry data",
+  "screenshots": [
+    "stage5-settings.png"
+  ]
+}

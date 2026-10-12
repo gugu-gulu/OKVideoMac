@@ -14,6 +14,7 @@ final class AppStartupController: ObservableObject {
     @Published private(set) var recoveryWarning = false
     let session: AppLaunchSession
     let store: ReportStore?
+    let diagnostics: CrashUploadController
     private let bootstrap: () -> AppState
     private var hasStarted = false
     private var bootstrapTask: Task<Void, Never>?
@@ -21,16 +22,18 @@ final class AppStartupController: ObservableObject {
     private var files: [ScopedFileOpen] = []
     var pendingFileCount: Int { files.count }
     var pendingReports: Int { (try? store?.records().count) ?? 0 }
-    var consent: Bool { store?.consent ?? false }
+    var consent: Bool { diagnostics.consent }
     var canRunBusinessEvents: Bool { phase == .ready }
 
     init(session: AppLaunchSession, store: ReportStore? = nil,
          bootstrap: (() -> AppState)? = nil) {
         self.session = session
         self.store = store ?? session.crashManager?.store
+        self.diagnostics = store.map { CrashUploadController(store: $0, configuration: nil) } ?? session.diagnostics
         self.bootstrap = bootstrap ?? { session.bootstrapBusiness() }
         if case .failure = session.startup { phase = .failed }
         else { phase = ((try? self.store?.needsRecoveryPrompt()) ?? false) ? .recovery : .starting }
+        diagnostics.start()
     }
 
     var failureMessage: String? {
@@ -84,6 +87,7 @@ final class AppStartupController: ObservableObject {
 
     func requestTermination() {
         phase = .terminating
+        diagnostics.requestStop()
         bootstrapTask?.cancel(); bootstrapTask = nil
         fileOpenTask?.cancel(); fileOpenTask = nil
         files.removeAll()

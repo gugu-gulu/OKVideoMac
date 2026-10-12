@@ -12,9 +12,16 @@ enum CrashAcceptance {
         return args[index + 1]
     }
 
-    private static var authorizedWorkspace: Bool {
+    static var authorizedWorkspace: Bool {
         Bundle.main.bundleIdentifier == "com.okvideomac.OKVideoMac.acceptance8b3b"
             && (try? AppEnvironment.acceptanceWorkspace()) != nil
+    }
+
+    static func uploadConfiguration() -> CrashUploadConfiguration? {
+        guard authorizedWorkspace, let dsn = value("--diagnostic-test-dsn"),
+              (try? SentryAdapter.validateDSN(dsn, allowLoopback: true)) != nil else { return nil }
+        return CrashUploadConfiguration(dsn: dsn, allowLoopback: true,
+            fault: value("--diagnostic-worker-fault").flatMap(UploadWorkerFault.init(rawValue:)) ?? .none)
     }
 
     static func metadata(_ metadata: RunMetadata) -> RunMetadata {
@@ -48,8 +55,14 @@ enum CrashAcceptance {
 
     static func runEntryIfRequested(session: AppLaunchSession) -> Bool {
         let args = CommandLine.arguments
-        guard args.contains("--diagnostic-export") || value("--diagnostic-crash-stage") == "entry" else { return false }
+        guard args.contains("--diagnostic-upload-probe") || args.contains("--diagnostic-upload-model") || args.contains("--diagnostic-export") || value("--diagnostic-crash-stage") == "entry" else { return false }
         guard authorizedWorkspace else { exit(64) }
+        if args.contains("--diagnostic-upload-probe"), let store = session.crashManager?.store {
+            CrashUploadProbe.run(store: store, args: args); return true
+        }
+        if args.contains("--diagnostic-upload-model") {
+            CrashUploadProbe.runModel(session: session, args: args); return true
+        }
         faultIfRequested("entry")
         if args.contains("--diagnostic-export") {
             let records = (try? session.crashManager?.store.records()) ?? []

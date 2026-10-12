@@ -6,11 +6,14 @@ final class AppLaunchSession {
     static var current: AppLaunchSession?
     let startup: Result<AppStartupContext, Error>
     let crashManager: OKCrashManager?
+    let diagnostics: CrashUploadController
     weak var controller: AppStartupController?
 
-    init(startup: Result<AppStartupContext, Error>, crashManager: OKCrashManager?) {
+    init(startup: Result<AppStartupContext, Error>, crashManager: OKCrashManager?,
+         configuration: CrashUploadConfiguration? = nil) {
         self.startup = startup
         self.crashManager = crashManager
+        self.diagnostics = CrashUploadController(store: crashManager?.store, configuration: configuration)
     }
 
     static func prepare() -> AppLaunchSession {
@@ -36,7 +39,8 @@ final class AppLaunchSession {
                     metadata: metadata
                 )
             }
-            return AppLaunchSession(startup: .success(context), crashManager: manager)
+            return AppLaunchSession(startup: .success(context), crashManager: manager,
+                configuration: CrashUploadConfiguration.current())
         } catch {
             return AppLaunchSession(startup: .failure(error), crashManager: nil)
         }

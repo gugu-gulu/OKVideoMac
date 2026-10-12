@@ -52,7 +52,10 @@ struct SettingsView: View {
     @State private var languageMode = AppLanguagePreferenceStore().load()
     @State private var languageAlert: SettingsLanguageAlert?
 
+    private let diagnostics: CrashUploadController?
+
     init(navigation: SettingsNavigationState) {
+        diagnostics = AppLaunchSession.current?.diagnostics
         self.navigation = navigation
     }
 
@@ -649,6 +652,13 @@ struct SettingsView: View {
                     Button(SettingsL10n.string("settings.common.export", "Export…")) {
                         exportDiagnostics()
                     }
+                }
+            }
+
+            if let diagnostics {
+                SettingsCard {
+                    CrashDiagnosticsControls(diagnostics: diagnostics)
+                        .padding(18).frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
 

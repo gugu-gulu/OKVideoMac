@@ -24,6 +24,7 @@ settings:
     MARKETING_VERSION: 0.8.4
     CURRENT_PROJECT_VERSION: 137
     OKVIDEOMAC_SPARKLE_ROOT: $(SRCROOT)/Vendor/Build/Sparkle
+    OKVIDEOMAC_CRASH_REPORT_DSN: ""
     OKVIDEOMAC_UPDATE_FEED_URL: ""
     OKVIDEOMAC_UPDATE_PUBLIC_KEY: ""
     OKVIDEOMAC_UPDATE_CHANNEL: unconfigured
@@ -75,6 +76,7 @@ targets:
         SUFeedURL: $(OKVIDEOMAC_UPDATE_FEED_URL)
         SUPublicEDKey: $(OKVIDEOMAC_UPDATE_PUBLIC_KEY)
         OKUpdateChannel: $(OKVIDEOMAC_UPDATE_CHANNEL)
+        OKCrashReportDSN: $(OKVIDEOMAC_CRASH_REPORT_DSN)
         SUAutomaticallyUpdate: false
         SUAllowsAutomaticUpdates: false
         SUScheduledCheckInterval: 86400

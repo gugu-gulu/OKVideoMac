@@ -7,8 +7,13 @@ let package = Package(
     products: [.library(name: "OKCrashDiagnostics", targets: ["OKCrashDiagnostics"])],
     targets: [
         .binaryTarget(name: "CrashReporter", path: "Vendor/CrashReporter.xcframework"),
-        .target(name: "OKCrashDiagnostics", dependencies: ["CrashReporter"],
-                resources: [.copy("Resources/PrivacyInfo.xcprivacy"), .copy("Resources/PLCrashReporter-LICENSE.txt")]),
+        .binaryTarget(name: "Sentry",
+            url: "https://github.com/getsentry/sentry-cocoa/releases/download/9.30.1/Sentry.xcframework.zip",
+            checksum: "bf6bc2308b9f1d11cc0d5ad5a324dbe300afa37c8391809ecb6dd3758fa728e2"),
+        .target(name: "DiagnosticHandlers"),
+        .target(name: "OKCrashDiagnostics", dependencies: ["CrashReporter", "Sentry", "DiagnosticHandlers"],
+                resources: [.copy("Resources/PrivacyInfo.xcprivacy"), .copy("Resources/PLCrashReporter-LICENSE.txt"), .copy("Resources/Sentry-LICENSE.txt"), .copy("Resources/Sentry-PrivacyInfo.xcprivacy")],
+                linkerSettings: [.linkedLibrary("c++")]),
     ],
     swiftLanguageVersions: [.v5]
 )

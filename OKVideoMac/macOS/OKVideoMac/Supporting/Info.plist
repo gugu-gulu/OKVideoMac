@@ -48,6 +48,8 @@
 	</dict>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2026 Yao Lin</string>
+	<key>OKCrashReportDSN</key>
+	<string>$(OKVIDEOMAC_CRASH_REPORT_DSN)</string>
 	<key>OKUpdateChannel</key>
 	<string>$(OKVIDEOMAC_UPDATE_CHANNEL)</string>
 	<key>SUAllowsAutomaticUpdates</key>

@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "normal_release_sha256": "49955a3f4f2b456b24d7d2d86236683c370ac007d78d162b11982251b39c8b04",
+  "test_fault_entries_present": false,
+  "malformed_worker_packet_exit": 2,
+  "worker_dispatch_precedes_app_setup": true
+}
