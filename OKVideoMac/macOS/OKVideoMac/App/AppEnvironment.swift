@@ -35,6 +35,9 @@ struct AppEnvironment {
     static func live(startupContext: AppStartupContext? = nil) throws -> AppEnvironment {
         let context = try startupContext ?? AppStartupContext.prepare()
         try context.claimBusinessBootstrap()
+#if OKVIDEO_CRASH_ACCEPTANCE
+        CrashAcceptance.faultIfRequested("business-bootstrap")
+#endif
         let acceptance = context.acceptance
         let directories = context.directories
         // Reuse the lease already acquired before SQLite; never reacquire it.

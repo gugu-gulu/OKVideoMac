@@ -5717,15 +5717,19 @@ final class AppState: ObservableObject {
             }
             return AppState(environment: environment, startupError: warning)
         } catch {
-            return AppState(
-                environment: nil,
-                startupError: UserFacingError(
-                    title: L10n.string("app.initialization.failed", fallback: "Unable to Initialize App"),
-                    message: CommonUserFacingErrorMapper.message(for: error)
-                        ?? LogRedactor.text(error.localizedDescription)
-                )
-            )
+            return initializationFailure(error)
         }
+    }
+
+    static func initializationFailure(_ error: Error) -> AppState {
+        AppState(
+            environment: nil,
+            startupError: UserFacingError(
+                title: L10n.string("app.initialization.failed", fallback: "Unable to Initialize App"),
+                message: CommonUserFacingErrorMapper.message(for: error)
+                    ?? LogRedactor.text(error.localizedDescription)
+            )
+        )
     }
 
     private var importedIdentityEnabled: Bool { liveReferenceStore?.importedIdentityAcceptanceEnabled == true }

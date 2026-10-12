@@ -7,6 +7,8 @@ options:
   createIntermediateGroups: true
 
 packages:
+  OKCrashDiagnostics:
+    path: Packages/OKCrashDiagnostics
   OKVideoKit:
     path: Packages/OKVideoKit
   AndroidRuntimeKit:
@@ -211,7 +213,12 @@ targets:
           cp "${NODE_SOURCE}" "${NODE_DIR}/node"
           chmod 755 "${NODE_DIR}/node"
           cp "${NODE_ROOT}/LICENSE" "${LICENSES_DIR}/Node.js-LICENSE.txt"
+      - name: Record crash image UUID and VM addresses
+        script: |
+          python3 "${SRCROOT}/Scripts/crash-image-metadata.py" "${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}"
     dependencies:
+      - package: OKCrashDiagnostics
+        product: OKCrashDiagnostics
       - framework: $(OKVIDEOMAC_SPARKLE_ROOT)/Sparkle.framework
         embed: true
         codeSign: false

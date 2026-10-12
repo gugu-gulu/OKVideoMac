@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "name": "fresh capture installs without opening SQLite or granting upload",
+      "status": "PASS"
+    },
+    {
+      "name": "empty prepared slot does not become a recovery report on clean restart",
+      "status": "PASS"
+    },
+    {
+      "name": "swift crash at entry: capture, filtering, UUID/VM address and local persistence",
+      "status": "PASS",
+      "crashed_thread": 0
+    },
+    {
+      "name": "swift crash at app-init: capture, filtering, UUID/VM address and local persistence",
+      "status": "PASS",
+      "crashed_thread": 0
+    },
+    {
+      "name": "swift crash at business-bootstrap: capture, filtering, UUID/VM address and local persistence",
+      "status": "PASS",
+      "crashed_thread": 0
+    },
+    {
+      "name": "c crash at entry: capture, filtering, UUID/VM address and local persistence",
+      "status": "PASS",
+      "crashed_thread": 0
+    },
+    {
+      "name": "c crash at business-ready: capture, filtering, UUID/VM address and local persistence",
+      "status": "PASS",
+      "crashed_thread": 0
+    },
+    {
+      "name": "c crash at native-thread: capture, filtering, UUID/VM address and local persistence",
+      "status": "PASS",
+      "crashed_thread": 5
+    },
+    {
+      "name": "original crash-time metadata survives a newer-version recovery launch",
+      "status": "PASS",
+      "scope": "test metadata override, not a historical-binary upgrade"
+    },
+    {
+      "name": "malformed raw report is purged without a startup loop",
+      "status": "PASS"
+    },
+    {
+      "name": "oversized raw report is purged without a startup loop",
+      "status": "PASS"
+    },
+    {
+      "name": "unavailable diagnostics continue into real SQLite/player startup and normal quit",
+      "status": "PASS"
+    },
+    {
+      "name": "reserved worker dispatch bypasses context, capture and business initialization",
+      "status": "PASS"
+    }
+  ],
+  "configuration": "isolated Release acceptance, not a delivery bundle",
+  "app_path": "/private/tmp/OKVideoMac-CrashIntegration/Stage3-peakqar1/OKVideoMac.app",
+  "binary_sha256": "11a72b22f029aa9f9e09ee4b37e88c72f1c11d6c9c92a893aefbee94e887162a",
+  "main_uuid": "F2F033C9-552B-3684-AA2E-EBB2EBE6F62D",
+  "upstream_capture_version": "1.12.2",
+  "sentry_sdk_linked": false,
+  "faults_compile_guard": "OKVIDEO_CRASH_ACCEPTANCE plus explicit acceptance identity/data capability"
+}

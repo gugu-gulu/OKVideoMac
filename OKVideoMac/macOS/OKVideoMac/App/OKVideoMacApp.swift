@@ -2,7 +2,6 @@ import AppKit
 import Combine
 import SwiftUI
 
-@main
 struct OKVideoMacApp: App {
     @NSApplicationDelegateAdaptor(OKVideoMacAppDelegate.self)
     private var appDelegate
@@ -11,11 +10,14 @@ struct OKVideoMacApp: App {
     private let localizer: AppLocalizer
 
     init() {
+#if OKVIDEO_CRASH_ACCEPTANCE
+        CrashAcceptance.faultIfRequested("app-init")
+#endif
         // Resolve the process language and its explicit resource bundle before
         // AppState formats any user-facing presentation state.
         let localizer = AppLocalizer.shared
         self.localizer = localizer
-        _state = StateObject(wrappedValue: AppState.bootstrap())
+        _state = StateObject(wrappedValue: (AppLaunchSession.current ?? AppLaunchSession.prepare()).bootstrapBusiness())
     }
 
     var body: some Scene {
@@ -27,6 +29,10 @@ struct OKVideoMacApp: App {
                 .environment(\.locale, localizer.locale)
                 .frame(minWidth: 900, minHeight: 600)
                 .onAppear {
+#if OKVIDEO_CRASH_ACCEPTANCE
+                    CrashAcceptance.faultIfRequested("business-ready")
+                    CrashAcceptance.nativeFaultIfRequested()
+#endif
                     appDelegate.install(appState: state)
                     AppUpdateCoordinator.shared.install(appState: state)
                     AppAppearanceController.apply(state.appTheme)

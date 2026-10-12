@@ -1,0 +1,166 @@
+{
+  "status": "PASS",
+  "runs": [
+    {
+      "iteration": 0,
+      "first_visible_window_seconds": 0.372461083,
+      "samples": [
+        {
+          "rss_kib": 88416,
+          "cpu_percent": 2.5,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 88416,
+          "cpu_percent": 0.0,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 88416,
+          "cpu_percent": 0.0,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "first_visible_window_seconds": 0.38526462500000047,
+      "samples": [
+        {
+          "rss_kib": 87888,
+          "cpu_percent": 2.1,
+          "threads": 11,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 87888,
+          "cpu_percent": 0.0,
+          "threads": 11,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 87888,
+          "cpu_percent": 0.0,
+          "threads": 11,
+          "file_descriptors": 16,
+          "children": 0
+        }
+      ]
+    },
+    {
+      "iteration": 2,
+      "first_visible_window_seconds": 0.3730955419999997,
+      "samples": [
+        {
+          "rss_kib": 88560,
+          "cpu_percent": 1.8,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 88560,
+          "cpu_percent": 0.0,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 88560,
+          "cpu_percent": 0.0,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        }
+      ]
+    },
+    {
+      "iteration": 3,
+      "first_visible_window_seconds": 0.3781617920000002,
+      "samples": [
+        {
+          "rss_kib": 88192,
+          "cpu_percent": 2.3,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 88192,
+          "cpu_percent": 0.0,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 88192,
+          "cpu_percent": 0.0,
+          "threads": 9,
+          "file_descriptors": 16,
+          "children": 0
+        }
+      ]
+    },
+    {
+      "iteration": 4,
+      "first_visible_window_seconds": 0.3791228750000002,
+      "samples": [
+        {
+          "rss_kib": 88256,
+          "cpu_percent": 2.1,
+          "threads": 10,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 88256,
+          "cpu_percent": 0.0,
+          "threads": 10,
+          "file_descriptors": 16,
+          "children": 0
+        },
+        {
+          "rss_kib": 88256,
+          "cpu_percent": 0.0,
+          "threads": 10,
+          "file_descriptors": 16,
+          "children": 0
+        }
+      ]
+    }
+  ],
+  "median_first_window_seconds": 0.3781617920000002,
+  "median_idle": {
+    "rss_kib": 88256,
+    "cpu_percent": 0.0,
+    "threads": 9,
+    "file_descriptors": 16,
+    "children": 0
+  },
+  "checks": {
+    "first_window": true,
+    "children": true,
+    "rss_kib": true,
+    "cpu_percent": true,
+    "threads": true,
+    "file_descriptors": true
+  },
+  "locked_limits": {
+    "first_window_seconds": 0.7344457500000008,
+    "idle_rss_kib": 105216,
+    "idle_threads": 9,
+    "idle_file_descriptors": 19,
+    "idle_cpu_percent": 2.2,
+    "idle_upload_children": 0,
+    "post_retry_resources": "return to the same idle bounds after worker reaping and cache cleanup"
+  },
+  "measurement_scope": "capture enabled in isolated acceptance ID/data; compared against unchanged absolute stage 1 bounds; database admission includes acceptance policy"
+}

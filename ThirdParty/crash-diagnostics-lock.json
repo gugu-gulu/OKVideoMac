@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "capture": {
+    "name": "PLCrashReporter",
+    "version": "1.12.2",
+    "repository": "https://github.com/microsoft/plcrashreporter.git",
+    "commit": "0254f941c646b1ed17b243654723d0f071e990d0",
+    "linkage": "upstream static framework",
+    "architecture": "arm64",
+    "minimum_macos": "12.0",
+    "upstream_source_modified": false
+  },
+  "raw_slot_policy": "precreate the pinned reporter slot with 0600 and owned directories with 0700; empty slot is not a crash; business umask unchanged",
+  "upload": "not yet integrated"
+}
