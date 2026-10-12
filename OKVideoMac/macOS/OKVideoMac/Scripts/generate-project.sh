@@ -4,7 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 REPOSITORY_DIR="$(cd "$PROJECT_DIR/../.." && pwd)"
-REQUIRED_XCODEGEN_VERSION="2.38.0"
+REQUIRED_XCODEGEN_VERSION="2.46.0"
 
 if ! command -v xcodegen >/dev/null 2>&1; then
   echo "xcodegen is required. OKVideoMac requires XcodeGen $REQUIRED_XCODEGEN_VERSION exactly." >&2

@@ -21,7 +21,29 @@
       "measurement_limits": "startup-baseline.json",
       "dependency_inputs": "isolated copy in /private/tmp/OKVideoMac-CrashIntegration/Inputs",
       "test_binary": "Release test host only; not deliverable"
+    },
+    "2": {
+      "status": "PASS",
+      "release_tests": 51,
+      "passed": 51,
+      "failures": 0,
+      "skipped": 0,
+      "new_startup_context_tests": 7,
+      "real_process_cases": 7,
+      "startup_launches": 5,
+      "project_generation": "PASS with XcodeGen 2.46.0; exactly reproduces the original baseline plus new files",
+      "source_behavior": "one preflight lease retained by AppEnvironment; context consumed once before SQLite",
+      "harness_diagnostics": [
+        "First quit check encountered the existing initialization error sheet; confirming its default button allows normal quit.",
+        "Foundation renders /private/tmp as /tmp; UI probe now validates the POSIX realpath.",
+        "open -n was blocked by the existing LSMultipleInstancesProhibited policy; the direct executable and real cross-process flock paths remain separately tested."
+      ],
+      "resource_gate": "PASS against unchanged stage 1 limits",
+      "evidence": [
+        "stage2-processes.json",
+        "stage2-startup.json"
+      ]
     }
   },
-  "next_stage": 2
+  "next_stage": 3
 }

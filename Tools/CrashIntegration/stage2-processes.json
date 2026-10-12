@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "name": "ordinary isolated startup opens its own database",
+      "status": "PASS"
+    },
+    {
+      "name": "ordinary LaunchServices reopen keeps the same process",
+      "status": "PASS"
+    },
+    {
+      "name": "direct duplicate is rejected before database access",
+      "status": "PASS"
+    },
+    {
+      "name": "LaunchServices enforces LSMultipleInstancesProhibited even for open -n",
+      "status": "PASS"
+    },
+    {
+      "name": "independent process lease blocks initialization before SQLite",
+      "status": "PASS"
+    },
+    {
+      "name": "process exit releases the lease for the next launch",
+      "status": "PASS"
+    },
+    {
+      "name": "simulated older same-ID application without a lease blocks new database access",
+      "status": "PASS"
+    }
+  ],
+  "scope": "copied Release test host with isolated acceptance ID and private temporary data; not a delivery bundle",
+  "older_process": "minimal AppKit stub, not an actual historical application binary"
+}

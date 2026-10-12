@@ -5706,9 +5706,9 @@ final class AppState: ObservableObject {
     private var lastReadyNodeRuntimeEndpoint: URL?
     private var nodeRuntimeUnavailableReason = L10n.string("node.runtime.not-started", fallback: "Node Runtime has not started")
 
-    static func bootstrap() -> AppState {
+    static func bootstrap(startupContext: AppStartupContext? = nil) -> AppState {
         do {
-            let environment = try AppEnvironment.live()
+            let environment = try AppEnvironment.live(startupContext: startupContext)
             let warning = environment.recoveredDatabaseDirectory.map {
                 UserFacingError(
                     title: L10n.string("database.recovered.title", fallback: "Database Recovered"),

@@ -32,26 +32,13 @@ struct AppEnvironment {
     let xtreamCredentialStore: KeychainXtreamCredentialStore
 
     @MainActor
-    static func live() throws -> AppEnvironment {
-        let acceptance = try acceptanceWorkspace()
-        let directories = try runtimeDirectories()
-        let processEnvironment = ProcessInfo.processInfo.environment
-        if !isXCTestHost(environment: processEnvironment) {
-            try ApplicationInstancePolicy.rejectOtherRunningApplication(
-                bundleIdentifier: Bundle.main.bundleIdentifier
-                    ?? "com.okvideomac.OKVideoMac",
-                currentProcessIdentifier:
-                    ProcessInfo.processInfo.processIdentifier
-            )
-        }
-        // This lease is acquired before SQLite is opened, migrated, verified,
-        // or recovered. A forced second launch must never reach database code.
-        let applicationInstanceLease = try ApplicationInstanceLease(
-            lockURL: directories.applicationSupport.appendingPathComponent(
-                ".instance.lock",
-                isDirectory: false
-            )
-        )
+    static func live(startupContext: AppStartupContext? = nil) throws -> AppEnvironment {
+        let context = try startupContext ?? AppStartupContext.prepare()
+        try context.claimBusinessBootstrap()
+        let acceptance = context.acceptance
+        let directories = context.directories
+        // Reuse the lease already acquired before SQLite; never reacquire it.
+        let applicationInstanceLease = context.applicationInstanceLease
         let interactiveHTTPClient = URLSessionHTTPClient()
         let aggregateSearchHTTPClient = URLSessionHTTPClient(configuration: Self.catPawSearchConfiguration())
         let xtreamHTTPClient = URLSessionHTTPClient.isolatedEphemeral()

@@ -24,7 +24,7 @@ limits are explicit in that record and the
 [formal verification](../../../../Docs/RELEASE_VALIDATION_0.8.1.md).
 
 Keep `project.yml` and the committed Xcode project version/build synchronized.
-Use XcodeGen 2.38.0 exactly for regeneration comparisons; a newer generator is
+Use XcodeGen 2.46.0 exactly for regeneration comparisons; a newer generator is
 not an accepted substitute. `Info.plist` uses the shared version/build settings.
 Android Bridge has its own version, currently 0.3.48 (60), and preserves its
 pinned Release certificate and locked dependency graph.
@@ -154,7 +154,7 @@ Gatekeeper 和 source/binary 外层哈希绑定后才能公开发布。
    如果 Xcode 安装在其他位置，可设置 `DEVELOPER_DIR` 或把实际路径传给
    `xcode-select`。仓库不要求特定卷名或维护者目录。
 
-2. Xcode 验证完成后，安装最小开发期工具：精确 XcodeGen 2.38.0、Meson、Ninja、
+2. Xcode 验证完成后，安装最小开发期工具：精确 XcodeGen 2.46.0、Meson、Ninja、
    pkg-config、FFmpeg 和 libass。Monterey 本机仅使用 MacPorts：
 
    ```bash
