@@ -3,25 +3,48 @@ import Combine
 import SwiftUI
 
 struct OKVideoMacApp: App {
-    @NSApplicationDelegateAdaptor(OKVideoMacAppDelegate.self)
-    private var appDelegate
-    @Environment(\.scenePhase) private var scenePhase
-    @StateObject private var state: AppState
+    @NSApplicationDelegateAdaptor(OKVideoMacAppDelegate.self) private var appDelegate
+    @StateObject private var startup: AppStartupController
     private let localizer: AppLocalizer
 
     init() {
 #if OKVIDEO_CRASH_ACCEPTANCE
         CrashAcceptance.faultIfRequested("app-init")
 #endif
-        // Resolve the process language and its explicit resource bundle before
-        // AppState formats any user-facing presentation state.
-        let localizer = AppLocalizer.shared
-        self.localizer = localizer
-        _state = StateObject(wrappedValue: (AppLaunchSession.current ?? AppLaunchSession.prepare()).bootstrapBusiness())
+        localizer = AppLocalizer.shared
+        let session = AppLaunchSession.current ?? AppLaunchSession.prepare()
+        let controller = AppStartupController(session: session)
+        session.controller = controller
+        _startup = StateObject(wrappedValue: controller)
     }
 
     var body: some Scene {
         WindowGroup {
+            Group {
+                if let state = startup.business {
+                    BusinessRootView(state: state, startup: startup,
+                        appDelegate: appDelegate, localizer: localizer)
+                } else {
+                    AppStartupView(startup: startup)
+                        .environment(\.locale, localizer.locale)
+                        .frame(minWidth: 900, minHeight: 600)
+                }
+            }
+            .onOpenURL { startup.openFile($0) }
+            .handlesExternalEvents(preferring: ["*"], allowing: ["*"])
+        }
+        .handlesExternalEvents(matching: ["*"])
+        .commands { StartupCommands(startup: startup, appDelegate: appDelegate) }
+    }
+}
+
+private struct BusinessRootView: View {
+    @ObservedObject var state: AppState
+    @ObservedObject var startup: AppStartupController
+    @Environment(\.scenePhase) private var scenePhase
+    let appDelegate: OKVideoMacAppDelegate
+    let localizer: AppLocalizer
+    var body: some View {
             RootView()
                 .environmentObject(state)
                 .environmentObject(state.navigation)
@@ -41,18 +64,12 @@ struct OKVideoMacApp: App {
                     AppAppearanceController.apply(theme)
                 }
                 .task {
+                    guard startup.canRunBusinessEvents else { return }
                     await state.start()
                     await SeekAcceptanceHarness.runIfRequested(state)
                 }
-                .onOpenURL { url in
-                    Task {
-                        _ = await state.importConfiguration(
-                            source: .localFile(url),
-                            name: url.deletingPathExtension().lastPathComponent
-                        )
-                    }
-                }
                 .onChange(of: scenePhase) { phase in
+                    guard startup.canRunBusinessEvents else { return }
                     if phase == .active {
                         state.refreshEPGAfterActivation()
                         Task { await state.refreshHomeConfigurationIfNeeded() }
@@ -65,6 +82,7 @@ struct OKVideoMacApp: App {
                         for: NSWorkspace.willSleepNotification
                     )
                 ) { _ in
+                    guard startup.canRunBusinessEvents else { return }
                     Task { await state.handleSystemSleep() }
                 }
                 .onReceive(
@@ -72,19 +90,37 @@ struct OKVideoMacApp: App {
                         for: NSWorkspace.didWakeNotification
                     )
                 ) { _ in
+                    guard startup.canRunBusinessEvents else { return }
                     Task { await state.handleSystemWake() }
                 }
-        }
-        .commands {
-            AppCommands(state: state)
-        }
+    }
+}
 
-        Settings {
-            SettingsView(navigation: state.settingsNavigation)
-                .environmentObject(state)
-                .environmentObject(state.navigation)
-                .environment(\.locale, localizer.locale)
-                .frame(width: 980, height: 650)
+private struct StartupCommands: Commands {
+    @ObservedObject var startup: AppStartupController
+    let appDelegate: OKVideoMacAppDelegate
+    var body: some Commands {
+        CommandGroup(replacing: .newItem) {
+            Button(L10n.string("crash.window.new", fallback: "New Window")) {
+                guard startup.canRunBusinessEvents else { return }
+                NSApp.sendAction(#selector(NSWindow.newWindowForTab(_:)), to: nil, from: nil)
+            }
+            .keyboardShortcut("n", modifiers: .command)
+            .disabled(!startup.canRunBusinessEvents)
+        }
+        CommandGroup(replacing: .appSettings) {
+            Button(L10n.string("crash.settings.menu", fallback: "Settings…")) { appDelegate.showSettingsWindow(nil) }
+                .keyboardShortcut(",", modifiers: .command)
+                .disabled(!startup.canRunBusinessEvents)
+        }
+        CommandGroup(after: .appInfo) {
+            if startup.canRunBusinessEvents { UpdateCommandItems() }
+        }
+        CommandMenu(L10n.string("menu.navigation", fallback: "Navigate")) {
+            if let state = startup.business { NavigationCommandItems(state: state).disabled(!startup.canRunBusinessEvents) }
+        }
+        CommandMenu(L10n.string("menu.playback", fallback: "Playback")) {
+            if let state = startup.business { PlaybackCommandItems(state: state).disabled(!startup.canRunBusinessEvents) }
         }
     }
 }
@@ -101,6 +137,28 @@ final class OKVideoMacAppDelegate: NSObject, NSApplicationDelegate {
 
     private let mainMenuLocalizer = MainMenuLocalizationController()
     private weak var appState: AppState?
+    private var settingsWindow: NSWindow?
+    private var startupController: AppStartupController? { AppLaunchSession.current?.controller }
+
+    @objc func showSettingsWindow(_ sender: Any?) {
+        guard let startupController, startupController.canRunBusinessEvents,
+              let state = startupController.business else { return }
+        if settingsWindow == nil {
+            let view = SettingsView(navigation: state.settingsNavigation)
+                .environmentObject(state)
+                .environmentObject(state.navigation)
+                .environment(\.locale, AppLocalizer.shared.locale)
+                .frame(width: 980, height: 650)
+            let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 980, height: 650),
+                styleMask: [.titled, .closable, .miniaturizable], backing: .buffered, defer: false)
+            window.title = L10n.string("settings.pane.settings.title", fallback: "Settings")
+            window.contentViewController = NSHostingController(rootView: view)
+            window.isReleasedWhenClosed = false
+            window.center()
+            settingsWindow = window
+        }
+        settingsWindow?.makeKeyAndOrderFront(nil)
+    }
     private var playerWindowController: PlayerPlaybackWindowController?
     private var playerPresentationCancellable: AnyCancellable?
     private var playerWindowCommandCancellable: AnyCancellable?
@@ -118,6 +176,9 @@ final class OKVideoMacAppDelegate: NSObject, NSApplicationDelegate {
                 || playerWindowCommandCancellable == nil
                 || appWindowLayoutCommandCancellable == nil else { return }
         self.appState = appState
+#if OKVIDEO_PERFORMANCE_TEST
+        Task { await AndroidDexBridgeRuntime.runStartupAcceptanceIfRequested() }
+#endif
         let playerWindowController = PlayerPlaybackWindowController(
             appState: appState
         )
@@ -149,9 +210,6 @@ final class OKVideoMacAppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         mainMenuLocalizer.start()
-#if OKVIDEO_PERFORMANCE_TEST
-        Task { await AndroidDexBridgeRuntime.runStartupAcceptanceIfRequested() }
-#endif
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
@@ -161,7 +219,7 @@ final class OKVideoMacAppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldTerminateAfterLastWindowClosed(
         _ sender: NSApplication
     ) -> Bool {
-        false
+        startupController?.business == nil
     }
 
     private func executeWindowLayoutCommand(
@@ -198,13 +256,18 @@ final class OKVideoMacAppDelegate: NSObject, NSApplicationDelegate {
         case .waiting:
             return .terminateLater
         case .idle:
+            guard let business = appState ?? startupController?.business else {
+                startupController?.requestTermination()
+                return .terminateNow
+            }
             let updates = AppUpdateCoordinator.shared
             guard updates.terminationPolicy.permitsTermination else {
                 updates.focusInstallationChoice()
                 return .terminateCancel
             }
             allowsTerminationTimeoutFallback = updates.terminationPolicy.permitsTimeoutFallback
-            guard let appState else { return .terminateNow }
+            let appState = business
+            startupController?.requestTermination()
             terminationState = .waiting
             orderOutVisibleWindowsForTermination(sender)
             terminationTask = Task { @MainActor [weak self, weak appState] in
@@ -1821,19 +1884,23 @@ enum AppAppearanceController {
     }
 }
 
-struct AppCommands: Commands {
-    @ObservedObject var state: AppState
+private struct UpdateCommandItems: View {
     @ObservedObject private var updates = AppUpdateCoordinator.shared
-
-    var body: some Commands {
-        CommandGroup(after: .appInfo) {
+    var body: some View {
+        Group {
             Button(L10n.string("updates.check", fallback: "Check for Updates…")) { updates.checkForUpdates() }
                 .disabled(!updates.canCheckForUpdates)
             if let version = updates.availableVersion {
                 Button(L10n.string("updates.available", fallback: "Update Available") + " \(version)") { updates.checkForUpdates() }
             }
-        }
-        CommandMenu(L10n.string("menu.navigation", fallback: "Navigate")) {
+                }
+    }
+}
+
+private struct NavigationCommandItems: View {
+    @ObservedObject var state: AppState
+    var body: some View {
+        Group {
             ForEach(Array(AppSection.allCases.enumerated()), id: \.element.id) {
                 index, section in
                 Button(section.title) {
@@ -1894,9 +1961,14 @@ struct AppCommands: Commands {
             }
             .keyboardShortcut("/", modifiers: .command)
             .disabled(!state.allowsBrowserShortcuts)
-        }
+                }
+    }
+}
 
-        CommandMenu(L10n.string("menu.playback", fallback: "Playback")) {
+private struct PlaybackCommandItems: View {
+    @ObservedObject var state: AppState
+    var body: some View {
+        Group {
             Button(L10n.string("menu.playback.play-pause", fallback: "Play/Pause")) {
                 Task { await state.togglePlayPause() }
             }
@@ -2030,11 +2102,10 @@ struct AppCommands: Commands {
             }
                 .keyboardShortcut(.cancelAction)
                 .disabled(!state.allowsPlayerShortcuts)
-        }
+                }
     }
 }
 
-/// Shares the video's window, but not its fullscreen scale transform.
 struct PlayerPlaybackOverlayRoot: View {
     @ObservedObject var appState: AppState
     var body: some View {

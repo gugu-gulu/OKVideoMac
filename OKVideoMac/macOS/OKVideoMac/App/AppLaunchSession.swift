@@ -6,8 +6,9 @@ final class AppLaunchSession {
     static var current: AppLaunchSession?
     let startup: Result<AppStartupContext, Error>
     let crashManager: OKCrashManager?
+    weak var controller: AppStartupController?
 
-    private init(startup: Result<AppStartupContext, Error>, crashManager: OKCrashManager?) {
+    init(startup: Result<AppStartupContext, Error>, crashManager: OKCrashManager?) {
         self.startup = startup
         self.crashManager = crashManager
     }

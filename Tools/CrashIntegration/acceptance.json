@@ -62,7 +62,23 @@
         "stage3-capture.json",
         "stage3-resources.json"
       ]
+    },
+    "4": {
+      "status": "PASS",
+      "release_tests": 71,
+      "failures": 0,
+      "skipped": 0,
+      "actual_ui_cases": 10,
+      "resource_launches": 5,
+      "resource_gate": "PASS against unchanged stage 1 limits",
+      "project_generation": "PASS",
+      "evidence": [
+        "stage4-shell.json",
+        "stage4-resources.json",
+        "stage4-test-summary.json"
+      ],
+      "scope": "same-window recovery and delayed business startup; consent remains disabled until stage 5"
     }
   },
-  "next_stage": 4
+  "next_stage": 5
 }

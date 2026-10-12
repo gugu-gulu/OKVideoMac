@@ -16,6 +16,7 @@
 		1A6C66F63EBD6B13926C0FA2 /* AppRestartGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B0B0BD06A8BDB742EBA198 /* AppRestartGate.swift */; };
 		1D6071FF2EABE097F03A3E8B /* NativeLiveChannelPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C514F1DF97F4D957CDFAD /* NativeLiveChannelPage.swift */; };
 		23F3274D09AD9ABB49C2870B /* PlayerInteractionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303F9D189B3E37ACA85D261E /* PlayerInteractionTests.swift */; };
+		2685130620C85C8863F08882 /* AppStartupControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579EA0116028BFAB72EEFC1F /* AppStartupControllerTests.swift */; };
 		285AF5B7AA73E51C0BE0F632 /* NodeHTTPSpiderSiteProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A00084B74B412C7C3ACB9 /* NodeHTTPSpiderSiteProvider.swift */; };
 		2E40BCFCE09756B119CF2553 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 46B22CA70719023FAD0BBE29 /* InfoPlist.xcstrings */; };
 		30B2634E951AC346F431C249 /* FavoritesNativeRepairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670FEFE746E5D3B95EE9D347 /* FavoritesNativeRepairTests.swift */; };
@@ -56,6 +57,7 @@
 		7EF03B9631AC9E4D3F4246CC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7765776920879CB4CD0A540 /* HomeView.swift */; };
 		830A89CB3C82B293A4F19A01 /* LiveBackgroundPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17937C0B8629B6EBEC7CA930 /* LiveBackgroundPresentation.swift */; };
 		8476BCE36C5318B88C0EB9D5 /* LEGAL_AND_SECURITY.md in Resources */ = {isa = PBXBuildFile; fileRef = 75B64DF2F947BB2B8EE678A5 /* LEGAL_AND_SECURITY.md */; };
+		8E1671BB92AC930D77A4B727 /* AppStartupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0220C7BC052CB65E583F8112 /* AppStartupView.swift */; };
 		9026FCDA3BBE44AB9C8EA9BE /* catpaw-quark-transfer-lifecycle.js in Resources */ = {isa = PBXBuildFile; fileRef = 4A1AD0EEB256E04382C11191 /* catpaw-quark-transfer-lifecycle.js */; };
 		907BE2DC1B86A821A8D0AC2B /* LiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC0FBAF18592C722D283D81 /* LiveView.swift */; };
 		9450118DE1AF8CCD3CBB84BC /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63284B4134B72C9ECD12EE1B /* ImageRepository.swift */; };
@@ -94,6 +96,7 @@
 		F63AD70FD38EE59E2BE0D5D7 /* AndroidRuntimeMaintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6055A4D0EC00D86134284B /* AndroidRuntimeMaintenance.swift */; };
 		F9FF431B06B6D4B13A435C8A /* AppParseExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD897F3EA6681258B14A99 /* AppParseExecutor.swift */; };
 		FB2A4C23694D2553091FEDF2 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E18EAE5CCFAEC3E0E3E49A /* DetailView.swift */; };
+		FD364D6E147499F88BE2EF1B /* AppStartupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09BA9408622331E2482D73 /* AppStartupController.swift */; };
 		FE2B817E3AA2A2B7F78FFB16 /* BrowserToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E793C1BB91D17F7670A0B9 /* BrowserToolbar.swift */; };
 /* End PBXBuildFile section */
 
@@ -129,6 +132,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0220C7BC052CB65E583F8112 /* AppStartupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStartupView.swift; sourceTree = "<group>"; };
 		0443D3DC2B3D840D56D011E6 /* AppRelaunchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRelaunchCoordinator.swift; sourceTree = "<group>"; };
 		04E18EAE5CCFAEC3E0E3E49A /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		09C1F786F0D9BA2EB9105485 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
@@ -156,10 +160,12 @@
 		4A1AD0EEB256E04382C11191 /* catpaw-quark-transfer-lifecycle.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "catpaw-quark-transfer-lifecycle.js"; sourceTree = "<group>"; };
 		4ACA134A51B5EAC0085C4BDA /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		4E25C74DFB53809A9F2672CE /* JavaScriptSpiderSiteProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptSpiderSiteProvider.swift; sourceTree = "<group>"; };
+		4F09BA9408622331E2482D73 /* AppStartupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStartupController.swift; sourceTree = "<group>"; };
 		50471B253F948DFB29DE1F74 /* OKVideoMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OKVideoMacApp.swift; sourceTree = "<group>"; };
 		524A6FFC75575C7A3986A97C /* AppLocalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocalizer.swift; sourceTree = "<group>"; };
 		5262185C72774473ACDDA44A /* FullscreenCompositionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenCompositionTests.swift; sourceTree = "<group>"; };
 		5707873F641B0221D67B9CBC /* VideoGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoGrid.swift; sourceTree = "<group>"; };
+		579EA0116028BFAB72EEFC1F /* AppStartupControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStartupControllerTests.swift; sourceTree = "<group>"; };
 		5C6055A4D0EC00D86134284B /* AndroidRuntimeMaintenance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndroidRuntimeMaintenance.swift; sourceTree = "<group>"; };
 		617A00084B74B412C7C3ACB9 /* NodeHTTPSpiderSiteProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeHTTPSpiderSiteProvider.swift; sourceTree = "<group>"; };
 		63284B4134B72C9ECD12EE1B /* ImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRepository.swift; sourceTree = "<group>"; };
@@ -296,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				F91BAC79B1CCBB837407F7D5 /* AppStartupContextTests.swift */,
+				579EA0116028BFAB72EEFC1F /* AppStartupControllerTests.swift */,
 				77FCE067BF1919B51B018299 /* AppUpdateTests.swift */,
 				B033DD4B8E657220411A6979 /* CrashDiagnosticsTests.swift */,
 				D4A1BE060D34B55A4B0FF02F /* DetailLoadingTests.swift */,
@@ -437,6 +444,8 @@
 				0443D3DC2B3D840D56D011E6 /* AppRelaunchCoordinator.swift */,
 				77B0B0BD06A8BDB742EBA198 /* AppRestartGate.swift */,
 				FFD36178CCCB7B5463EEC346 /* AppStartupContext.swift */,
+				4F09BA9408622331E2482D73 /* AppStartupController.swift */,
+				0220C7BC052CB65E583F8112 /* AppStartupView.swift */,
 				ADFC0D6C3C9A30793D7813B3 /* AppState.swift */,
 				477730D7CD85A69FE271464C /* AppUpdateCoordinator.swift */,
 				A180D1CDDCE2B5DAB03466F4 /* AppUpdateUserDriver.swift */,
@@ -803,6 +812,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CF1B79CD792411F2045AAD3 /* AppStartupContextTests.swift in Sources */,
+				2685130620C85C8863F08882 /* AppStartupControllerTests.swift in Sources */,
 				5B5490502FD8A13096009595 /* AppUpdateTests.swift in Sources */,
 				97103FC9C17F689492C840CF /* CrashDiagnosticsTests.swift in Sources */,
 				C4EE2AD692DE73F0C079A62B /* DetailLoadingTests.swift in Sources */,
@@ -840,6 +850,8 @@
 				6933FAC9DB77F047D6303CC8 /* AppRelaunchCoordinator.swift in Sources */,
 				1A6C66F63EBD6B13926C0FA2 /* AppRestartGate.swift in Sources */,
 				F4DEEAC19BFEDE7C89FBF225 /* AppStartupContext.swift in Sources */,
+				FD364D6E147499F88BE2EF1B /* AppStartupController.swift in Sources */,
+				8E1671BB92AC930D77A4B727 /* AppStartupView.swift in Sources */,
 				0DC49DC6E8989EB3C7FFADD2 /* AppState.swift in Sources */,
 				A4797AADD80A3D10E201C73B /* AppUpdateCoordinator.swift in Sources */,
 				A3E57CA77DF609168769CFFB /* AppUpdateUserDriver.swift in Sources */,

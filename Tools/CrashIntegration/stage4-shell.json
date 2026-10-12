@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "name": "recovery is one actual window; no SQLite, native player or child process before continue",
+      "status": "PASS"
+    },
+    {
+      "name": "Settings shortcut cannot bypass recovery or create a settings window",
+      "status": "PASS"
+    },
+    {
+      "name": "New Window shortcut cannot create another recovery window",
+      "status": "PASS"
+    },
+    {
+      "name": "actual Continue button switches the same window and creates the native player exactly once without consent",
+      "status": "PASS"
+    },
+    {
+      "name": "Settings opens only after business is ready and reuses the same business state",
+      "status": "PASS"
+    },
+    {
+      "name": "New Window works after readiness and shares the existing native player",
+      "status": "PASS"
+    },
+    {
+      "name": "acknowledged old report does not block the next clean launch",
+      "status": "PASS"
+    },
+    {
+      "name": "closing recovery exits without creating business or acknowledging its report",
+      "status": "PASS"
+    },
+    {
+      "name": "reopening unacknowledged recovery reprompts; Quit still starts no business",
+      "status": "PASS"
+    },
+    {
+      "name": "actual file-open event stays deferred during recovery and imports once after Continue",
+      "status": "PASS"
+    }
+  ],
+  "configuration": "copied Release acceptance App, actual UI actions",
+  "app_path": "/private/tmp/OKVideoMac-CrashIntegration/Stage4-fhdskn0t/OKVideoMac.app",
+  "screenshots": [
+    "stage4-recovery.png",
+    "stage4-business.png",
+    "stage4-settings.png"
+  ]
+}
