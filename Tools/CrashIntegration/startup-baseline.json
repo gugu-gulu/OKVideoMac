@@ -1,0 +1,145 @@
+{
+  "baseline_commit": "ca0a169",
+  "configuration": "Release test host",
+  "binary_sha256": "c7bb2cb6f4721629b5b5f79a7d2128a19a6d2f39fc76d872e021f4e8dea732cc",
+  "isolation": "distinct test bundle ID plus existing XCTest runtime-directory policy",
+  "measurement_scope": "first visible window and empty-workspace idle samples; not cold-cache or termination acceptance",
+  "runs": [
+    {
+      "iteration": 0,
+      "first_visible_window_seconds": 1.653704292,
+      "samples": [
+        {
+          "rss_kib": 79616,
+          "cpu_percent": 2.4,
+          "threads": 11,
+          "file_descriptors": 15
+        },
+        {
+          "rss_kib": 79616,
+          "cpu_percent": 0.2,
+          "threads": 11,
+          "file_descriptors": 15
+        },
+        {
+          "rss_kib": 79616,
+          "cpu_percent": 0.1,
+          "threads": 11,
+          "file_descriptors": 15
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "first_visible_window_seconds": 0.46639470800000016,
+      "samples": [
+        {
+          "rss_kib": 79072,
+          "cpu_percent": 1.5,
+          "threads": 7,
+          "file_descriptors": 15
+        },
+        {
+          "rss_kib": 79072,
+          "cpu_percent": 0.2,
+          "threads": 7,
+          "file_descriptors": 15
+        },
+        {
+          "rss_kib": 79072,
+          "cpu_percent": 0.2,
+          "threads": 7,
+          "file_descriptors": 15
+        }
+      ]
+    },
+    {
+      "iteration": 2,
+      "first_visible_window_seconds": 0.5228854590000012,
+      "samples": [
+        {
+          "rss_kib": 79840,
+          "cpu_percent": 2.5,
+          "threads": 7,
+          "file_descriptors": 15
+        },
+        {
+          "rss_kib": 79840,
+          "cpu_percent": 0.1,
+          "threads": 7,
+          "file_descriptors": 15
+        },
+        {
+          "rss_kib": 79840,
+          "cpu_percent": 0.2,
+          "threads": 7,
+          "file_descriptors": 15
+        }
+      ]
+    },
+    {
+      "iteration": 3,
+      "first_visible_window_seconds": 0.4844457500000008,
+      "samples": [
+        {
+          "rss_kib": 79808,
+          "cpu_percent": 1.4,
+          "threads": 8,
+          "file_descriptors": 15
+        },
+        {
+          "rss_kib": 79808,
+          "cpu_percent": 0.0,
+          "threads": 8,
+          "file_descriptors": 15
+        },
+        {
+          "rss_kib": 79808,
+          "cpu_percent": 0.0,
+          "threads": 8,
+          "file_descriptors": 15
+        }
+      ]
+    },
+    {
+      "iteration": 4,
+      "first_visible_window_seconds": 0.3587042920000023,
+      "samples": [
+        {
+          "rss_kib": 79280,
+          "cpu_percent": 3.3,
+          "threads": 7,
+          "file_descriptors": 15
+        },
+        {
+          "rss_kib": 79280,
+          "cpu_percent": 0.0,
+          "threads": 7,
+          "file_descriptors": 15
+        },
+        {
+          "rss_kib": 79280,
+          "cpu_percent": 0.2,
+          "threads": 7,
+          "file_descriptors": 15
+        }
+      ]
+    }
+  ],
+  "median_first_window_seconds": 0.4844457500000008,
+  "median_idle": {
+    "rss_kib": 79616,
+    "cpu_percent": 0.2,
+    "threads": 7,
+    "file_descriptors": 15
+  },
+  "locked_limits": {
+    "first_window_seconds": 0.7344457500000008,
+    "idle_rss_kib": 105216,
+    "idle_threads": 9,
+    "idle_file_descriptors": 19,
+    "idle_cpu_percent": 2.2,
+    "idle_upload_children": 0,
+    "post_retry_resources": "return to the same idle bounds after worker reaping and cache cleanup"
+  }
+}

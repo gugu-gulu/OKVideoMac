@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "date": "2026-10-12",
+  "scope": "isolated formal App integration; no Desktop installation or publication",
+  "branch": "codex/crash-reporting-integration",
+  "baseline_commit": "ca0a169",
+  "prototype_commit": "9d47ac4",
+  "remote_main": "3ae794bcc9fc8c31165ddf36ebdd57b8423adb0d",
+  "danmaku_sha256": {
+    "DanmakuPlayerSupport.swift": "dde24bc68740c28248010fd3d211ca38e22d407f4711006b3a2845003371de4a",
+    "OKVideoMacTests.swift": "56769c52e0ea6bdb8ae0112dafe78100282396c7589726ccdead4e385d62dcbb"
+  },
+  "stages": {
+    "1": {
+      "status": "PASS",
+      "release_tests": 44,
+      "failures": 0,
+      "danmaku_tests": 11,
+      "startup_launches": 5,
+      "evidence_root": "/private/tmp/OKVideoMac-CrashIntegration",
+      "measurement_limits": "startup-baseline.json",
+      "dependency_inputs": "isolated copy in /private/tmp/OKVideoMac-CrashIntegration/Inputs",
+      "test_binary": "Release test host only; not deliverable"
+    }
+  },
+  "next_stage": 2
+}
