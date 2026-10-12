@@ -131,14 +131,14 @@
       ]
     },
     "7": {
-      "status": "WAITING_REMOTE_VALIDATION",
+      "status": "PASS_WITH_DOCUMENTED_NATIVE_GAPS",
       "local_symbol_gate": "PASS_WITH_DOCUMENTED_NATIVE_GAPS",
       "normal_release_tests": 82,
       "acceptance_release_tests": 82,
       "failures": 0,
       "symbol_archive_positive_negative_cases": 7,
       "actual_local_crash_symbolication_cases": 2,
-      "sentry_requests": 0,
+      "sentry_requests": "3 dSYM uploads, acceptance release registration, 2 synthetic crash events; event API reads denied 403",
       "release": "com.okvideomac.OKVideoMac@0.8.4+1377001",
       "environment": "okvideomac-crash-integration-acceptance",
       "artifact_root": "Tools/CrashIntegration/build/stage7-20261012",
@@ -154,7 +154,7 @@
           "C crash fixture"
         ]
       },
-      "next_required": "Authorize existing private Sentry session access and exact acceptance dSYM/event upload, then verify backend source lines, UUIDs, retries and revocation. Do not enter stage 8 yet.",
+      "next_required": "Stage 8 regression on current machine; final delivery symbols remain stage 9",
       "evidence": [
         "stage7-normal-test-summary.json",
         "stage7-acceptance-test-summary.json",
@@ -162,9 +162,12 @@
         "stage7-local-symbolication.json",
         "stage7-normal-symbols.json",
         "stage7-acceptance-symbols.json",
-        "stage7-diagnostic-c-symbol.json"
-      ]
+        "stage7-diagnostic-c-symbol.json",
+        "stage7-remote-acceptance.json"
+      ],
+      "sentry_synthetic_events": 2,
+      "backend_verification": "Swift/C source lines, exact UUIDs, release/environment, retry same IDs, post-revoke event absent"
     }
   },
-  "next_stage": 7
+  "next_stage": 8
 }

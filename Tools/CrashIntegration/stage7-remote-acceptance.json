@@ -1,0 +1,90 @@
+{
+  "release": "com.okvideomac.OKVideoMac@0.8.4+1377001",
+  "environment": "okvideomac-crash-integration-acceptance",
+  "events": [
+    {
+      "kind": "swift",
+      "event_id": "aa93569f6cea519eb05ce3274d429416",
+      "uuid": "B98A5388-16F7-391C-B618-D641A4721197",
+      "result": {
+        "businessInitialized": false,
+        "cacheExists": false,
+        "captureAvailable": true,
+        "consent": true,
+        "pending": 0,
+        "status": "delivered"
+      },
+      "same_id_after_local_503": true,
+      "url": "https://okvideo.sentry.io/issues/7787794970/events/aa93569f6cea519eb05ce3274d429416/",
+      "backend_source_lines": [
+        "CrashAcceptance.swift:91",
+        "CrashAcceptance.swift:114",
+        "OKVideoMacEntry.swift:25"
+      ],
+      "backend_uuid_matches": true,
+      "release_matches": true,
+      "environment_matches": true,
+      "attachments": 0,
+      "replays": 0,
+      "users": 0
+    },
+    {
+      "kind": "c",
+      "event_id": "ae7254fa0402a631c23f7334e8d3c938",
+      "uuid": "E35B5921-B68B-3FD2-8308-D96DF20E140D",
+      "result": {
+        "businessInitialized": false,
+        "cacheExists": false,
+        "captureAvailable": true,
+        "consent": true,
+        "pending": 0,
+        "status": "delivered"
+      },
+      "same_id_after_local_503": true,
+      "url": "https://okvideo.sentry.io/issues/7787794966/events/ae7254fa0402a631c23f7334e8d3c938/",
+      "backend_source_lines": [
+        "CrashFixture.c:4",
+        "CrashAcceptance.swift:89",
+        "OKVideoMacEntry.swift:25"
+      ],
+      "backend_uuid_matches": true,
+      "release_matches": true,
+      "environment_matches": true,
+      "attachments": 0,
+      "replays": 0,
+      "users": 0
+    }
+  ],
+  "post_revoke": {
+    "event_id": "0ae5a527aa3bdf30d5c5cb7c76f9d83d",
+    "result": {
+      "businessInitialized": false,
+      "cacheExists": false,
+      "captureAvailable": true,
+      "consent": false,
+      "pending": 1,
+      "status": "localOnly"
+    },
+    "expected": "not sent",
+    "backend_search": "No issues match your search",
+    "project": "okvideomac-macos",
+    "environment": "All Envs",
+    "period": "14d",
+    "verified_not_present": true
+  },
+  "api_read_status": 403,
+  "status": "PASS_WITH_DOCUMENTED_NATIVE_GAPS",
+  "verified_at": "2026-10-12",
+  "verification": "Existing authorized Chrome Sentry session; event API token read is 403; no scopes changed",
+  "uploaded_dsym_uuids": [
+    "B98A5388-16F7-391C-B618-D641A4721197",
+    "744A559D-9E94-3A0A-BCFD-8360F68836EA",
+    "E35B5921-B68B-3FD2-8308-D96DF20E140D"
+  ],
+  "limitations": [
+    "11 existing native image dSYM gaps recorded in stage7-local acceptance; no mismatched substitutes",
+    "Backend visible-page verification, not full backend event JSON audit",
+    "Post-revocation absence is a point-in-time check paired with local consent=false / pending=1 / localOnly evidence",
+    "Final delivery symbols and added dependencies require stage 9 package verification"
+  ]
+}

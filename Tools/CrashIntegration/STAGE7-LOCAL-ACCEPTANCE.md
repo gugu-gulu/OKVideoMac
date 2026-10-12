@@ -1,6 +1,6 @@
-# 第 7 步：本地符号链路通过，Sentry 后台待验收
+# 第 7 步：本地符号链路验收记录
 
-日期：2026-10-12。基于第 6 步归档提交 `738a6ae`。本步整体状态 **WAITING_REMOTE_VALIDATION**，尚未进入第 8 步。
+日期：2026-10-12。基于第 6 步归档提交 `738a6ae`。这是远端验收前的本地检查记录。后续 Sentry 验收已完成，见 [远端验收记录](STAGE7-REMOTE-ACCEPTANCE.md)。
 
 ## 已完成的本地验证
 
@@ -43,7 +43,7 @@
 - `Contents/Frameworks/libmpv.dylib`
 - `Contents/Resources/NodeRuntime/node`
 
-## 下一关
+## 当时的待办（已由后续远端验收完成）
 
 上个聊天的自动审批拒绝读取现有 Sentry 登录会话，理由是未识别到当前账号会话的明确授权。本轮尚未重试该操作，也没有上传符号、登记版本或发送外部事件。
 
