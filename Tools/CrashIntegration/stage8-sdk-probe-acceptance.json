@@ -1,0 +1,521 @@
+{
+  "status": "PASS",
+  "date": "2026-10-13",
+  "scope": "SDK inspection bounded wait, current macOS 14.8.9 arm64; no final package, Desktop replacement or publication",
+  "implementation_commit": "f52e290dc3abde3a4bf1b19b8278c4576d7d01ce",
+  "source_file_sha256": "4379be51d7a5fbfdf7b11c555708c2d1a7df3b56ef77be201575ca1db78a0718",
+  "behavior": {
+    "per_inspector_deadline_seconds": 2,
+    "term_grace_seconds": 0.2,
+    "kill_grace_seconds": 0.2,
+    "max_stdout_bytes": 16384,
+    "timeout_error": "executableInspectionTimedOut; retryable, distinct from unsupported architecture",
+    "preserves_selection_and_avd": true,
+    "environment": "Fixed system PATH, C locale and /var/empty HOME; no user MAGIC overrides",
+    "remaining_root_cause_uncertainty": "Original SDK file child was blocked in __open; the OS/storage trigger is unproven. This fix and tests remove its indefinite parent wait and bound failure cleanup."
+  },
+  "normal_release_tests": {
+    "result": "Passed",
+    "passedTests": 69,
+    "failedTests": 0,
+    "skippedTests": 0
+  },
+  "acceptance_release_tests": {
+    "result": "Passed",
+    "passedTests": 107,
+    "failedTests": 0,
+    "skippedTests": 0
+  },
+  "initial_acceptance_run": {
+    "summary": {
+      "result": "Failed",
+      "passedTests": 106,
+      "failedTests": 1,
+      "skippedTests": 0
+    },
+    "diagnostic": "The synthetic 0.25-second deadline expired before probe.pid was written. Product deadline remained two seconds. Fault test now installs its signal handler before the marker and exercises the production two-second deadline; rerun passed."
+  },
+  "new_regressions": 5,
+  "symbol_verification": {
+    "status": "PASS_WITH_DOCUMENTED_NATIVE_GAPS",
+    "normal_app_uuid": {
+      "arm64": "9716F3D0-09A2-33B9-AE51-45686E454F61"
+    },
+    "acceptance_app_uuid": {
+      "arm64": "BC41D353-74E0-3CCC-B45B-AA164158B53C"
+    },
+    "normal_identity": {
+      "CFBundleIdentifier": "com.okvideomac.crashintegration.OKVideoMac",
+      "CFBundleShortVersionString": "0.8.4",
+      "CFBundleVersion": "137"
+    },
+    "acceptance_identity": {
+      "CFBundleIdentifier": "com.okvideomac.OKVideoMac.acceptance8b3b",
+      "CFBundleShortVersionString": "0.8.4",
+      "CFBundleVersion": "1377001"
+    },
+    "coverage": "Required App/helper dSYMs match; acceptance C fixture also matches. Existing native gaps retained. No new backend symbolication claim.",
+    "build_provenance": "Archives were created from tested dirty worktree based on 9eb4e78, before commit f52e290. SDK implementation unchanged between normal and acceptance runs; only the synthetic test deadline was adjusted."
+  },
+  "startup_resources": {
+    "app_path": "/private/tmp/OKVideoMac-CrashIntegration/Stage8SDKAcceptance/OKVideoMac.app",
+    "status": "PASS",
+    "runs": [
+      {
+        "iteration": 0,
+        "first_visible_window_seconds": 1.420177333,
+        "samples": [
+          {
+            "rss_kib": 90048,
+            "cpu_percent": 3.9,
+            "threads": 9,
+            "file_descriptors": 16,
+            "children": 0
+          },
+          {
+            "rss_kib": 90048,
+            "cpu_percent": 0.5,
+            "threads": 9,
+            "file_descriptors": 16,
+            "children": 0
+          },
+          {
+            "rss_kib": 90048,
+            "cpu_percent": 0.6,
+            "threads": 9,
+            "file_descriptors": 16,
+            "children": 0
+          }
+        ]
+      },
+      {
+        "iteration": 1,
+        "first_visible_window_seconds": 0.27890075000000003,
+        "samples": [
+          {
+            "rss_kib": 89968,
+            "cpu_percent": 4.6,
+            "threads": 9,
+            "file_descriptors": 16,
+            "children": 0
+          },
+          {
+            "rss_kib": 89968,
+            "cpu_percent": 0.6,
+            "threads": 9,
+            "file_descriptors": 16,
+            "children": 0
+          },
+          {
+            "rss_kib": 89968,
+            "cpu_percent": 0.6,
+            "threads": 9,
+            "file_descriptors": 16,
+            "children": 0
+          }
+        ]
+      },
+      {
+        "iteration": 2,
+        "first_visible_window_seconds": 0.37163929099999926,
+        "samples": [
+          {
+            "rss_kib": 89168,
+            "cpu_percent": 3.0,
+            "threads": 9,
+            "file_descriptors": 16,
+            "children": 0
+          },
+          {
+            "rss_kib": 89168,
+            "cpu_percent": 0.5,
+            "threads": 9,
+            "file_descriptors": 16,
+            "children": 0
+          },
+          {
+            "rss_kib": 89168,
+            "cpu_percent": 0.5,
+            "threads": 9,
+            "file_descriptors": 16,
+            "children": 0
+          }
+        ]
+      },
+      {
+        "iteration": 3,
+        "first_visible_window_seconds": 0.3560445829999992,
+        "samples": [
+          {
+            "rss_kib": 90480,
+            "cpu_percent": 2.6,
+            "threads": 9,
+            "file_descriptors": 16,
+            "children": 0
+          },
+          {
+            "rss_kib": 90480,
+            "cpu_percent": 0.5,
+            "threads": 9,
+            "file_descriptors": 16,
+            "children": 0
+          },
+          {
+            "rss_kib": 90480,
+            "cpu_percent": 0.3,
+            "threads": 9,
+            "file_descriptors": 16,
+            "children": 0
+          }
+        ]
+      },
+      {
+        "iteration": 4,
+        "first_visible_window_seconds": 0.3525772079999996,
+        "samples": [
+          {
+            "rss_kib": 89104,
+            "cpu_percent": 3.6,
+            "threads": 9,
+            "file_descriptors": 16,
+            "children": 0
+          },
+          {
+            "rss_kib": 89104,
+            "cpu_percent": 0.6,
+            "threads": 9,
+            "file_descriptors": 16,
+            "children": 0
+          },
+          {
+            "rss_kib": 89104,
+            "cpu_percent": 0.4,
+            "threads": 9,
+            "file_descriptors": 16,
+            "children": 0
+          }
+        ]
+      }
+    ],
+    "median_first_window_seconds": 0.3560445829999992,
+    "median_idle": {
+      "rss_kib": 89968,
+      "cpu_percent": 0.6,
+      "threads": 9,
+      "file_descriptors": 16,
+      "children": 0
+    },
+    "checks": {
+      "first_window": true,
+      "children": true,
+      "rss_kib": true,
+      "cpu_percent": true,
+      "threads": true,
+      "file_descriptors": true
+    },
+    "locked_limits": {
+      "first_window_seconds": 0.7344457500000008,
+      "idle_rss_kib": 105216,
+      "idle_threads": 9,
+      "idle_file_descriptors": 19,
+      "idle_cpu_percent": 2.2,
+      "idle_upload_children": 0,
+      "post_retry_resources": "return to the same idle bounds after worker reaping and cache cleanup"
+    },
+    "measurement_scope": "capture enabled in isolated acceptance ID/data; compared against unchanged absolute stage 1 bounds; database admission includes acceptance policy; same passive window counter as baseline, no UI interaction; termination is not part of this measurement"
+  },
+  "native_ui": {
+    "sdk": "/Volumes/XcodeDev/AndroidSDK",
+    "launches": 3,
+    "checks": 14,
+    "all_available": true,
+    "snapshots": [
+      {
+        "phase": "before-repeated-checks",
+        "pid": 2826,
+        "time": 1791889800.383477,
+        "rss_kib": 144128,
+        "cpu_percent": 0.6,
+        "threads": 9,
+        "fds": 28,
+        "children": [],
+        "selection_sha256": "63b72e9bafdf2a1e3726c7aed7994019b5dd18f9622c0b1e82d6b3b7725ed5ce",
+        "mode": "external",
+        "pending_reports": 0,
+        "upload_cache_exists": false,
+        "avd_created": false
+      },
+      {
+        "phase": "after-5-checks",
+        "pid": 2826,
+        "time": 1791889934.3309052,
+        "rss_kib": 145104,
+        "cpu_percent": 11.7,
+        "threads": 9,
+        "fds": 28,
+        "children": [],
+        "selection_sha256": "63b72e9bafdf2a1e3726c7aed7994019b5dd18f9622c0b1e82d6b3b7725ed5ce",
+        "mode": "external",
+        "pending_reports": 0,
+        "upload_cache_exists": false,
+        "avd_created": false
+      },
+      {
+        "phase": "after-10-checks",
+        "pid": 2826,
+        "time": 1791889957.103227,
+        "rss_kib": 145120,
+        "cpu_percent": 0.6,
+        "threads": 9,
+        "fds": 28,
+        "children": [],
+        "selection_sha256": "63b72e9bafdf2a1e3726c7aed7994019b5dd18f9622c0b1e82d6b3b7725ed5ce",
+        "mode": "external",
+        "pending_reports": 0,
+        "upload_cache_exists": false,
+        "avd_created": false
+      },
+      {
+        "phase": "relaunch-2-checks",
+        "pid": 3464,
+        "time": 1791890036.509411,
+        "rss_kib": 145760,
+        "cpu_percent": 2.9,
+        "threads": 8,
+        "fds": 28,
+        "children": [],
+        "selection_sha256": "63b72e9bafdf2a1e3726c7aed7994019b5dd18f9622c0b1e82d6b3b7725ed5ce",
+        "mode": "external",
+        "pending_reports": 0,
+        "upload_cache_exists": false,
+        "avd_created": false
+      },
+      {
+        "phase": "relaunch-3-checks",
+        "pid": 3748,
+        "time": 1791890134.0728471,
+        "rss_kib": 129584,
+        "cpu_percent": 0.6,
+        "threads": 8,
+        "fds": 25,
+        "children": [],
+        "selection_sha256": "63b72e9bafdf2a1e3726c7aed7994019b5dd18f9622c0b1e82d6b3b7725ed5ce",
+        "mode": "external",
+        "pending_reports": 0,
+        "upload_cache_exists": false,
+        "avd_created": false
+      }
+    ],
+    "exits": [
+      {
+        "cycle": 1,
+        "pid": 2826,
+        "normal_exit": true,
+        "termination_trace": [
+          {
+            "event": "termination-requested",
+            "pid": 2826,
+            "updateInitializations": 1,
+            "uptime": 432313.10773295833,
+            "version": "1377001"
+          },
+          {
+            "event": "business-shutdown-started",
+            "pid": 2826,
+            "uptime": 432313.210217125,
+            "version": "1377001"
+          },
+          {
+            "event": "history-flushed",
+            "pid": 2826,
+            "uptime": 432313.2557850417,
+            "version": "1377001"
+          },
+          {
+            "event": "player-stopped",
+            "nativeReleased": true,
+            "pid": 2826,
+            "uptime": 432313.260607625,
+            "version": "1377001"
+          },
+          {
+            "event": "node-stopped",
+            "pid": 2826,
+            "uptime": 432313.285846,
+            "version": "1377001"
+          },
+          {
+            "event": "android-stopped",
+            "pid": 2826,
+            "uptime": 432313.34689808334,
+            "version": "1377001"
+          },
+          {
+            "cacheExists": false,
+            "event": "diagnostics-stopped",
+            "pid": 2826,
+            "sending": false,
+            "uptime": 432313.35096075,
+            "version": "1377001"
+          },
+          {
+            "event": "shutdown-complete",
+            "pid": 2826,
+            "uptime": 432313.35484079167,
+            "version": "1377001"
+          },
+          {
+            "event": "termination-replied",
+            "pid": 2826,
+            "uptime": 432313.3583577917,
+            "version": "1377001"
+          }
+        ],
+        "duration_seconds": 0.25062483333749697
+      },
+      {
+        "cycle": 2,
+        "pid": 3464,
+        "normal_exit": true,
+        "termination_trace": [
+          {
+            "event": "termination-requested",
+            "pid": 3464,
+            "updateInitializations": 1,
+            "uptime": 432445.47687037505,
+            "version": "1377001"
+          },
+          {
+            "event": "business-shutdown-started",
+            "pid": 3464,
+            "uptime": 432445.57578633336,
+            "version": "1377001"
+          },
+          {
+            "event": "history-flushed",
+            "pid": 3464,
+            "uptime": 432445.6156525,
+            "version": "1377001"
+          },
+          {
+            "event": "player-stopped",
+            "nativeReleased": true,
+            "pid": 3464,
+            "uptime": 432445.62790658337,
+            "version": "1377001"
+          },
+          {
+            "event": "node-stopped",
+            "pid": 3464,
+            "uptime": 432445.6532932917,
+            "version": "1377001"
+          },
+          {
+            "event": "android-stopped",
+            "pid": 3464,
+            "uptime": 432445.7174467917,
+            "version": "1377001"
+          },
+          {
+            "cacheExists": false,
+            "event": "diagnostics-stopped",
+            "pid": 3464,
+            "sending": false,
+            "uptime": 432445.7212417084,
+            "version": "1377001"
+          },
+          {
+            "event": "shutdown-complete",
+            "pid": 3464,
+            "uptime": 432445.72502825,
+            "version": "1377001"
+          },
+          {
+            "event": "termination-replied",
+            "pid": 3464,
+            "uptime": 432445.72863958334,
+            "version": "1377001"
+          }
+        ],
+        "duration_seconds": 0.25176920829107985
+      },
+      {
+        "cycle": 3,
+        "pid": 3748,
+        "normal_exit": true,
+        "termination_trace": [
+          {
+            "event": "termination-requested",
+            "pid": 3748,
+            "updateInitializations": 1,
+            "uptime": 432509.1585547917,
+            "version": "1377001"
+          },
+          {
+            "event": "business-shutdown-started",
+            "pid": 3748,
+            "uptime": 432509.26801633334,
+            "version": "1377001"
+          },
+          {
+            "event": "history-flushed",
+            "pid": 3748,
+            "uptime": 432509.31734937505,
+            "version": "1377001"
+          },
+          {
+            "event": "player-stopped",
+            "nativeReleased": true,
+            "pid": 3748,
+            "uptime": 432509.32284675003,
+            "version": "1377001"
+          },
+          {
+            "event": "node-stopped",
+            "pid": 3748,
+            "uptime": 432509.3489880417,
+            "version": "1377001"
+          },
+          {
+            "event": "android-stopped",
+            "pid": 3748,
+            "uptime": 432509.4104062917,
+            "version": "1377001"
+          },
+          {
+            "cacheExists": false,
+            "event": "diagnostics-stopped",
+            "pid": 3748,
+            "sending": false,
+            "uptime": 432509.41434725,
+            "version": "1377001"
+          },
+          {
+            "event": "shutdown-complete",
+            "pid": 3748,
+            "uptime": 432509.41812829167,
+            "version": "1377001"
+          },
+          {
+            "event": "termination-replied",
+            "pid": 3748,
+            "uptime": 432509.4215940417,
+            "version": "1377001"
+          }
+        ],
+        "duration_seconds": 0.26303924998501316
+      }
+    ],
+    "same_process_fd_before_after": [
+      28,
+      28
+    ],
+    "warm_rss_change_kib": 16,
+    "measurement_note": "Advanced Settings resources are compared within that UI phase, not against the first-window idle threshold; CPU sample after five clicks includes active checking. No zero-leak claim."
+  },
+  "production_fault_entries": "ABSENT in verified ordinary Release test artifact; synthetic CLI and acceptance-root strings checked",
+  "cleanup": "All three exact SDK UI PIDs ended normally; sampled inspector children absent. No Emulator/AVD created in this fresh fixture.",
+  "external_uploads": 0,
+  "pending": "Physical sleep/wake remains NOT_TESTED at user request; Stage 9 NOT_STARTED",
+  "artifact_root": "Tools/CrashIntegration/build/stage8-sdk-20261013"
+}

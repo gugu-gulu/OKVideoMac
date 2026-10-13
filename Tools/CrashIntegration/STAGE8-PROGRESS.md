@@ -1,6 +1,6 @@
-# 第 8 步检查点：界面控制恢复，实机回归继续保留两项待办
+# 第 8 步检查点：SDK 检查修复通过，真实睡眠/唤醒待验收
 
-2026-10-13，macOS 14.8.9 / arm64。状态 **PARTIAL_PENDING_SLEEP_WAKE_AND_SDK_PROBE**，第 9 步未开始。未替换桌面 App、未推送或发布。此记录不是最终 Release 验收通过证明。
+2026-10-13，macOS 14.8.9 / arm64。状态 **PARTIAL_PENDING_SLEEP_WAKE**，第 9 步未开始。未替换桌面 App、未推送或发布。此记录不是最终 Release 验收通过证明。
 
 ## 已完成的自动化基线
 
@@ -20,22 +20,36 @@
 
 ## 发现及处理
 
-1. 临时符号验收脚本给 Node 重签名时漏了 JIT entitlement，导致 V8 脚本启动前 SIGTRAP。已修改 `prepare-stage7-symbols.py`，仅给内置 Node 应用现有 `NodeHelper.entitlements`，与正式 `package-app.sh` 一致。修正后的 Node 实际启动/正常停止、完整严格签名和 App UUID 不变均已核验。未修改正式产品代码，也没有以此替代最终打包。
+1. 临时符号验收脚本给 Node 重签名时漏了 JIT entitlement，导致 V8 脚本启动前 SIGTRAP。已修改 `prepare-stage7-symbols.py`，仅给内置 Node 应用现有 `NodeHelper.entitlements`，与正式 `package-app.sh` 一致。修正后的 Node 实际启动/正常停止、完整严格签名和 App UUID 不变均已核验。该签名修正只修改验收脚本，也没有以此替代最终打包。
 2. 内部盘约 8.9 GiB 不足以创建 10 GiB AVD。尝试外置 AVD 链接被验收目录防链接检查正确拒绝，随后已恢复原路径。仅将本任务已经完成的 Stage6Sparkle 夹具移到外置开发盘，逐文件核对 SHA-256 并保留旧路径链接，释放到约 13 GiB 后成功启动。用户原有 SDK 与 Android 数据未迁移。
-3. 一次启动中的 `/usr/bin/file -b .../platform-tools/adb` 在 `__open` 等待超过 5 分钟，调用方停在 `ExternalAndroidRuntimeValidator.hostCanExecute` 的 `waitUntilExit()`；UI 仍能交互，但 SDK 状态未更新。同一命令从 shell 执行成功。保存采样后，仅停止该确定归属的检查子进程，重新用界面检查 SDK 和启动成功。**这只证明可恢复，未证明根因解决**，须继续复现/评估检查超时边界。
+3. 一次启动中的 `/usr/bin/file -b .../platform-tools/adb` 在 `__open` 等待超过 5 分钟，调用方停在 `ExternalAndroidRuntimeValidator.hostCanExecute` 的 `waitUntilExit()`；UI 仍能交互，但 SDK 状态未更新。同一命令从 shell 执行成功。保存采样后，仅停止该确定归属的检查子进程，重新用界面检查 SDK 和启动成功。当时只证明可恢复；本轮已加入并验证有限等待策略，见下节。底层 `__open` 阻塞的系统/存储触发原因仍未确定。
+
+## SDK 检查修复复验（实现提交 `f52e290`）
+
+`ExternalAndroidRuntimeValidator` 的单个 `file` 检查现在最多等待 **2 秒**；失败清理先发 TERM、最多等 0.2 秒，再按需发 KILL、最多等 0.2 秒。输出以非阻塞方式边读边检查，限制为 16 KiB，退出和读取都不再使用无限等待。子进程使用固定系统 PATH、C locale 和 `/var/empty` HOME，避免用户 MAGIC 覆盖或个人 magic 数据库影响检查。超时和检查失败有独立错误码与中英/繁体提示，不会误判为架构不支持；SDK 选择/AVD 记录不被改写，后续可重新检查。
+
+普通 Release 回归 **69 通过、0 失败、0 跳过**。验收 Release 最终 **107 通过、0 失败、0 跳过**，包含 5 个新增 SDK 回归：真实 `file` 正/反例、忽略 TERM 的阻塞进程及 KILL 清理、超量输出、失败退出/启动失败、同一协调器超时后重试。首轮验收中的合成 0.25 秒测试在夹具写出启动标记前已超时（106 通过、1 失败）；已改为先安装信号处理，再按生产 2 秒边界测试，重跑通过。产品截止时间没有放宽。阶段累计不同测试数为 425；这是跨检查点累计，并非全部 425 项都在本次提交重跑。
+
+当前源码重新生成普通/验收 Release 隔离产物，严格签名和所需 App/helper/C 夹具 dSYM UUID 核对通过，既有原生符号缺口保留。普通版本没有合成故障 CLI 或验收根目录入口。本次新 App UUID 的符号仅在本地核验；此前第 7 步 Sentry 后台证据仍属于当时的二进制，不能替代第 9 步最终包的符号验证。
+
+新二进制 5 次启用捕获的启动达到原固定资源阈值：首窗中位数 **0.356 秒**、空闲 RSS **89,968 KiB**、CPU **0.6%**、线程 **9**、FD **16**、子进程 **0**。资源脚本新增显式 App/输出参数，确保测量当前修复产物而非旧 App。
+
+通过原生 CUA 完成 **3 轮打开/正常退出、14 次现有 SDK 检查**，每轮均显示 SDK 可用；未再次手动停止检查子进程。第一进程连续 10 次检查，FD 28→28，预热第 5 到第 10 次 RSS +16 KiB。高级设置页面的采样与首窗空闲门槛分开比较；第 5 次点击后 CPU 样本包含活动检查，不作为空闲指标。SDK 选择记录 SHA-256 保持一致，采样无检查子进程残留，新目录未创建 AVD。三次正常退出约 0.251、0.252、0.263 秒，App 均结束。未新增 Sentry 上传。
+
+这项修复通过了有限等待、清理及重试行为验收，不宣称已查明系统/存储为何让 `file` 阻塞，也不宣称零泄漏。底层再次阻塞时会返回可重试的超时状态。
 
 ## 仍须完成
 
 - 真实睡眠/唤醒：用户于 2026-10-13 明确表示暂不方便，保留待验收；不能由逻辑测试替代。
-- SDK 文件检查等待问题：保存了 App 和子进程采样，继续定位或加入经验证的有限等待策略后复验。本轮运行时成功及正常退出不消除此风险。
 - macOS 12、AirPods/蓝牙遵照“仅当前机器”范围保持 NOT_TESTED。两个未提供的外部 Node Contract B 样本保持未测。
 
 ## 续跑与证据
 
-- 结构化结果：`stage8-ui-acceptance.json`；签名修正验证：`stage8-node-signing.json`；汇总：`stage8-progress.json`、`acceptance.json`。
+- SDK 修复结构化结果：`stage8-sdk-probe-acceptance.json`，原始证据在 `build/stage8-sdk-20261013/`；SDK 测试产物与新界面目录由 `/private/tmp/OKVideoMac-CrashIntegration/Stage8SDKAcceptance/fixture.json` 记录。
+- 前轮界面结果：`stage8-ui-acceptance.json`；签名修正验证：`stage8-node-signing.json`；汇总：`stage8-progress.json`、`acceptance.json`。
 - 原始 UI 树、截图、资源序列、运行时 PID/退出记录、SDK 等待采样和 Node 原创脚本位于忽略目录 `build/stage8-20261013/`。此前自动化和资源证据位于 `build/stage8-20261012/`。
 - UI App：`/private/tmp/OKVideoMac-CrashIntegration/Stage8UI/OKVideoMac.app`，当前 Info.plist 指向 `cycles-fixture.json` 中的新恢复循环目录；业务/播放/Android 验收目录仍由同目录 `fixture.json` 记录。更换 fixture root 后需重签外层 App 并验证，保留 Node 的 JIT entitlement。
-- 本轮 App、Node、ADB、模拟器和三个本机服务器都已停止。续跑所需服务为原创演示源 9481、本机 503 接收器 9482、原创 Node 夹具 9483。
+- 本轮三个 SDK 复验 App 已正常退出。前轮 App、Node、ADB、模拟器和三个本机服务器都已停止。续跑所需服务为原创演示源 9481、本机 503 接收器 9482、原创 Node 夹具 9483。
 - 旧 Stage6 夹具归档位置：`/Volumes/XcodeDev/OKVideoMac-CrashIntegration-Stage8-20261013/completed-stage6-artifacts`，移动与哈希核验记录在原始证据中。
 
 第 8 步不得标为全通过，不进入第 9 步最终 Release 打包。

@@ -169,12 +169,12 @@
       "backend_verification": "Swift/C source lines, exact UUIDs, release/environment, retry same IDs, post-revoke event absent"
     },
     "8": {
-      "status": "PARTIAL_PENDING_SLEEP_WAKE_AND_SDK_PROBE",
+      "status": "PARTIAL_PENDING_SLEEP_WAKE",
       "date": "2026-10-13",
-      "implementation_commit": "59e8a80",
+      "implementation_commit": "f52e290dc3abde3a4bf1b19b8278c4576d7d01ce",
       "stage7_checkpoint": "ba1f2c5",
       "machine": "macOS 14.8.9 arm64",
-      "unique_passed": 420,
+      "unique_passed": 425,
       "unique_not_run": [
         "NodeBundleCompatibilityTests/testRealContractBCompanionConfigurationFromEnvironment()",
         "NodeBundleCompatibilityTests/testRealContractBSamplesFromEnvironment()"
@@ -195,8 +195,7 @@
       "retry_resources_scope": "Actual adapter and Release entry, no SwiftUI business initialization; no zero-leak claim",
       "native_ui_blocker": "RESOLVED: actual recovery, settings, import, playback, fullscreen, history, 30 consent cycles and active runtimes verified; see stage8-ui-acceptance.json",
       "not_yet_tested": [
-        "Physical sleep/wake deferred by user on 2026-10-13",
-        "SDK inspection stall follow-up; no claim it was fixed",
+        "Physical sleep/wake deferred by user",
         "macOS 12 and AirPods/Bluetooth excluded by current-machine-only scope"
       ],
       "stage9": "NOT_STARTED",
@@ -209,7 +208,12 @@
       "actual_ui_evidence": "stage8-ui-acceptance.json",
       "ui_consent_cycles": 30,
       "ui_recovery_sequences": 3,
-      "active_node_android_normal_quit": "PASS with documented SDK-probe intervention"
+      "active_node_android_normal_quit": "PASS with documented SDK-probe intervention",
+      "sdk_probe": "PASS: bounded subprocess, retry, 107 Release acceptance regressions, unchanged resource limits and 14 native UI checks",
+      "sdk_evidence": "stage8-sdk-probe-acceptance.json",
+      "sdk_normal_release_passed": 69,
+      "sdk_acceptance_release_passed": 107,
+      "unique_count_scope": "Cumulative distinct Stage 8 tests across checkpoints; 107 relevant tests rerun on SDK fix"
     }
   },
   "next_stage": 8
