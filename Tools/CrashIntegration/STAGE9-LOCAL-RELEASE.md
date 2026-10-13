@@ -47,3 +47,7 @@ CUA `getApp` 本轮等待 **1305.3189 秒（约 21 分钟）** 才返回，传�
 桌面主程序 SHA-256 仍为 `5ab593e778d14d084cc4f9b5a83d6875b5479a2a6d98640d318c6f5bf33d06b5`，与本轮前一致。最终原包主程序哈希也未被烟测改变。本地可审阅产物准备完成；公开发行、桌面替换、正式身份烟测和新 UUID 的后台符号核验不在已完成结果内。
 
 结构化结果：[stage9-local-release-acceptance.json](stage9-local-release-acceptance.json)。原始日志、UI 树、截图、符号和校验记录：[build/stage9-20261013/](build/stage9-20261013/)。
+
+## 界面等待与首窗后续排查
+
+当前聊天的授权预检、固定烟测身份及任务内核恢复已验证通过；九次额外启动未复现原 20 秒异常，原始根因仍未证实。详情见 [CONTROL-STARTUP-FOLLOWUP.md](CONTROL-STARTUP-FOLLOWUP.md)。前文保留本步当时观察，不以新的工具流程覆盖原始限制。App 实现和已验证的 Release 包未改变。

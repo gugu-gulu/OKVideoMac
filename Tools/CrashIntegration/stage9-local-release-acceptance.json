@@ -157,11 +157,17 @@
   },
   "not_tested_or_unresolved": [
     "First smoke launch showed no window within 20 seconds; cause unproven. Retry and two fresh directories succeeded.",
-    "CUA getApp waited about 21 minutes; UI control wait is not fixed.",
+    "Historical 21-minute wait investigated: first-app access confirmation identified as a wait source; current-chat preflight/stable identity/scoped recovery passed. Vendor internals and all outer transport delays are not patched.",
     "Public-identity runtime admission and notarized/Gatekeeper public-release gates.",
     "Final Build137 Sentry backend symbolication; 32 native code images lack matching dSYMs, plus 2 zero-code resource stubs.",
     "Uninterrupted 30-second deep sleep/power efficiency; macOS12; AirPods/Bluetooth; two unsupplied Node ContractB samples.",
     "Prototype unidentified 144-byte allocation and formal full leak census remain unresolved/not performed."
   ],
-  "next_action": "Local reviewable package/evidence prepared. No Desktop replacement or publication authorized; unresolved UI-tool wait and first-window anomaly remain explicit follow-ups."
+  "next_action": "Local reviewable Release package remains unchanged. Control workflow preflight/recovery passed; original first-window cause remains unproven after nine successful launches. No Desktop replacement or publication.",
+  "followup_control_and_startup": {
+    "evidence": "control-startup-followup.json",
+    "control_status": "PASS_APP_ACCESS_PREFLIGHT_STABLE_ID_AND_SCOPED_RECOVERY",
+    "startup_status": "INVESTIGATED_NOT_REPRODUCED_ORIGINAL_CAUSE_UNPROVEN",
+    "app_implementation_changed": false
+  }
 }

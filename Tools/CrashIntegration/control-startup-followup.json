@@ -1,0 +1,162 @@
+{
+  "status": "PASS_CURRENT_CHAT_CONTROL_WORKFLOW_STARTUP_INVESTIGATED_NOT_REPRODUCED",
+  "recorded_at": "2026-10-13T23:47:03.334851",
+  "machine": "macOS 14.8.9 arm64",
+  "tested_release_source_commit": "18a127e17c3f2735f3b44c1651824d295684999d",
+  "compiled_code_uuid": "115A9AD6-418B-3E68-96A6-4B675B793094",
+  "control": {
+    "status": "PASS_APP_ACCESS_PREFLIGHT_STABLE_ID_AND_SCOPED_RECOVERY",
+    "approved_identity": "com.okvideomac.stage9.smoke",
+    "wait_source": "First app identity access confirmation precedes native AX read; new identity may legitimately wait for user approval. Separately, a blocked native request outlives a JS Promise deadline.",
+    "historical_attribution": {
+      "old_accept_response_utc": "2026-10-13T14:39:24.577Z",
+      "old_accept_response_id": 233,
+      "first_subsequent_ax_error_utc": "2026-10-13T14:39:25.001237Z",
+      "native_log_scope": "SkyComputerUseService; AX transformation begins immediately after accept response",
+      "old_call_seconds": 1305.3189,
+      "attribution_limit": "Desktop acceptance log does not name the target bundle. Timing, current session grant and the installed policy call order identify first-app access confirmation as a wait source; no complete original per-request trace or full allocation of all 1305 seconds exists.",
+      "source_file": "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules/@oai/sky/dist/project/cua/sky_js/src/targets/mac/computer-use-policy.js",
+      "source_sha256": "8cd1272d7aa836479be6c3f4cc5b0b80526339eedd4852cbb6558f893f6721f8",
+      "source_behavior": "getAppPolicy -> await createElicitation -> invoke getAppState within withSuspendedTimeout. The agent did not patch this module or write any permission file."
+    },
+    "scope": "Current chat workflow; no vendor patch, no permission bypass, no global guarantee for approval/transport delays or first initialization.",
+    "session_access_preflight": "Read-only current [apps].allowed list; does not evaluate global grants or grant access. Unknown layout/missing grant stops this workflow before native UI use.",
+    "new_identity_ui": "Attempt canceled by deadline; after preflight showed no recorded grant, no further GUI attempt was made. Cleanup stopped only the task-owned CLI fixture.",
+    "frozen_app_promise_test": {
+      "script_deadline_ms": 5000,
+      "script_elapsed_ms": 5008,
+      "actual_tool_wall_seconds": 11.6687,
+      "conclusion": "Promise deadline alone fails to bound the complete tool call"
+    },
+    "frozen_app_kernel_test": {
+      "deadline_ms": 7000,
+      "actual_tool_wall_seconds": 7.1557,
+      "only_current_kernel_stopped": true,
+      "fixture_auto_resume_after_signal_ms": 10697,
+      "recovery_bind_tool_seconds": 0.3758
+    },
+    "production_deadline_test": {
+      "deadline_ms": 15000,
+      "actual_tool_wall_seconds": 15.1277,
+      "scope": "New-identity binding canceled before permission confirmation; not a successful read or an authorization bypass."
+    },
+    "normal_recovered_rounds": [
+      {
+        "round": 1,
+        "elapsed_ms": 1976,
+        "historyPreserved": true,
+        "diagnosticsVisible": true
+      },
+      {
+        "round": 2,
+        "elapsed_ms": 1580,
+        "historyPreserved": true,
+        "diagnosticsVisible": true
+      },
+      {
+        "round": 3,
+        "elapsed_ms": 1610,
+        "historyPreserved": true,
+        "diagnosticsVisible": true
+      },
+      {
+        "round": 4,
+        "elapsed_ms": 1571,
+        "historyPreserved": true,
+        "diagnosticsVisible": true
+      },
+      {
+        "round": 5,
+        "elapsed_ms": 1561,
+        "historyPreserved": true,
+        "diagnosticsVisible": true
+      }
+    ],
+    "normal_rounds_tool_wall_seconds": 8.3767,
+    "normal_clicks": 15,
+    "normal_state_or_screenshot_observations": 21,
+    "approved_identity_final_bind_seconds": 0.4553,
+    "approved_final_ui": {
+      "status": "PASS",
+      "elapsed_ms": 1274,
+      "diagnosticsConsent": false,
+      "filteredReportCount": 0,
+      "mainWindowVerified": true,
+      "normalQuitRequestedOnce": true
+    },
+    "approved_final_tool_wall_seconds": 1.2904,
+    "native_normal_quit_exit_code": 0,
+    "shared_service_restarted": false,
+    "signed_tool_bundles_modified": false,
+    "all_gui_calls": "Documented CUA APIs only; no raw IPC/AX action implementation"
+  },
+  "startup": {
+    "status": "INVESTIGATED_NOT_REPRODUCED_ORIGINAL_CAUSE_UNPROVEN",
+    "fresh_business_directory_launches": 6,
+    "fresh_business_directory_seconds": [
+      0.4127262500000004,
+      0.31791295799999997,
+      0.3174894159999999,
+      0.3278997910000001,
+      0.3282979580000003,
+      0.3281008340000007
+    ],
+    "fresh_business_directory_median_seconds": 0.3280003125000004,
+    "new_identity_first_launches": 3,
+    "new_identity_first_launch_seconds": [
+      1.5371201249999995,
+      1.4958713750000001,
+      1.4883039159999996
+    ],
+    "all_nine_visible": true,
+    "all_nine_capture_slot_mode": "0600",
+    "source_code_modified": false,
+    "measurement_scope": "Six fresh business directories and three new identities; identical compiled Release UUID. Existing-user/public identity and cold-cache startup not tested.",
+    "original_probe_limit": "OnScreenOnly count cannot distinguish a nonexistent window from a created window outside the current screen/Space. This does not prove that the original window existed.",
+    "new_probe": "Passively records both all sizeable owned layer-0 windows and on-screen count, plus app active/hidden/finished-launching metadata; no interaction or activation.",
+    "evidence_preservation": "Unique per-case log/result/window sequence; reject rerun-overwrite; on a 20-second missing window save exact-process sample and hold it for diagnosis.",
+    "termination_scope": "Nine startup measurement processes stopped by exact SIGTERM; not nine normal-Quit acceptance cases.",
+    "limits": [
+      "Original first-launch raw log/result was overwritten and no original sample exists; cause cannot be retroactively proven.",
+      "Cold-cache and public-identity runtime admission not tested.",
+      "New identity first launch timings are a separate category, not pooled to claim the previous resource gate passed."
+    ]
+  },
+  "boundaries": {
+    "status": "PASS",
+    "all_measurement_and_ui_app_pids_gone": true,
+    "pids": [
+      44484,
+      44490,
+      44496,
+      44500,
+      44504,
+      44509,
+      44513,
+      44528,
+      44544,
+      43133,
+      44612,
+      45144
+    ],
+    "desktop_main_sha256": "5ab593e778d14d084cc4f9b5a83d6875b5479a2a6d98640d318c6f5bf33d06b5",
+    "package_main_sha256": "01497d07d4e035dd09b653438eda05986e65e14f611b32cab7ccc1d4d5662213",
+    "history": [
+      [
+        "夜航星河",
+        "第 02 集",
+        98.41666666666667,
+        128.0
+      ]
+    ],
+    "initial_source_commit": "18a127e17c3f2735f3b44c1651824d295684999d",
+    "app_source_changed": false,
+    "signed_tool_bundles_modified": false,
+    "permissions_modified_by_agent": false,
+    "publication": false,
+    "source_window_anomaly_reproduced": false,
+    "new_native_app_access_avoided_after_preflight": true
+  },
+  "evidence_root": "Tools/CrashIntegration/build/control-startup-20261013",
+  "delivery_package": "Unchanged verified local Release from 18a127e; no App implementation change or new package in this follow-up."
+}
