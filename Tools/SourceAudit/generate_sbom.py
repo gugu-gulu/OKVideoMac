@@ -23,7 +23,8 @@ SPDX_NS = uuid.UUID("2a2eb62c-ad1f-4e9b-99b9-6d3ee855ecf7")
 CDX_NS = uuid.UUID("ce6fdc54-4547-4142-b70f-3ed50cbd18f8")
 
 NATIVE = {
-    **{name: ("2.10.0", "MIT AND BSD-2-Clause AND Zlib") for name in ("Sparkle", "Autoupdate", "Updater", "Downloader", "Installer")},
+    "CrashReporter": ("1.12.2", "MIT AND Apache-2.0"),
+    "Sentry": ("9.30.1", "MIT"),    **{name: ("2.10.0", "MIT AND BSD-2-Clause AND Zlib") for name in ("Sparkle", "Autoupdate", "Updater", "Downloader", "Installer")},
     "OKVideoMac": ("OKVideoMac", "GPL-3.0-only"),
     "OKVideoMacRelauncher": ("0.5.0", "GPL-3.0-only"),
     "node": ("22.23.0", "MIT"),
@@ -116,6 +117,7 @@ def native_inventory(app: Path) -> list[dict[str, str]]:
         version, license_id = NATIVE[basename]
         result.append(
             {
+                "artifact": "Xcode-generated resource-only static SDK framework stub" if basename in ("CrashReporter", "Sentry") else "",
                 "name": basename,
                 "version": version,
                 "license": license_id,

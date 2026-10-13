@@ -1,4 +1,6 @@
 [
+  "Contents/Frameworks/CrashReporter.framework/Versions/A/CrashReporter",
+  "Contents/Frameworks/Sentry.framework/Versions/A/Sentry",
   "Contents/Frameworks/Sparkle.framework/Versions/B/Autoupdate",
   "Contents/Frameworks/Sparkle.framework/Versions/B/Sparkle",
   "Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/MacOS/Updater",

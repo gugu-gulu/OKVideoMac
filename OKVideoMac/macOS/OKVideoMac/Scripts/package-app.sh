@@ -284,6 +284,9 @@ fi
 
 mkdir -p "$ARTIFACTS"
 cp -R "$APP_SOURCE" "$APP_DESTINATION"
+# Xcode retains privacy resources for static frameworks in resource-only stubs.
+# Their generated temporary install names must not become release payload.
+PYTHONDONTWRITEBYTECODE=1 python3 "$SCRIPT_DIR/normalize-static-sdk-stubs.py" "$APP_DESTINATION"
 # Keep debug files outside the distributable before any stripping. A new directory
 # prevents a later build with the same version from replacing earlier symbols.
 CRASH_SYMBOL_ARCHIVE="$(mktemp -d "$ARTIFACTS/CrashSymbols.XXXXXX")"

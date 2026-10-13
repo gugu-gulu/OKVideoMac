@@ -14,3 +14,11 @@ The corresponding archives are included in the checksum-bound third-party source
 SPDX and CycloneDX contain both static SDK components with versions, license expressions, package URLs and source revisions. The verifier rejects omitted/duplicate components, conflicting versions, mismatched license metadata and missing/changed shipped notices. Static SDK records do not carry the outer-signed main executable checksum.
 
 External Sentry evidence from Stage 7 belongs to its recorded acceptance UUIDs. Final Release dSYMs and their source state must be verified against the exact final bundle separately; no new upload or source upload is authorized by this metadata change.
+
+## Xcode static framework resource stubs
+
+Xcode retains each static SDK's privacy manifest in a framework resource container and emits a resource-only Mach-O stub. Both stubs have a zero-byte __text section and no defined global symbols; the App executable contains the actual SDK classes and has no dynamic load reference to these frameworks. Preserve the containers and their PrivacyInfo.xcprivacy files.
+
+The two exact approved paths are Contents/Frameworks/CrashReporter.framework/Versions/A/CrashReporter and Contents/Frameworks/Sentry.framework/Versions/A/Sentry. Their physical SBOM entries are explicitly marked resource-only; the logical static SDK records remain separate. Before signing, normalize their generated temporary LC_ID_DYLIB paths to the corresponding @rpath identity. The normalizer rejects actual code, unexpected dependencies, a dynamic App load reference or a missing privacy file, and verifies privacy bytes remain unchanged.
+
+Apple's privacy manifest placement guidance: https://developer.apple.com/documentation/bundleresources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk
