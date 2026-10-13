@@ -1,15 +1,38 @@
 {
-  "schema": 1,
+  "schema": 2,
   "capture": {
     "name": "PLCrashReporter",
     "version": "1.12.2",
     "repository": "https://github.com/microsoft/plcrashreporter.git",
     "commit": "0254f941c646b1ed17b243654723d0f071e990d0",
-    "linkage": "upstream static framework",
+    "linkage": "static library linked into App executable",
     "architecture": "arm64",
     "minimum_macos": "12.0",
-    "upstream_source_modified": false
+    "upstream_source_modified": false,
+    "license": "MIT AND Apache-2.0",
+    "license_resource_path": "Contents/Resources/OKCrashDiagnostics_OKCrashDiagnostics.bundle/Contents/Resources/PLCrashReporter-LICENSE.txt",
+    "license_sha256": "45f57308a5f95039a6478cf1e47449aa11e28427777d81497bd654c1f41ef5af",
+    "source_archive": "PLCrashReporter-0254f941c646b1ed17b243654723d0f071e990d0.tar.gz",
+    "source_sha256": "7d5153ad5a9feba5988bf8d7a933aa1f1d8e85910665e25e32a3127e9ea0dc1e"
   },
   "raw_slot_policy": "precreate the pinned reporter slot with 0600 and owned directories with 0700; empty slot is not a crash; business umask unchanged",
-  "upload": "not yet integrated"
+  "upload": {
+    "name": "Sentry",
+    "version": "9.30.1",
+    "repository": "https://github.com/getsentry/sentry-cocoa.git",
+    "commit": "4f135c52afeeb1d6937eb93824c7ec1cddcaa372",
+    "linkage": "static library linked into App executable",
+    "architecture": "arm64",
+    "minimum_macos": "12.0",
+    "upstream_source_modified": false,
+    "license": "MIT",
+    "license_resource_path": "Contents/Resources/OKCrashDiagnostics_OKCrashDiagnostics.bundle/Contents/Resources/Sentry-LICENSE.txt",
+    "license_sha256": "1784335a04bbe8014b9bf0f6a373f7b3804855792545702199dbdd6e2c5b6ad1",
+    "source_archive": "Sentry-4f135c52afeeb1d6937eb93824c7ec1cddcaa372.tar.gz",
+    "source_sha256": "7003e75f9b9f2868b8b80541502ac99d27bfe681bbc18fe220f8086be0f92b20",
+    "distribution_url": "https://github.com/getsentry/sentry-cocoa/releases/download/9.30.1/Sentry.xcframework.zip",
+    "distribution_sha256": "bf6bc2308b9f1d11cc0d5ad5a324dbe300afa37c8391809ecb6dd3758fa728e2",
+    "sdk_crash_handler_enabled": false,
+    "transport": "independent bounded child; filtered reports after user consent"
+  }
 }

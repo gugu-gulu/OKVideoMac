@@ -9,6 +9,7 @@ import json
 import subprocess
 from pathlib import Path
 from approved_inventory import require_approved
+from crash_sdk_inventory import verify_static_sdk_documents
 
 
 def sha256(path: Path) -> str:
@@ -45,7 +46,10 @@ def main() -> None:
     sbom = Path(args.sbom_dir).resolve()
     mac = json.loads((sbom / "OKVideoMac-macOS.spdx.json").read_text(encoding="utf-8"))
     android = json.loads((sbom / "OKVideoMac-Android.spdx.json").read_text(encoding="utf-8"))
-    declared_paths = {package["packageFileName"] for package in mac["packages"]}
+    cdx = json.loads((sbom / "OKVideoMac-macOS.cdx.json").read_text(encoding="utf-8"))
+    verify_static_sdk_documents(app, mac, cdx)
+    native_packages = [package for package in mac["packages"] if package.get("packageFileName")]
+    declared_paths = {package["packageFileName"] for package in native_packages}
     actual_paths = macho_paths(app)
     if actual_paths != declared_paths:
         raise SystemExit(
@@ -53,9 +57,9 @@ def main() -> None:
             f"stale={sorted(declared_paths-actual_paths)}"
         )
     require_approved(actual_paths)
-    if len(declared_paths) != len(mac["packages"]):
+    if len(declared_paths) != len(native_packages):
         raise SystemExit("Duplicate Mach-O paths in SBOM")
-    for package in mac["packages"]:
+    for package in native_packages:
         relative = package["packageFileName"]
         if relative == "Contents/MacOS/OKVideoMac":
             if package.get("checksums"):
@@ -77,7 +81,7 @@ def main() -> None:
         )
     if any(package["name"] == "xpp3:xpp3" for package in android["packages"]):
         raise SystemExit("Excluded xpp3 is present in Android SBOM")
-    print(f"SBOM verification passed: {len(actual_paths)} Mach-O; {len(expected_coordinates)} Maven modules")
+    print(f"SBOM verification passed: {len(actual_paths)} Mach-O; {len(expected_coordinates)} Maven modules; 2 static crash SDKs")
 
 
 if __name__ == "__main__":

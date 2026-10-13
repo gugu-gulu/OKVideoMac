@@ -15,6 +15,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote
 from approved_inventory import require_approved
+from crash_sdk_inventory import static_sdk_inventory
 
 
 REPO = Path(__file__).resolve().parents[2]
@@ -203,7 +204,7 @@ def spdx(name: str, version: str, items: list[dict[str, str]], created: str, see
             "SPDXID": package_id,
             "name": item["name"],
             "versionInfo": item["version"],
-            "downloadLocation": "NOASSERTION",
+            "downloadLocation": item.get("source_url", "NOASSERTION"),
             "filesAnalyzed": False,
             "licenseConcluded": item["license"],
             "licenseDeclared": item["license"],
@@ -219,6 +220,8 @@ def spdx(name: str, version: str, items: list[dict[str, str]], created: str, see
                 "referenceType": "purl",
                 "referenceLocator": item["purl"],
             }]
+        if item.get("source_info"):
+            package["sourceInfo"] = item["source_info"]
         if item.get("artifact"):
             package["comment"] = f"Resolved artifact: {item['artifact']}"
         packages.append(package)
@@ -281,6 +284,9 @@ def cyclonedx(name: str, version: str, items: list[dict[str, str]], created: str
             component["properties"].append({"name": "okvideomac:artifact", "value": item["artifact"]})
         if item.get("sha256"):
             component["hashes"] = [{"alg": "SHA-256", "content": item["sha256"]}]
+        for key in ("source_info", "source_url"):
+            if item.get(key):
+                component["properties"].append({"name": "okvideomac:" + key.replace("_", "-"), "value": item[key]})
         components.append(component)
     serial = uuid.uuid5(CDX_NS, seed)
     return {
@@ -312,7 +318,7 @@ def main() -> None:
     version = str(info["CFBundleShortVersionString"])
     build = str(info["CFBundleVersion"])
     created = timestamp(REPO)
-    native = native_inventory(app)
+    native = native_inventory(app) + static_sdk_inventory(app)
     android = android_inventory(
         Path(args.gradle_lock).resolve(),
         Path(args.gradle_cache).expanduser().resolve(),

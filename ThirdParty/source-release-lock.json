@@ -78,6 +78,26 @@
       "sha256": "fd2a5de329be3619111f9a73a1adeac9725a92292f0431c93679e5e2b0d48a04",
       "license": "MIT AND BSD-2-Clause AND Zlib",
       "include_in_bundle": true
+    },
+    {
+      "id": "crash-capture",
+      "version": "1.12.2",
+      "commit": "0254f941c646b1ed17b243654723d0f071e990d0",
+      "url": "https://codeload.github.com/microsoft/plcrashreporter/tar.gz/0254f941c646b1ed17b243654723d0f071e990d0",
+      "filename": "PLCrashReporter-0254f941c646b1ed17b243654723d0f071e990d0.tar.gz",
+      "sha256": "7d5153ad5a9feba5988bf8d7a933aa1f1d8e85910665e25e32a3127e9ea0dc1e",
+      "license": "MIT AND Apache-2.0",
+      "include_in_bundle": true
+    },
+    {
+      "id": "crash-upload",
+      "version": "9.30.1",
+      "commit": "4f135c52afeeb1d6937eb93824c7ec1cddcaa372",
+      "url": "https://codeload.github.com/getsentry/sentry-cocoa/tar.gz/4f135c52afeeb1d6937eb93824c7ec1cddcaa372",
+      "filename": "Sentry-4f135c52afeeb1d6937eb93824c7ec1cddcaa372.tar.gz",
+      "sha256": "7003e75f9b9f2868b8b80541502ac99d27bfe681bbc18fe220f8086be0f92b20",
+      "license": "MIT",
+      "include_in_bundle": true
     }
   ]
 }
