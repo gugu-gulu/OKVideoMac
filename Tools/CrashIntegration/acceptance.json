@@ -169,8 +169,8 @@
       "backend_verification": "Swift/C source lines, exact UUIDs, release/environment, retry same IDs, post-revoke event absent"
     },
     "8": {
-      "status": "IN_PROGRESS",
-      "date": "2026-10-12",
+      "status": "PARTIAL_PENDING_SLEEP_WAKE_AND_SDK_PROBE",
+      "date": "2026-10-13",
       "implementation_commit": "59e8a80",
       "stage7_checkpoint": "ba1f2c5",
       "machine": "macOS 14.8.9 arm64",
@@ -193,11 +193,11 @@
       "startup_resource_gate": "PASS",
       "same_process_retry_attempts": 30,
       "retry_resources_scope": "Actual adapter and Release entry, no SwiftUI business initialization; no zero-leak claim",
-      "native_ui_blocker": "Resolved 2026-10-13: list, read, click and screenshot validated; remaining actual UI acceptance in progress",
+      "native_ui_blocker": "RESOLVED: actual recovery, settings, import, playback, fullscreen, history, 30 consent cycles and active runtimes verified; see stage8-ui-acceptance.json",
       "not_yet_tested": [
-        "actual whole-App configuration import, video/seek/fullscreen/history and recovery-consent cycles through UI",
-        "physical sleep/wake and active Node/Android workloads (model and lifecycle regressions passed)",
-        "macOS 12 and AirPods/Bluetooth per user current-machine-only scope"
+        "Physical sleep/wake deferred by user on 2026-10-13",
+        "SDK inspection stall follow-up; no claim it was fixed",
+        "macOS 12 and AirPods/Bluetooth excluded by current-machine-only scope"
       ],
       "stage9": "NOT_STARTED",
       "artifact_root": "Tools/CrashIntegration/build/stage8-20261012",
@@ -205,7 +205,11 @@
       "harness_diagnostics": [
         "Retry harness originally expected delivery_not_confirmed; corrected to existing pending return value after reading adapter",
         "Native UI retry left an acceptance process holding single-instance admission; cleaned exact owned processes before successful standalone stress run"
-      ]
+      ],
+      "actual_ui_evidence": "stage8-ui-acceptance.json",
+      "ui_consent_cycles": 30,
+      "ui_recovery_sequences": 3,
+      "active_node_android_normal_quit": "PASS with documented SDK-probe intervention"
     }
   },
   "next_stage": 8

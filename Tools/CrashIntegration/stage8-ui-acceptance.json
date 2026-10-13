@@ -1,0 +1,209 @@
+{
+  "date": "2026-10-13",
+  "status": "PASS_FOR_RECORDED_CASES_WITH_SDK_PROBE_CAVEAT",
+  "machine": "macOS 14.8.9 arm64",
+  "app_version": "0.8.4 / 1377001 acceptance only",
+  "app_uuid": "B98A5388-16F7-391C-B618-D641A4721197",
+  "ui_control": "Native CUA read/click/screenshot restored; no original 120-second timeout recurred. Original cause not proven.",
+  "ui_cases": {
+    "recovery_gate_and_disabled_settings": "PASS",
+    "consent_retry_revoke_and_shared_settings": "PASS",
+    "original_loopback_source_import": "PASS",
+    "video_pause_seek_resume": "PASS (paused seek 00:36 to 01:24 retained pause)",
+    "native_fullscreen_enter_exit": "PASS",
+    "original_xml_danmaku": "128 comments imported; actual render observed",
+    "history_flush_relaunch_resume": "PASS; episode 2 at 21.75/128 seconds persisted, reopened from UI",
+    "recovery_sequences": 3,
+    "same_process_grant_revoke_cycles": 30
+  },
+  "resource_scope": "Same actual SwiftUI recovery process. First report exercised initial 503, retry, and revoke during send; subsequent 30 toggles have empty queue, so do not claim 30 SDK sends. Separate prior adapter stress exercised 30 actual sends.",
+  "resource_samples": [
+    {
+      "phase": "recovery-before",
+      "pid": 95028,
+      "time": 1791869459.2861109,
+      "rss_kib": 68176,
+      "cpu_percent": 0.0,
+      "threads": 5,
+      "fds": 10,
+      "children": [],
+      "consent": false,
+      "pending_ids": [
+        "451cdba85db60c90673f418d4880a022"
+      ],
+      "cache_exists": false,
+      "business_database_exists": false,
+      "receiver_total": 61
+    },
+    {
+      "phase": "first-send-settled",
+      "pid": 95028,
+      "time": 1791869489.374293,
+      "rss_kib": 69712,
+      "cpu_percent": 0.0,
+      "threads": 4,
+      "fds": 10,
+      "children": [],
+      "consent": true,
+      "pending_ids": [
+        "451cdba85db60c90673f418d4880a022"
+      ],
+      "cache_exists": false,
+      "business_database_exists": false,
+      "receiver_total": 62
+    },
+    {
+      "phase": "after-ui-retry-1",
+      "pid": 95028,
+      "time": 1791869527.86795,
+      "rss_kib": 70112,
+      "cpu_percent": 0.0,
+      "threads": 5,
+      "fds": 10,
+      "children": [],
+      "consent": true,
+      "pending_ids": [
+        "451cdba85db60c90673f418d4880a022"
+      ],
+      "cache_exists": false,
+      "business_database_exists": false,
+      "receiver_total": 63
+    },
+    {
+      "phase": "warm-after-3-toggle-cycles",
+      "pid": 95028,
+      "time": 1791869600.1100469,
+      "rss_kib": 70640,
+      "cpu_percent": 0.0,
+      "threads": 5,
+      "fds": 10,
+      "children": [],
+      "consent": false,
+      "pending_ids": [],
+      "cache_exists": false,
+      "business_database_exists": false,
+      "receiver_total": 64
+    },
+    {
+      "phase": "after-12-toggle-cycles",
+      "pid": 95028,
+      "time": 1791869641.3231628,
+      "rss_kib": 70672,
+      "cpu_percent": 0.0,
+      "threads": 4,
+      "fds": 10,
+      "children": [],
+      "consent": false,
+      "pending_ids": [],
+      "cache_exists": false,
+      "business_database_exists": false,
+      "receiver_total": 64
+    },
+    {
+      "phase": "after-21-toggle-cycles",
+      "pid": 95028,
+      "time": 1791869678.6350532,
+      "rss_kib": 70704,
+      "cpu_percent": 0.0,
+      "threads": 4,
+      "fds": 10,
+      "children": [],
+      "consent": false,
+      "pending_ids": [],
+      "cache_exists": false,
+      "business_database_exists": false,
+      "receiver_total": 64
+    },
+    {
+      "phase": "after-30-toggle-cycles",
+      "pid": 95028,
+      "time": 1791869712.8738902,
+      "rss_kib": 70752,
+      "cpu_percent": 0.0,
+      "threads": 5,
+      "fds": 10,
+      "children": [],
+      "consent": false,
+      "pending_ids": [],
+      "cache_exists": false,
+      "business_database_exists": false,
+      "receiver_total": 64
+    },
+    {
+      "phase": "recovery-cycle-2-revoked",
+      "pid": 95160,
+      "time": 1791869806.7451708,
+      "rss_kib": 75568,
+      "cpu_percent": 0.0,
+      "threads": 5,
+      "fds": 10,
+      "children": [],
+      "consent": false,
+      "pending_ids": [],
+      "cache_exists": false,
+      "business_database_exists": false,
+      "receiver_total": 66
+    },
+    {
+      "phase": "recovery-cycle-3-revoked",
+      "pid": 95211,
+      "time": 1791869877.447131,
+      "rss_kib": 76496,
+      "cpu_percent": 0.0,
+      "threads": 5,
+      "fds": 10,
+      "children": [],
+      "consent": false,
+      "pending_ids": [],
+      "cache_exists": false,
+      "business_database_exists": false,
+      "receiver_total": 68
+    }
+  ],
+  "steady_rss_delta_kib": 112,
+  "resource_conclusion": "No descriptor or child-process accumulation in sampled states; no zero-leak claim",
+  "active_runtime": {
+    "node": "PASS; bundled Node served original Contract A fixture and UI displayed content",
+    "android": "PASS after storage and stalled-probe recovery; real Emulator and Bridge reached ready",
+    "quit_seconds": 1.6792905416805297,
+    "owned_processes_gone": true,
+    "trace_events": [
+      "termination-requested",
+      "business-shutdown-started",
+      "history-flushed",
+      "player-stopped",
+      "node-stopped",
+      "android-stopped",
+      "diagnostics-stopped",
+      "shutdown-complete",
+      "termination-replied"
+    ]
+  },
+  "harness_fixes": {
+    "node_jit": "prepare-stage7-symbols.py now applies existing NodeHelper.entitlements only to bundled Node; V8 startup, graceful stop, strict bundle signature and unchanged App UUID verified",
+    "disk_space": "Moved only completed Stage6 fixture artifacts to external archive with per-file SHA-256 verification. Restored acceptance AVD under original root after symlink was correctly rejected."
+  },
+  "sdk_probe_caveat": {
+    "observed": "A child /usr/bin/file -b /Volumes/XcodeDev/AndroidSDK/platform-tools/adb blocked in __open for more than 5 minutes; App actor waited in waitUntilExit, while UI remained interactive",
+    "recovery": "Stopped only that exact owned inspection child; subsequent UI SDK validation succeeded, then emulator/Bridge became ready",
+    "root_cause": "Unproven; same command from shell succeeded. Keep as an observed runtime risk, not a resolved product fix. Bounded SDK inspection/reproduction remains follow-up before final acceptance."
+  },
+  "pending": [
+    "Physical sleep/wake deferred by user on 2026-10-13",
+    "SDK inspection stall follow-up; no claim it was fixed"
+  ],
+  "excluded": [
+    "macOS 12",
+    "AirPods/Bluetooth",
+    "two unsupplied external Node Contract B samples"
+  ],
+  "publication": false,
+  "desktop_replaced": false,
+  "final_package_started": false,
+  "artifact_root": "Tools/CrashIntegration/build/stage8-20261013",
+  "cleanup": {
+    "owned_app_and_runtime_pids_gone": true,
+    "loopback_ports_9481_9482_9483_closed": true
+  },
+  "node_fixture_sha256": "7ec286ae2df344170e4168215f61ddac4d4f96ef5b7abad040931c14ef3f528a"
+}

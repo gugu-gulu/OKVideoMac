@@ -56,7 +56,10 @@ for relative in ['Contents/MacOS/OKVideoMac', 'Contents/Helpers/OKVideoMacRelaun
     run('strip', '-S', app / relative)
 for path in app.rglob('*'):
     if path.is_file() and not path.is_symlink() and 'Mach-O' in subprocess.check_output(['file', '-b', str(path)], text=True):
-        run('codesign', '--force', '--sign', '-', '--options', 'runtime', path)
+        # Match package-app.sh: V8 requires JIT only on the bundled Node helper.
+        entitlements = (['--entitlements', repo / 'OKVideoMac/macOS/OKVideoMac/Supporting/NodeHelper.entitlements']
+                        if path == app / 'Contents/Resources/NodeRuntime/node' else [])
+        run('codesign', '--force', '--sign', '-', '--options', 'runtime', *entitlements, path)
 containers = [x for x in app.rglob('*') if x.is_dir() and not x.is_symlink()
               and x.suffix in ['.framework', '.app', '.xpc']]
 for path in sorted(containers, key=lambda x: len(x.parts), reverse=True):

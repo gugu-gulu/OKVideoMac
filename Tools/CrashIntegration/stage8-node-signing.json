@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "node_started_and_stopped": true,
+  "strict_bundle_signature": true,
+  "app_uuid_unchanged": "B98A5388-16F7-391C-B618-D641A4721197",
+  "node_entitlements": {
+    "com.apple.security.cs.allow-jit": true
+  },
+  "scope": "acceptance harness signing fix; production package-app.sh already applies NodeHelper.entitlements",
+  "harness_note": "codesign textual entitlement output uses :- for plist parsing on installed tool version"
+}
