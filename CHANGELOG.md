@@ -6,7 +6,7 @@
 - Bound Android executable architecture inspection, preserve the selected SDK/AVD and allow retry after timeout.
 - Preserve the native WindowGroup factory when gating recovery, allowing New Window after every browser window closes.
 - Include static diagnostics SDK sources, notices, privacy resources and logical SBOM entries; validate exact final symbols without claiming complete third-party symbol coverage.
-- Distribution gates and public assets are pending; see [release preparation](Docs/RELEASE_READINESS_0.8.5.md).
+- Developer ID, Apple Accepted, staple, Gatekeeper, installation and all 16 public asset checks passed; see [formal verification](Docs/RELEASE_VALIDATION_0.8.5.md).
 
 ## [0.8.4] - 2026-10-09
 

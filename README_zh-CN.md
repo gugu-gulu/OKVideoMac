@@ -1,6 +1,6 @@
 # OKVideoMac
 
-当前发布候选为 **0.8.5（Build 138）**，新增本机崩溃恢复及有限等待的 Android SDK 检查。本次没有配置远程崩溃上传。见[发布说明](Docs/RELEASE_NOTES_0.8.5.md)和[发布准备](Docs/RELEASE_READINESS_0.8.5.md)；正式公开前，下方既有 0.8.4 稳定资产保持不变。
+最新稳定版本为 **0.8.5（Build 138）**，新增本机崩溃恢复、有限等待的 Android SDK 检查，并修复关闭全部浏览窗口后的重开。本次没有配置远程崩溃上传。签名、公证与 16 个公开资产核验通过；见[发布说明](Docs/RELEASE_NOTES_0.8.5.md)和[正式验证](Docs/RELEASE_VALIDATION_0.8.5.md)。
 
 **0.8.4（Build 137）**修复与 0.8.3 启动崩溃相关的工具栏归属路径，用户已确认 macOS 27.0.1 实机测试正常。见[发布说明](Docs/RELEASE_NOTES_0.8.4.md)和[正式验证](Docs/RELEASE_VALIDATION_0.8.4.md)。
 
@@ -17,7 +17,7 @@
 使用 Swift 和 SwiftUI/AppKit 构建。Android 是部分 Java/Dex Provider 按需使用的
 可选兼容层。
 
-最新稳定版本为 **0.8.4（Build 137）**，已完成 Developer ID 签名和 Apple 公证。
+最新稳定版本为 **0.8.5（Build 138）**，已完成 Developer ID 签名和 Apple 公证。
 
 **原生 macOS · Xtream · IPTV/VOD · M3U/XMLTV · libmpv · 多站搜索 · QuickJS/Node Spider**
 
@@ -25,9 +25,9 @@
 
 ### [下载最新稳定版本 →](https://github.com/yaolin-dev/OKVideoMac/releases/latest)
 
-**0.8.4（Build 137）** · macOS 12.0+ · 仅支持 Apple Silicon（arm64）。
+**0.8.5（Build 138）** · macOS 12.0+ · 仅支持 Apple Silicon（arm64）。
 
-下载已签名、公证的 [v0.8.4 DMG](https://github.com/yaolin-dev/OKVideoMac/releases/download/v0.8.4/OKVideoMac-0.8.4.dmg)，Staple、Gatekeeper、最终 DMG 与全新安装 smoke 均通过。
+下载已签名、公证的 [v0.8.5 DMG](https://github.com/yaolin-dev/OKVideoMac/releases/download/v0.8.5/OKVideoMac-0.8.5.dmg)，Staple、Gatekeeper、最终 DMG 与全新安装 smoke 均通过。
 
 打开 DMG，将 `OKVideoMac.app` 拖入 Applications，无需关闭 Gatekeeper 或 SIP。校验和、发布说明、源码、许可证、SBOM 随发布提供。
 
@@ -295,7 +295,7 @@ Managed Runtime 安装与 Android Emulator Session 分开；安装和 Session �
 
 ## 发布完整性
 
-0.8.4 / Build 137 DMG 已通过 Release 打包、Developer ID / Hardened Runtime、Apple Accepted、Staple、Gatekeeper 与安装 smoke。Tag `v0.8.4` 固定 `58e83d0aa29c7a7ffa9a00b15011875678395481`；16 个公开资产的服务端摘要与匿名下载均与最终文件一致。发布后补录保留已签名资产、构建时源码/说明快照和 tag，见[正式验证](Docs/RELEASE_VALIDATION_0.8.4.md)。
+0.8.5 / Build 138 的正式 DMG、签名、公证、安装和 16 个公开资产通过核验，tag `v0.8.5` 固定 `b7fd9026bfee95d2d815dbb39e985225c3004e67`；见[正式验证](Docs/RELEASE_VALIDATION_0.8.5.md)。旧版本资产与 tag 保持不变。
 
 ## 文档
 

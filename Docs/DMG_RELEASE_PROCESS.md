@@ -1,6 +1,10 @@
 # DMG Release Process
 
-当前公开版本为 OKVideoMac 0.8.4（Build 137），正式用户下载为 `OKVideoMac-0.8.4.dmg`。ZIP 仅为内部归档。
+当前公开版本为 OKVideoMac 0.8.5（Build 138），正式下载 `OKVideoMac-0.8.5.dmg`。Tag `v0.8.5` 固定 `b7fd9026bfee95d2d815dbb39e985225c3004e67`；Apple Accepted `c2186e45-a3b1-4033-9cdc-dab09acc0801`，DMG SHA-256 `6b669d0cfd9d77bfcafafe3994193c3e8cd940b353595ba7b7b39d8f6bd0a8b8`。签名、公证、安装与 16 个公开资产通过；见[正式验证](RELEASE_VALIDATION_0.8.5.md)。
+
+## 0.8.4 历史正式发布
+
+历史公开版本为 OKVideoMac 0.8.4（Build 137），正式用户下载为 `OKVideoMac-0.8.4.dmg`。ZIP 仅为内部归档。
 
 Tag `v0.8.4` 固定 `58e83d0aa29c7a7ffa9a00b15011875678395481`；Apple Notarization **Accepted**，Submission `3ac3de16-0c86-4166-b8bf-b81b4c9fa61e`。最终 DMG SHA-256：`7cfc00634a4d2159f5ed8342d02fbdf19fa6ebb06be16fbe08c81ea082d184c9`。签名、Hardened Runtime、staple、Gatekeeper、安装和 16 个公开资产验证通过；用户确认 macOS 27.0.1 实机正常。见[正式验证](RELEASE_VALIDATION_0.8.4.md)。
 

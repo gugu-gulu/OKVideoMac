@@ -2,7 +2,7 @@
 
 OKVideoMac 是面向 Apple Silicon Mac 的原生视频与直播客户端。源兼容性主要取决于
 原生 Xtream、M3U/XMLTV、配置格式和运行时，而不是简单以 TVBox、FongMi、MiraPlay 或 CatPawOpen
-等生态名称判断。最新稳定版本为 **0.8.4（Build 137）**，支持
+等生态名称判断。最新稳定版本为 **0.8.5（Build 138）**，支持
 **arm64**，最低系统为 **macOS 12.0**。公开二进制通过 Developer ID 签名、Apple 公证、
 Staple 和 Gatekeeper 验证后再通过 GitHub Release 分发。
 
@@ -11,10 +11,10 @@ Staple 和 Gatekeeper 验证后再通过 GitHub Release 分发。
 
 ## 当前版本
 
-- 当前发布候选：0.8.5（Build 138）
-- 目标 tag：`v0.8.5`；须通过完整分发门禁后发布，既有 v0.8.4 保持不变。
+- 当前稳定版本：0.8.5（Build 138）
+- Tag：`v0.8.5` 固定 `b7fd9026bfee95d2d815dbb39e985225c3004e67`；既有 v0.8.4 保持不变。
 - source release index：`OKVideoMac-0.8.5-build138-SOURCE_RELEASE_INDEX.json`。
-- 本轮修复工具栏归属与首页加载/空态标题，保留独立材质和零宽分隔；见[发布说明](../Docs/RELEASE_NOTES_0.8.4.md)与[正式验证](../Docs/RELEASE_VALIDATION_0.8.4.md)。
+- 本轮加入本机崩溃恢复、有限 SDK 文件检查，并保留原生窗口重开；远程上传未配置。见[发布说明](../Docs/RELEASE_NOTES_0.8.5.md)与[正式验证](../Docs/RELEASE_VALIDATION_0.8.5.md)。
 - 最低系统：macOS 12.0
 - 支持架构：Apple Silicon / arm64
 - 播放历史与收藏保留配置、站点和稳定媒体身份；旧记录经过迁移后仍可准确恢复，
@@ -28,18 +28,18 @@ Staple 和 Gatekeeper 验证后再通过 GitHub Release 分发。
 - 搜索框有文字时第一次 Esc 只清空并保持焦点，空框再次 Esc 才退出搜索
 - 0.6.0 历史另行执行的 4 项真实 Android 生命周期测试与 API 35 隔离矩阵通过；
   本轮正式收口不把这些历史实机结果冒充为重跑结果
-- 0.8.4 的回归结果、覆盖边界与更新行为见
-  [发布就绪记录](../Docs/RELEASE_READINESS_0.8.4.md)和
+- 0.8.5 的回归结果、覆盖边界与更新行为见
+  [发布就绪记录](../Docs/RELEASE_READINESS_0.8.5.md)和
   [自动更新流程](../Docs/AUTOMATIC_UPDATES.md)
-- 对外分发：0.8.4 Build 137 已完成 Developer ID、Apple notarization（`Accepted`）、
+- 对外分发：0.8.5 Build 138 已完成 Developer ID、Apple notarization（`Accepted`）、
   Staple、Gatekeeper 与安装 smoke；见
-  [GitHub Release](https://github.com/yaolin-dev/OKVideoMac/releases/tag/v0.8.4)；
-  [正式验证记录](../Docs/RELEASE_VALIDATION_0.8.4.md)
+  [GitHub Release](https://github.com/yaolin-dev/OKVideoMac/releases/tag/v0.8.5)；
+  [正式验证记录](../Docs/RELEASE_VALIDATION_0.8.5.md)
 
-## 0.8.5 候选
+## 0.8.5 正式发布
 
 - 本机崩溃恢复、受控诊断清理与 SDK 检查有限等待。远程上传未配置。
-- 实际功能证据和未测范围见[发布准备](../Docs/RELEASE_READINESS_0.8.5.md)。
+- 实际发布证据和未测范围见[正式验证](../Docs/RELEASE_VALIDATION_0.8.5.md)。
 
 ## 0.8.4 历史新增与修复
 

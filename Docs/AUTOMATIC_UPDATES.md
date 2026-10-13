@@ -1,8 +1,12 @@
 # Automatic updates
 
+## Published 0.8.5 update
+
+The stable latest feed offers 0.8.5 (138), retaining the existing HTTPS feed and public key. All 16 anonymous downloads, latest feed bytes and XML/DMG signatures pass. The formal App is installed and startup observed; this does not claim a complete new update-installation cycle or 24-hour schedule. See [verification](RELEASE_VALIDATION_0.8.5.md).
+
 ## Published 0.8.4 update
 
-The stable latest feed offers 0.8.4 (137), using the existing HTTPS URL and public key. The final signed appcast/DMG match, and all 16 anonymous public downloads have matching SHA-256. Stable 0.8.1–0.8.3 feed/key/version compatibility is retained. This does not claim a new native old-App UI run, a complete 24-hour schedule or end-to-end update installation.
+At 0.8.4 publication, the stable latest feed offered 0.8.4 (137), using the existing HTTPS URL and public key. The final signed appcast/DMG match, and all 16 anonymous public downloads have matching SHA-256. Stable 0.8.1–0.8.3 feed/key/version compatibility is retained. This does not claim a new native old-App UI run, a complete 24-hour schedule or end-to-end update installation.
 
 Local previews without feed/key correctly disable Check for Updates. The formal App embeds `StableUpdateConfiguration.plist` and passes `verify_update_bundle.py --require-stable`. See [formal verification](RELEASE_VALIDATION_0.8.4.md). The earlier published observations below remain historical.
 

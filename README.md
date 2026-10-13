@@ -1,6 +1,6 @@
 # OKVideoMac
 
-The current release candidate is **0.8.5 (Build 138)**, adding local crash recovery and bounded Android SDK inspection. Remote crash uploading is not configured in this build. See [release notes](Docs/RELEASE_NOTES_0.8.5.md) and [release preparation](Docs/RELEASE_READINESS_0.8.5.md). The existing stable 0.8.4 assets below remain unchanged until formal publication.
+The latest stable release is **0.8.5 (Build 138)**, adding local crash recovery, bounded Android SDK inspection and native window reopening. Developer ID, Apple notarization and all 16 public assets passed verification. Remote crash uploading is not configured. See [release notes](Docs/RELEASE_NOTES_0.8.5.md) and [verification](Docs/RELEASE_VALIDATION_0.8.5.md).
 
 **0.8.4 (Build 137)** fixes the SwiftUI/AppKit toolbar ownership path associated with the 0.8.3 startup crash. The user confirmed successful macOS 27.0.1 testing; see [release notes](Docs/RELEASE_NOTES_0.8.4.md) and [formal verification](Docs/RELEASE_VALIDATION_0.8.4.md).
 
@@ -17,7 +17,7 @@ selected TVBox/CatVod/CatPaw-style providers, and libmpv playback.**
 Built with Swift and SwiftUI/AppKit. Android is an optional compatibility layer
 for selected Java/Dex providers.
 
-The latest stable release is **0.8.4 (Build 137)**, Developer ID signed and Apple-notarized.
+The latest stable release is **0.8.5 (Build 138)**, Developer ID signed and Apple-notarized.
 
 **Native macOS · Xtream · IPTV/VOD · M3U/XMLTV · libmpv · Multi-provider Search · QuickJS/Node Spiders**
 
@@ -25,15 +25,19 @@ The latest stable release is **0.8.4 (Build 137)**, Developer ID signed and Appl
 
 ### [Download the latest stable release →](https://github.com/yaolin-dev/OKVideoMac/releases/latest)
 
-**0.8.4 (Build 137)** · macOS 12.0+ · Apple Silicon (`arm64`) only.
+**0.8.5 (Build 138)** · macOS 12.0+ · Apple Silicon (`arm64`) only.
 
-Download the Developer ID signed and Apple-notarized [v0.8.4 DMG](https://github.com/yaolin-dev/OKVideoMac/releases/download/v0.8.4/OKVideoMac-0.8.4.dmg). Stapling, Gatekeeper, final DMG and fresh-install smoke checks passed.
+Download the Developer ID signed and Apple-notarized [v0.8.5 DMG](https://github.com/yaolin-dev/OKVideoMac/releases/download/v0.8.5/OKVideoMac-0.8.5.dmg). Stapling, Gatekeeper, final DMG and fresh-install smoke checks passed.
 
 Open the DMG and drag `OKVideoMac.app` to Applications. You do not need to disable Gatekeeper or SIP. Checksums, release notes, source archives, SBOMs and notices accompany the release.
 
 > OKVideoMac is a player and provider client. It does not include third-party video sources, accounts, cookies, parsing services or DRM keys.
 
-## New in 0.8.4
+## New in 0.8.5
+
+Local crash recovery and coordinated shutdown, bounded Android SDK file checks, and native window creation after all browser windows close. This build has no remote crash-upload endpoint. See [verification](Docs/RELEASE_VALIDATION_0.8.5.md).
+
+## 0.8.4 history
 
 - Remove synchronous AppKit toolbar write-back during SwiftUI toolbar teardown.
 - Keep a real home title while configuration is loading or unavailable, with separate Search and Detail toolbars.
@@ -336,7 +340,7 @@ checks; a local Debug compile is not a public release artifact.
 
 ## Release integrity
 
-The 0.8.4 / Build 137 DMG passed Release packaging, Developer ID / Hardened Runtime, Apple Accepted, stapling, Gatekeeper and installation smoke under the [existing release process](Docs/DMG_RELEASE_PROCESS.md). Tag `v0.8.4` pins `58e83d0aa29c7a7ffa9a00b15011875678395481`. All 16 public asset digests and anonymous downloads match the verified files. Post-publication documentation preserves signed assets, source snapshots and tags. See [verification](Docs/RELEASE_VALIDATION_0.8.4.md) and [source release process](Docs/SOURCE_RELEASE_PROCESS.md).
+The 0.8.5 / Build 138 DMG passed Release packaging, Developer ID, Apple Accepted, staple, Gatekeeper, installation and 16 public asset checks. Tag `v0.8.5` pins `b7fd9026bfee95d2d815dbb39e985225c3004e67`. See [verification](Docs/RELEASE_VALIDATION_0.8.5.md). Historical signed assets and tags remain unchanged.
 
 ## Documentation
 
