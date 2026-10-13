@@ -29278,7 +29278,160 @@ private actor NodeProxyEndpointTransitionHTTPClient: HTTPClient {
     }
 }
 
+final class SDKExecutableInspectionTests: XCTestCase {
+    func testRealFileToolAcceptsHostBinaryAndRejectsScript() throws {
+        XCTAssertTrue(try ExternalAndroidRuntimeValidator.hostCanExecute(
+            URL(fileURLWithPath: "/usr/bin/true")
+        ))
+        let root = try makeRoot()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let script = try makeWorker("exit 0", root: root)
+        XCTAssertFalse(try ExternalAndroidRuntimeValidator.hostCanExecute(script))
+    }
+
+    func testBlockedInspectorIsBoundedKillsTermIgnoringChildAndCanRetry() throws {
+        let root = try makeRoot()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let pidFile = root.appendingPathComponent("probe.pid")
+        let worker = try makeWorker("""
+        trap '' TERM
+        printf '%s' "$$" > "$2"
+        exec /bin/sleep 30
+        """, root: root)
+        let started = ProcessInfo.processInfo.systemUptime
+        XCTAssertThrowsError(try ExternalAndroidRuntimeValidator.hostCanExecute(
+            pidFile, inspectorExecutable: worker
+        )) { XCTAssertEqual($0 as? SDKExecutableInspectionError, .timedOut) }
+        XCTAssertLessThan(ProcessInfo.processInfo.systemUptime - started, 3)
+        try assertChildExited(pidFile)
+        XCTAssertTrue(try ExternalAndroidRuntimeValidator.hostCanExecute(
+            URL(fileURLWithPath: "/usr/bin/true")
+        ))
+    }
+
+    func testExcessiveStdoutCannotBlockInspectorOrApproveArchitecture() throws {
+        let root = try makeRoot()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let pidFile = root.appendingPathComponent("probe.pid")
+        let worker = try makeWorker("""
+        printf '%s' "$$" > "$2"
+        exec /usr/bin/yes 'Mach-O 64-bit executable arm64 x86_64'
+        """, root: root)
+        let started = ProcessInfo.processInfo.systemUptime
+        XCTAssertThrowsError(try ExternalAndroidRuntimeValidator.hostCanExecute(
+            pidFile, inspectorExecutable: worker
+        )) { XCTAssertEqual($0 as? SDKExecutableInspectionError, .failed) }
+        XCTAssertLessThan(ProcessInfo.processInfo.systemUptime - started, 2)
+        try assertChildExited(pidFile)
+    }
+
+    func testNonzeroExitAndSpawnFailureCannotApproveArchitecture() throws {
+        let root = try makeRoot()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let worker = try makeWorker("""
+        printf 'Mach-O 64-bit executable arm64 x86_64\n'
+        exit 1
+        """, root: root)
+        let target = URL(fileURLWithPath: "/usr/bin/true")
+        for executable in [worker, root.appendingPathComponent("missing-inspector")] {
+            XCTAssertThrowsError(try ExternalAndroidRuntimeValidator.hostCanExecute(
+                target, inspectorExecutable: executable
+            )) { XCTAssertEqual($0 as? SDKExecutableInspectionError, .failed) }
+        }
+    }
+
+    private func makeRoot() throws -> URL {
+        let root = FileManager.default.temporaryDirectory.appendingPathComponent(
+            "OKVideoMac-SDK-Probe-\(UUID().uuidString)", isDirectory: true
+        )
+        try FileManager.default.createDirectory(
+            at: root, withIntermediateDirectories: true,
+            attributes: [.posixPermissions: 0o700]
+        )
+        return root
+    }
+
+    private func makeWorker(_ body: String, root: URL) throws -> URL {
+        let url = root.appendingPathComponent("inspector.sh")
+        try Data(("#!/bin/sh\n" + body + "\n").utf8).write(to: url)
+        try FileManager.default.setAttributes([.posixPermissions: 0o700], ofItemAtPath: url.path)
+        return url
+    }
+
+    private func assertChildExited(_ pidFile: URL) throws {
+        let pid = try XCTUnwrap(Int32(String(contentsOf: pidFile)))
+        let deadline = ProcessInfo.processInfo.systemUptime + 0.5
+        while Darwin.kill(pid, 0) == 0, ProcessInfo.processInfo.systemUptime < deadline {
+            Thread.sleep(forTimeInterval: 0.01)
+        }
+        XCTAssertEqual(Darwin.kill(pid, 0), -1)
+        XCTAssertEqual(errno, ESRCH, "owned inspection child must be reaped")
+    }
+}
+
 final class AndroidRuntimeModeCompatibilityTests: XCTestCase {
+    func testTimedOutInspectionPreservesExternalSelectionAndRetrySucceeds() async throws {
+        let fixture = try makeFixture()
+        defer { fixture.cleanup() }
+        let sdk = fixture.root.appendingPathComponent("ExternalSDK")
+        try makeSDK(at: sdk, includeAVDManager: false)
+        try makeSystemImage(at: sdk)
+        try makeAVD(in: fixture.support)
+        let initial = try fixture.store.loadOrMigrate(managedRuntimeUsable: false)
+        _ = try fixture.store.committing(initial, mode: .external,
+            externalSDKRoot: sdk, source: .userSelectedExternal)
+        let selectionBefore = try Data(contentsOf: fixture.store.recordURL)
+        let config = AndroidRuntimeLayout(applicationSupportDirectory: fixture.support)
+            .avdDirectory.appendingPathComponent("config.ini")
+        let avdBefore = try Data(contentsOf: config)
+        let pidFile = fixture.root.appendingPathComponent("probe.pid")
+        let worker = fixture.root.appendingPathComponent("inspector.sh")
+        try Data("""
+        #!/bin/sh
+        printf '%s' "$$" > '\(pidFile.path)'
+        exec /bin/sleep 30
+
+        """.utf8).write(to: worker)
+        try FileManager.default.setAttributes([.posixPermissions: 0o700], ofItemAtPath: worker.path)
+        let validator = ExternalAndroidRuntimeValidator(
+            applicationSupportDirectory: fixture.support,
+            homeDirectory: fixture.root, environment: [:],
+            architectureInspector: { url in
+                try ExternalAndroidRuntimeValidator.hostCanExecute(
+                    url, inspectorExecutable: worker
+                )
+            }, javaResolver: { nil }
+        )
+        let probe = AndroidRuntimeRoutingProbe()
+        let coordinator = try makeCoordinator(fixture: fixture, validator: validator,
+            managedRuntimeUsableAtMigration: false, managedUsability: false, probe: probe)
+        let failed = await coordinator.refresh()
+        XCTAssertTrue(failed.externalValidation?.issues.contains {
+            $0.code == .executableInspectionTimedOut
+        } == true)
+        XCTAssertFalse(failed.externalValidation?.issues.contains {
+            $0.code == .unsupportedADBArchitecture || $0.code == .unsupportedEmulatorArchitecture
+        } == true)
+        XCTAssertFalse(failed.externalValidation?.canSelectEnvironment ?? true)
+        XCTAssertEqual(try Data(contentsOf: fixture.store.recordURL), selectionBefore)
+        XCTAssertEqual(try Data(contentsOf: config), avdBefore)
+        let pid = try XCTUnwrap(Int32(String(contentsOf: pidFile)))
+        XCTAssertEqual(Darwin.kill(pid, 0), -1)
+        XCTAssertEqual(errno, ESRCH)
+
+        // The same coordinator and validator must recover on the next check.
+        try Data("#!/bin/sh\nprintf 'Mach-O 64-bit executable arm64 x86_64\\n'\n".utf8)
+            .write(to: worker)
+        let retried = await coordinator.refresh()
+        XCTAssertTrue(retried.externalValidation?.canPrepareRuntime == true)
+        XCTAssertFalse(retried.externalValidation?.issues.contains {
+            $0.code == .executableInspectionTimedOut || $0.code == .executableInspectionFailed
+        } == true)
+        XCTAssertEqual(retried.mode, .external)
+        XCTAssertEqual(try Data(contentsOf: fixture.store.recordURL), selectionBefore)
+        XCTAssertEqual(try Data(contentsOf: config), avdBefore)
+    }
+
     func testInterruptedRebuildIsRecoveredBeforeExternalCompatibilityAdmission() async throws {
         for recover in [false, true] {
             let fixture = try makeFixture()

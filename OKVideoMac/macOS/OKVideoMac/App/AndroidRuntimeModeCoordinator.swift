@@ -1,5 +1,6 @@
 import AndroidRuntimeKit
 import CryptoKit
+import Darwin
 import Foundation
 
 enum AndroidRuntimeMode: String, Codable, CaseIterable, Sendable {
@@ -237,6 +238,8 @@ enum ExternalAndroidRuntimeIssueCode: String, Codable, Sendable {
     case missingEmulator
     case emulatorNotExecutable
     case unsupportedEmulatorArchitecture
+    case executableInspectionTimedOut
+    case executableInspectionFailed
     case missingInteractiveSystemImage
     case incompleteAVD
     case invalidAVDConfiguration
@@ -494,7 +497,7 @@ struct ExternalAndroidRuntimeValidation: Equatable, Sendable {
 }
 
 struct ExternalAndroidRuntimeValidator {
-    typealias ArchitectureInspector = (URL) -> Bool
+    typealias ArchitectureInspector = (URL) throws -> Bool
     typealias JavaResolver = () -> AndroidJavaRuntime?
 
     let applicationSupportDirectory: URL
@@ -517,7 +520,7 @@ struct ExternalAndroidRuntimeValidator {
         self.environment = environment
         self.fileManager = fileManager
         self.architectureInspector = architectureInspector
-            ?? Self.hostCanExecute
+            ?? { try Self.hostCanExecute($0) }
         self.javaResolver = javaResolver ?? {
             AndroidJavaRuntimeResolver(
                 homeDirectory: homeDirectory,
@@ -581,7 +584,8 @@ struct ExternalAndroidRuntimeValidator {
             switch issue.code {
             case .missingADB, .adbNotExecutable, .unsupportedADBArchitecture,
                  .missingEmulator, .emulatorNotExecutable,
-                 .unsupportedEmulatorArchitecture:
+                 .unsupportedEmulatorArchitecture, .executableInspectionTimedOut,
+                 .executableInspectionFailed:
                 return true
             default:
                 return false
@@ -758,6 +762,7 @@ struct ExternalAndroidRuntimeValidator {
             .missingSDKRoot, .missingADB, .adbNotExecutable,
             .unsupportedADBArchitecture, .missingEmulator,
             .emulatorNotExecutable, .unsupportedEmulatorArchitecture,
+            .executableInspectionTimedOut, .executableInspectionFailed,
             .missingInteractiveSystemImage, .incompleteAVD,
             .invalidAVDConfiguration, .avdSystemImageMissingFromSelectedSDK,
             .avdSystemImageMismatch, .incompatibleAVDFingerprint
@@ -773,7 +778,8 @@ struct ExternalAndroidRuntimeValidator {
             case .missingSDKRoot, .missingADB, .adbNotExecutable,
                  .unsupportedADBArchitecture, .missingEmulator,
                  .emulatorNotExecutable, .unsupportedEmulatorArchitecture,
-                 .missingInteractiveSystemImage:
+                 .missingInteractiveSystemImage, .executableInspectionTimedOut,
+                 .executableInspectionFailed:
                 return true
             default:
                 return false
@@ -847,12 +853,24 @@ struct ExternalAndroidRuntimeValidator {
             ))
             return
         }
-        guard architectureInspector(url) else {
+        do {
+            guard try architectureInspector(url) else {
+                issues.append(.init(
+                    code: unsupportedArchitecture,
+                    detail: L10n.string("android.external.issue.tool-architecture", fallback: "%@ in the selected SDK does not support this Mac's architecture.", label)
+                ))
+                return
+            }
+        } catch SDKExecutableInspectionError.timedOut {
             issues.append(.init(
-                code: unsupportedArchitecture,
-                detail: L10n.string("android.external.issue.tool-architecture", fallback: "%@ in the selected SDK does not support this Mac's architecture.", label)
+                code: .executableInspectionTimedOut,
+                detail: L10n.string("android.external.issue.tool-check-timeout", fallback: "Checking %@ in the selected SDK timed out. Try checking again.", label)
             ))
-            return
+        } catch {
+            issues.append(.init(
+                code: .executableInspectionFailed,
+                detail: L10n.string("android.external.issue.tool-check-failed", fallback: "Could not check %@ in the selected SDK. Try checking again.", label)
+            ))
         }
     }
 
@@ -933,32 +951,83 @@ struct ExternalAndroidRuntimeValidator {
         }.joined()
     }
 
-    private static func hostCanExecute(_ url: URL) -> Bool {
+    /// The SDK can be on a removable volume: `file` may block inside open(2).
+    /// Never wait indefinitely for it, its stdout, or its termination callback.
+    static func hostCanExecute(
+        _ url: URL,
+        inspectorExecutable: URL = URL(fileURLWithPath: "/usr/bin/file"),
+        timeout: TimeInterval = 2
+    ) throws -> Bool {
         let process = Process()
         let output = Pipe()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/file")
+        let exited = DispatchSemaphore(value: 0)
+        let readFD = output.fileHandleForReading.fileDescriptor
+        process.executableURL = inspectorExecutable
         process.arguments = ["-b", url.path]
+        process.standardInput = FileHandle.nullDevice
         process.standardOutput = output
         process.standardError = FileHandle.nullDevice
-        do {
-            try process.run()
-            process.waitUntilExit()
-        } catch {
-            return false
+        // Do not consult a user MAGIC override or per-user magic database.
+        process.environment = ["PATH": "/usr/bin:/bin", "HOME": "/var/empty", "LC_ALL": "C"]
+        process.terminationHandler = { _ in exited.signal() }
+        defer {
+            if process.isRunning {
+                process.terminate()
+                _ = exited.wait(timeout: .now() + 0.2)
+                if process.isRunning {
+                    _ = Darwin.kill(process.processIdentifier, SIGKILL)
+                    _ = exited.wait(timeout: .now() + 0.2)
+                }
+            }
+            try? output.fileHandleForReading.close()
+            try? output.fileHandleForWriting.close()
         }
-        guard process.terminationStatus == 0,
-              let text = String(
-                  data: output.fileHandleForReading.readDataToEndOfFile(),
-                  encoding: .utf8
-              )?.lowercased() else { return false }
-        #if arch(arm64)
-        return text.contains("arm64") || text.contains("aarch64")
-        #elseif arch(x86_64)
-        return text.contains("x86_64")
-        #else
-        return false
-        #endif
+        let flags = fcntl(readFD, F_GETFL)
+        guard flags != -1, fcntl(readFD, F_SETFL, flags | O_NONBLOCK) != -1,
+              timeout.isFinite, timeout > 0 else {
+            throw SDKExecutableInspectionError.failed
+        }
+        let deadline = ProcessInfo.processInfo.systemUptime + timeout
+        do { try process.run() }
+        catch { throw SDKExecutableInspectionError.failed }
+        try? output.fileHandleForWriting.close()
+
+        var data = Data()
+        var buffer = [UInt8](repeating: 0, count: 4096)
+        while ProcessInfo.processInfo.systemUptime < deadline {
+            let count = Darwin.read(readFD, &buffer, buffer.count)
+            if count > 0 {
+                guard data.count + count <= 16_384 else {
+                    throw SDKExecutableInspectionError.failed
+                }
+                data.append(contentsOf: buffer.prefix(count))
+            } else if count == 0, !process.isRunning {
+                guard process.terminationStatus == 0,
+                      let text = String(data: data, encoding: .utf8)?.lowercased() else {
+                    throw SDKExecutableInspectionError.failed
+                }
+                guard text.contains("mach-o") else { return false }
+                #if arch(arm64)
+                return text.contains("arm64") || text.contains("aarch64")
+                #elseif arch(x86_64)
+                return text.contains("x86_64")
+                #else
+                return false
+                #endif
+            } else if count < 0, errno != EAGAIN, errno != EINTR {
+                throw SDKExecutableInspectionError.failed
+            }
+            if count <= 0 {
+                _ = exited.wait(timeout: .now() + 0.01)
+            }
+        }
+        throw SDKExecutableInspectionError.timedOut
     }
+}
+
+enum SDKExecutableInspectionError: Error, Equatable {
+    case timedOut
+    case failed
 }
 
 struct AndroidRuntimeModeSnapshot: Equatable, Sendable {

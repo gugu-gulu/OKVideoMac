@@ -1,5 +1,7 @@
 """Apply unchanged baseline limits to a genuinely enabled capture process."""
+import argparse
 import json
+import plistlib
 import os
 from pathlib import Path
 import statistics
@@ -8,8 +10,13 @@ import tempfile
 import time
 
 ROOT=Path('/private/tmp/OKVideoMac-CrashIntegration')
-capture={'app_path':str(ROOT/'Stage7Acceptance/OKVideoMac.app')}
-APP=Path(capture['app_path']);EXE=APP/'Contents/MacOS/OKVideoMac'
+parser = argparse.ArgumentParser()
+parser.add_argument('--app', type=Path, default=ROOT/'Stage7Acceptance/OKVideoMac.app')
+parser.add_argument('--output', type=Path, default=ROOT/'stage8-resources.json')
+args = parser.parse_args()
+APP = args.app.resolve(); EXE = APP/'Contents/MacOS/OKVideoMac'
+assert APP.is_relative_to(ROOT), 'Only isolated acceptance artifacts may be measured'
+assert plistlib.loads((APP/'Contents/Info.plist').read_bytes())['CFBundleIdentifier'] == 'com.okvideomac.OKVideoMac.acceptance8b3b'
 ID='com.okvideomac.OKVideoMac.acceptance8b3b'
 baseline=json.loads((ROOT/'stage1-startup-baseline.json').read_text())
 limits=baseline['locked_limits'];runs=[]
@@ -50,9 +57,9 @@ medians={key:statistics.median(s[key] for run in runs for s in run['samples']) f
 startup=statistics.median(r['first_visible_window_seconds'] for r in runs)
 checks={'first_window':startup<=limits['first_window_seconds'],'children':medians['children']==0}
 for key in ['rss_kib','cpu_percent','threads','file_descriptors']:checks[key]=medians[key]<=limits['idle_'+key]
-result={'status':'PASS' if all(checks.values()) else 'FAIL','runs':runs,'median_first_window_seconds':startup,
+result={'app_path':str(APP), 'status':'PASS' if all(checks.values()) else 'FAIL','runs':runs,'median_first_window_seconds':startup,
     'median_idle':medians,'checks':checks,'locked_limits':limits,
     'measurement_scope':'capture enabled in isolated acceptance ID/data; compared against unchanged absolute stage 1 bounds; database admission includes acceptance policy; same passive window counter as baseline, no UI interaction; termination is not part of this measurement'}
-(ROOT/'stage8-resources.json').write_text(json.dumps(result,indent=2)+'\n')
+args.output.write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps({k:result[k] for k in ['status','median_first_window_seconds','median_idle','checks']},indent=2))
 assert result['status']=='PASS',checks
