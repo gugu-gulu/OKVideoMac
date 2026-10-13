@@ -1,6 +1,6 @@
 # 第 8 步检查点：当前机器功能验收通过，保留未测范围
 
-2026-10-13，macOS 14.8.9 / arm64。状态 **PASS_CURRENT_MACHINE_WITH_DOCUMENTED_EXCLUSIONS**，第 9 步未开始。未替换桌面 App、未推送或发布。此记录不是最终 Release 验收通过证明。
+2026-10-13，macOS 14.8.9 / arm64。状态 **PASS_CURRENT_MACHINE_WITH_DOCUMENTED_EXCLUSIONS**，第 9 步本地包验证结果见 `STAGE9-LOCAL-RELEASE.md`，仍保留运行时限制。未替换桌面 App、未推送或发布。此记录不是最终 Release 验收通过证明。
 
 ## 已完成的自动化基线
 

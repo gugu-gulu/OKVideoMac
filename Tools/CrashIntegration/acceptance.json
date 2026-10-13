@@ -198,7 +198,7 @@
         "macOS 12 and AirPods/Bluetooth excluded by current-machine-only scope",
         "Uninterrupted 30-second deep sleep / power efficiency; USB maintenance wakes occurred"
       ],
-      "stage9": "NOT_STARTED",
+      "stage9": "PASS_LOCAL_RELEASE_ARTIFACT_GATES_WITH_DOCUMENTED_RUNTIME_LIMITS",
       "artifact_root": "Tools/CrashIntegration/build/stage8-20261012",
       "known_leak": "Prototype fixed 144-byte unidentified allocation remains known; formal App leak census not performed",
       "harness_diagnostics": [
@@ -217,7 +217,105 @@
       "physical_sleep_wake": "PASS: playing auto-resumes; paused position exact-equal; Internet Sharing restored; all owned processes normally exited",
       "sleep_wake_evidence": "stage8-sleep-wake-acceptance.json",
       "sleep_wake_artifact_root": "Tools/CrashIntegration/build/stage8-sleep-20261013"
+    },
+    "9": {
+      "status": "PASS_LOCAL_RELEASE_ARTIFACT_GATES_WITH_DOCUMENTED_RUNTIME_LIMITS",
+      "date": "2026-10-13",
+      "source_commit": "18a127e17c3f2735f3b44c1651824d295684999d",
+      "identity": {
+        "CFBundleIdentifier": "com.okvideomac.OKVideoMac",
+        "CFBundleShortVersionString": "0.8.4",
+        "CFBundleVersion": "137"
+      },
+      "artifact_root": "/Users/linyao/.codex/worktrees/crash-reporting-integration/ok影视 mac 版本/Tools/CrashIntegration/build/stage9-20261013/Artifacts",
+      "evidence_root": "Tools/CrashIntegration/build/stage9-20261013",
+      "artifact_gates": {
+        "full_package_script": "PASS",
+        "standalone_app": "PASS",
+        "extracted_zip": "PASS",
+        "dmg": "PASS_LOCAL",
+        "strict_signature": "PASS: 36 Mach-O objects, ad-hoc Hardened Runtime",
+        "spdx_and_cyclonedx": "PASS: 36 physical Mach-O + 2 logical static SDKs, 170 Maven modules",
+        "sources_licenses_checksums": "PASS",
+        "sensitive_scan": "CLEAN",
+        "synthetic_fault_entrypoints_present": false,
+        "dsym_bundles_inside_app": false,
+        "sentry_dsn_configured": false
+      },
+      "symbols": {
+        "status": "PASS_WITH_COVERAGE_GAPS",
+        "app_uuid": "115A9AD6-418B-3E68-96A6-4B675B793094",
+        "required_app_and_relauncher": "PASS_EXACT_UUID",
+        "matched": [
+          "Contents/Helpers/OKVideoMacRelauncher",
+          "Contents/MacOS/OKVideoMac"
+        ],
+        "missing_dsym_count": 34,
+        "missing_dsym_paths": [
+          "Contents/Frameworks/CrashReporter.framework/Versions/A/CrashReporter",
+          "Contents/Frameworks/Sentry.framework/Versions/A/Sentry",
+          "Contents/Frameworks/Sparkle.framework/Versions/B/Autoupdate",
+          "Contents/Frameworks/Sparkle.framework/Versions/B/Sparkle",
+          "Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/MacOS/Updater",
+          "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Downloader.xpc/Contents/MacOS/Downloader",
+          "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Installer.xpc/Contents/MacOS/Installer",
+          "Contents/Frameworks/libOKMPVBridge.dylib",
+          "Contents/Frameworks/libOKQuickJS.dylib",
+          "Contents/Frameworks/libass.9.dylib",
+          "Contents/Frameworks/libavcodec.61.dylib",
+          "Contents/Frameworks/libavfilter.10.dylib",
+          "Contents/Frameworks/libavformat.61.dylib",
+          "Contents/Frameworks/libavutil.59.dylib",
+          "Contents/Frameworks/libbrotlicommon.1.dylib",
+          "Contents/Frameworks/libbrotlidec.1.dylib",
+          "Contents/Frameworks/libbz2.1.0.dylib",
+          "Contents/Frameworks/libc++.1.0.dylib",
+          "Contents/Frameworks/libc++abi.1.dylib",
+          "Contents/Frameworks/libfreetype.6.dylib",
+          "Contents/Frameworks/libfribidi.0.dylib",
+          "Contents/Frameworks/libharfbuzz.0.dylib",
+          "Contents/Frameworks/libiconv.2.dylib",
+          "Contents/Frameworks/libjpeg.8.dylib",
+          "Contents/Frameworks/liblcms2.2.dylib",
+          "Contents/Frameworks/liblzma.5.dylib",
+          "Contents/Frameworks/libmpv.dylib",
+          "Contents/Frameworks/libplacebo.360.dylib",
+          "Contents/Frameworks/libpng16.16.dylib",
+          "Contents/Frameworks/libsqlite3.dylib",
+          "Contents/Frameworks/libswresample.5.dylib",
+          "Contents/Frameworks/libswscale.8.dylib",
+          "Contents/Frameworks/libz.1.dylib",
+          "Contents/Resources/NodeRuntime/node"
+        ],
+        "resource_only_stub_gaps": 2,
+        "native_code_symbol_gaps": 32,
+        "new_final_uuid_backend_symbolication": "NOT_TESTED",
+        "new_remote_uploads_or_events": 0,
+        "stage7_backend_evidence_scope": "Old acceptance Build 1377001 and its recorded UUIDs only; not final Build 137."
+      },
+      "boundaries": {
+        "desktop_replaced": false,
+        "desktop_main_sha256": "5ab593e778d14d084cc4f9b5a83d6875b5479a2a6d98640d318c6f5bf33d06b5",
+        "desktop_main_hash_unchanged": true,
+        "canonical_package_hash_unchanged": true,
+        "internet_sharing_restored": true,
+        "published": false,
+        "pushed": false,
+        "notarized": false,
+        "gatekeeper": "NOT_TESTED: local ad-hoc signing",
+        "android_apk": "Reused prior verified unchanged input; bridge rebuild skipped, no Android source change in this stage."
+      },
+      "not_tested_or_unresolved": [
+        "First smoke launch showed no window within 20 seconds; cause unproven. Retry and two fresh directories succeeded.",
+        "CUA getApp waited about 21 minutes; UI control wait is not fixed.",
+        "Public-identity runtime admission and notarized/Gatekeeper public-release gates.",
+        "Final Build137 Sentry backend symbolication; 32 native code images lack matching dSYMs, plus 2 zero-code resource stubs.",
+        "Uninterrupted 30-second deep sleep/power efficiency; macOS12; AirPods/Bluetooth; two unsupplied Node ContractB samples.",
+        "Prototype unidentified 144-byte allocation and formal full leak census remain unresolved/not performed."
+      ],
+      "evidence": "stage9-local-release-acceptance.json"
     }
   },
-  "next_stage": 9
+  "next_stage": null,
+  "local_delivery_state": "Reviewable local Release package prepared; documented runtime limits remain. No public release or Desktop install."
 }

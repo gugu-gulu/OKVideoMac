@@ -28,7 +28,7 @@
     "macOS 12 and AirPods/Bluetooth excluded by current-machine-only scope",
     "Uninterrupted 30-second deep sleep / power efficiency; USB maintenance wakes occurred"
   ],
-  "stage9": "NOT_STARTED",
+  "stage9": "PASS_LOCAL_RELEASE_ARTIFACT_GATES_WITH_DOCUMENTED_RUNTIME_LIMITS",
   "artifact_root": "Tools/CrashIntegration/build/stage8-20261012",
   "known_leak": "Prototype fixed 144-byte unidentified allocation remains known; formal App leak census not performed",
   "harness_diagnostics": [

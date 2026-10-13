@@ -1,0 +1,167 @@
+{
+  "status": "PASS_LOCAL_RELEASE_ARTIFACT_GATES_WITH_DOCUMENTED_RUNTIME_LIMITS",
+  "date": "2026-10-13",
+  "recorded_at": "2026-10-13T22:53:54.495436",
+  "machine": "macOS 14.8.9 arm64",
+  "source_commit": "18a127e17c3f2735f3b44c1651824d295684999d",
+  "source_clean_at_archive": true,
+  "configuration": "Release",
+  "identity": {
+    "CFBundleIdentifier": "com.okvideomac.OKVideoMac",
+    "CFBundleShortVersionString": "0.8.4",
+    "CFBundleVersion": "137"
+  },
+  "artifact_root": "/Users/linyao/.codex/worktrees/crash-reporting-integration/ok影视 mac 版本/Tools/CrashIntegration/build/stage9-20261013/Artifacts",
+  "evidence_root": "Tools/CrashIntegration/build/stage9-20261013",
+  "app": "/Users/linyao/.codex/worktrees/crash-reporting-integration/ok影视 mac 版本/Tools/CrashIntegration/build/stage9-20261013/Artifacts/OKVideoMac.app",
+  "zip": "/Users/linyao/.codex/worktrees/crash-reporting-integration/ok影视 mac 版本/Tools/CrashIntegration/build/stage9-20261013/Artifacts/OKVideoMac-0.8.4-macOS-arm64.zip",
+  "dmg": "/Users/linyao/.codex/worktrees/crash-reporting-integration/ok影视 mac 版本/Tools/CrashIntegration/build/stage9-20261013/Artifacts/OKVideoMac-0.8.4.dmg",
+  "source_release": "/Users/linyao/.codex/worktrees/crash-reporting-integration/ok影视 mac 版本/Tools/CrashIntegration/build/stage9-20261013/Artifacts/SourceRelease",
+  "symbol_archive": "/Users/linyao/.codex/worktrees/crash-reporting-integration/ok影视 mac 版本/Tools/CrashIntegration/build/stage9-20261013/Artifacts/CrashSymbols.GYjjw3",
+  "artifact_gates": {
+    "full_package_script": "PASS",
+    "standalone_app": "PASS",
+    "extracted_zip": "PASS",
+    "dmg": "PASS_LOCAL",
+    "strict_signature": "PASS: 36 Mach-O objects, ad-hoc Hardened Runtime",
+    "spdx_and_cyclonedx": "PASS: 36 physical Mach-O + 2 logical static SDKs, 170 Maven modules",
+    "sources_licenses_checksums": "PASS",
+    "sensitive_scan": "CLEAN",
+    "synthetic_fault_entrypoints_present": false,
+    "dsym_bundles_inside_app": false,
+    "sentry_dsn_configured": false
+  },
+  "sha256": {
+    "OKVideoMac": "01497d07d4e035dd09b653438eda05986e65e14f611b32cab7ccc1d4d5662213",
+    "OKVideoMac-0.8.4-macOS-arm64.zip": "8067e23a4ec13ec842afb06baa3b2abd0729dda5bb46f04c14eb1bb7a5230262",
+    "OKVideoMac-0.8.4.dmg": "7e8b187a7786bad1499c3472b40c8d1faa38a9e4dea63b811252620a3fac9bd7"
+  },
+  "sdk_compliance": {
+    "capture": "PLCrashReporter 1.12.2, MIT AND Apache-2.0",
+    "upload": "Sentry 9.30.1, MIT",
+    "tests": "6 inventory regressions passed; real stub positive and executable/missing-privacy negatives passed; both strict framework signatures passed",
+    "resource_stubs": "Zero code bytes; privacy manifests retained byte-for-byte; temporary install names normalized to @rpath before inside-out signing",
+    "upstream_sources_modified": false
+  },
+  "symbols": {
+    "status": "PASS_WITH_COVERAGE_GAPS",
+    "app_uuid": "115A9AD6-418B-3E68-96A6-4B675B793094",
+    "required_app_and_relauncher": "PASS_EXACT_UUID",
+    "matched": [
+      "Contents/Helpers/OKVideoMacRelauncher",
+      "Contents/MacOS/OKVideoMac"
+    ],
+    "missing_dsym_count": 34,
+    "missing_dsym_paths": [
+      "Contents/Frameworks/CrashReporter.framework/Versions/A/CrashReporter",
+      "Contents/Frameworks/Sentry.framework/Versions/A/Sentry",
+      "Contents/Frameworks/Sparkle.framework/Versions/B/Autoupdate",
+      "Contents/Frameworks/Sparkle.framework/Versions/B/Sparkle",
+      "Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/MacOS/Updater",
+      "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Downloader.xpc/Contents/MacOS/Downloader",
+      "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Installer.xpc/Contents/MacOS/Installer",
+      "Contents/Frameworks/libOKMPVBridge.dylib",
+      "Contents/Frameworks/libOKQuickJS.dylib",
+      "Contents/Frameworks/libass.9.dylib",
+      "Contents/Frameworks/libavcodec.61.dylib",
+      "Contents/Frameworks/libavfilter.10.dylib",
+      "Contents/Frameworks/libavformat.61.dylib",
+      "Contents/Frameworks/libavutil.59.dylib",
+      "Contents/Frameworks/libbrotlicommon.1.dylib",
+      "Contents/Frameworks/libbrotlidec.1.dylib",
+      "Contents/Frameworks/libbz2.1.0.dylib",
+      "Contents/Frameworks/libc++.1.0.dylib",
+      "Contents/Frameworks/libc++abi.1.dylib",
+      "Contents/Frameworks/libfreetype.6.dylib",
+      "Contents/Frameworks/libfribidi.0.dylib",
+      "Contents/Frameworks/libharfbuzz.0.dylib",
+      "Contents/Frameworks/libiconv.2.dylib",
+      "Contents/Frameworks/libjpeg.8.dylib",
+      "Contents/Frameworks/liblcms2.2.dylib",
+      "Contents/Frameworks/liblzma.5.dylib",
+      "Contents/Frameworks/libmpv.dylib",
+      "Contents/Frameworks/libplacebo.360.dylib",
+      "Contents/Frameworks/libpng16.16.dylib",
+      "Contents/Frameworks/libsqlite3.dylib",
+      "Contents/Frameworks/libswresample.5.dylib",
+      "Contents/Frameworks/libswscale.8.dylib",
+      "Contents/Frameworks/libz.1.dylib",
+      "Contents/Resources/NodeRuntime/node"
+    ],
+    "resource_only_stub_gaps": 2,
+    "native_code_symbol_gaps": 32,
+    "new_final_uuid_backend_symbolication": "NOT_TESTED",
+    "new_remote_uploads_or_events": 0,
+    "stage7_backend_evidence_scope": "Old acceptance Build 1377001 and its recorded UUIDs only; not final Build 137."
+  },
+  "runtime_smoke": {
+    "status": "PASS_AFTER_RETRY_WITH_UNRESOLVED_INITIAL_WINDOW_ANOMALY",
+    "scope": "Runtime smoke uses identical compiled code with temporary bundle identity and regenerated image identity metadata; final public-identity package remains untouched. Temporary Foundation home isolates business files; temporary identity isolates preferences. Public identity runtime admission not exercised.",
+    "temporary_bundle_id": "com.okvideomac.stage9.smoke",
+    "same_compiled_code_uuid": "115A9AD6-418B-3E68-96A6-4B675B793094",
+    "test_host_flags_absent": true,
+    "capture_enabled": true,
+    "raw_file_mode": "0600",
+    "first_window_second_attempt_seconds": 0.623695041,
+    "original_first_attempt": {
+      "pid": 38144,
+      "observation_seconds": 20.048912,
+      "window_visible": false,
+      "capture_slot_mode": "0o600",
+      "status": "UNRESOLVED_FIRST_WINDOW_ANOMALY",
+      "source": "Contemporaneous tool output; first launch result/log were overwritten by retry, not independent retained raw evidence.",
+      "termination": "Harness assertion ended parent exec; child ended before second launch.",
+      "root_cause_proven": false
+    },
+    "fresh_business_directory_rechecks_seconds": [
+      0.505718667,
+      0.27760933399999965
+    ],
+    "recheck_scope": "Two fresh business directories; temporary bundle identity with identical compiled Release code. Not cold-cache runs, not a replacement for the prior five-run Stage8 resource gate. Original failed first-window observation remains unexplained.",
+    "import": "Native UI imported original loopback demo; 1 site and 12 titles displayed",
+    "playback": "Real rendered frames; 01:24 advanced to 01:38 in episode 2; pause succeeded; first episode reached natural EOF and automatic episode 2 load",
+    "teardown_log_note": "mpv emitted video output initialization failed when render context was deliberately freed during episode switch/player close; no visible error sheet observed. Not an error-free log claim.",
+    "consent": false,
+    "filtered_report_count": 0,
+    "upload_cache_empty": true,
+    "normal_quit": "Native CUA super+q; exit code 0; exact PID 38727 gone without termination signal",
+    "children_before_quit": 0,
+    "history": [
+      [
+        "夜航星河",
+        "第 02 集",
+        98.41666666666667,
+        128.0
+      ]
+    ],
+    "history_preserved_exactly_on_quit": true,
+    "public_identity_runtime_admission": "NOT_TESTED",
+    "ui_control_wait": {
+      "getApp_seconds": 1305.3189,
+      "requested_timeout_ms": 15000,
+      "root_cause_or_fix_proven": false,
+      "note": "Once binding returned, required import/play/pause/settings/history/Quit actions completed. The long binding wait remains an unresolved tool limitation."
+    }
+  },
+  "boundaries": {
+    "desktop_replaced": false,
+    "desktop_main_sha256": "5ab593e778d14d084cc4f9b5a83d6875b5479a2a6d98640d318c6f5bf33d06b5",
+    "desktop_main_hash_unchanged": true,
+    "canonical_package_hash_unchanged": true,
+    "internet_sharing_restored": true,
+    "published": false,
+    "pushed": false,
+    "notarized": false,
+    "gatekeeper": "NOT_TESTED: local ad-hoc signing",
+    "android_apk": "Reused prior verified unchanged input; bridge rebuild skipped, no Android source change in this stage."
+  },
+  "not_tested_or_unresolved": [
+    "First smoke launch showed no window within 20 seconds; cause unproven. Retry and two fresh directories succeeded.",
+    "CUA getApp waited about 21 minutes; UI control wait is not fixed.",
+    "Public-identity runtime admission and notarized/Gatekeeper public-release gates.",
+    "Final Build137 Sentry backend symbolication; 32 native code images lack matching dSYMs, plus 2 zero-code resource stubs.",
+    "Uninterrupted 30-second deep sleep/power efficiency; macOS12; AirPods/Bluetooth; two unsupplied Node ContractB samples.",
+    "Prototype unidentified 144-byte allocation and formal full leak census remain unresolved/not performed."
+  ],
+  "next_action": "Local reviewable package/evidence prepared. No Desktop replacement or publication authorized; unresolved UI-tool wait and first-window anomaly remain explicit follow-ups."
+}
