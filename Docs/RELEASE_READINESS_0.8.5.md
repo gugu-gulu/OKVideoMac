@@ -11,3 +11,5 @@
 当前机器既有功能证据及边界见 `Tools/CrashIntegration/acceptance.json` 与 `CONTROL-STARTUP-FOLLOWUP.md`。不把累计 425 个不同测试当作本次全部重跑；本次新测试数字和最终包 UUID 将在实际执行后记录。旧 Build1377001 的 Sentry 后台记录不能证明新 Build138 符号，最终新 UUID 尚未上传后台；原生 dSYM 缺口继续公开记录。
 
 首次首窗异常未复现且根因未证实；macOS12、蓝牙、连续深睡、两个外部 Node ContractB 样本与完整泄漏普查保持未测，不扩大既有保证。
+
+正式发布准备中新发现的窗口重开回归已修复：恢复菜单只拦截执行，保留 SwiftUI 原生 WindowGroup 场景工厂。完整 Release XCTest 最终 1287 通过、0 失败、17 条件跳过（共 1304）；菜单/真实窗口定向 16 通过。截图输出目录与 Android 并发测试入场屏障已修正，保留原始窗口、次数及恢复门禁断言。早期失败记录保留，不计为最终通过。商业源码未参与。

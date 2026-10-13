@@ -24,6 +24,7 @@
 		34E606A00CCFD969B84B8FBE /* OKVideoPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = 40F5E74826FFC180B7D5D2FD /* OKVideoPersistence */; };
 		35C639B6C08DFB9F379D88D8 /* SearchBrowseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3A03DBF332ECA425E9F035 /* SearchBrowseState.swift */; };
 		373A913C9D6DC3E3FBE14529 /* PlayerEpisodeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234E1FED1E0517E2BFF32B96 /* PlayerEpisodeNavigation.swift */; };
+		37CB1F08D17B76FFF48218DF /* StartupNewWindowGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD230531D324E210ED7637 /* StartupNewWindowGate.swift */; };
 		3CE5EE6FA03482C30AE9FE0F /* WKWebSniffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F9E94B5A9587197666CC3 /* WKWebSniffer.swift */; };
 		3E9FFD15831E0CF53FBCA00A /* OKVideoMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDCFE690A729EE506C02030 /* OKVideoMacTests.swift */; };
 		3ECBD2FAF91BFD12E42EBEF5 /* DetailResponseCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9576C27F87E5BD408C850091 /* DetailResponseCache.swift */; };
@@ -92,6 +93,7 @@
 		E2DEA74B241320B8961DD695 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACA134A51B5EAC0085C4BDA /* HistoryView.swift */; };
 		E52889A73B1E20D6D311931C /* SeekAcceptanceHarness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3673D60112EC33FB72415BC4 /* SeekAcceptanceHarness.swift */; };
 		E922E544FF4255799732AD50 /* CrashSparkleProbe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353D91BDF12C89AA7B745FA6 /* CrashSparkleProbe.swift */; };
+		E9BEB01DD25B5D4C51A88CDA /* StartupNewWindowGateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6090A546B2B362215C6FFC65 /* StartupNewWindowGateTests.swift */; };
 		EB38C679BF2A786E9E0B233D /* THIRD_PARTY_LICENSES.md in Resources */ = {isa = PBXBuildFile; fileRef = 8AB307256CE6590A5494384D /* THIRD_PARTY_LICENSES.md */; };
 		F1A9FDB53D20B5C5272E6A7A /* LiveBackgroundActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA77A8309686173F871CCF05 /* LiveBackgroundActivityView.swift */; };
 		F273093DD87842950A570540 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 7EF68AA115AD6EBE42D32CFD /* Localizable.xcstrings */; };
@@ -178,6 +180,7 @@
 		579EA0116028BFAB72EEFC1F /* AppStartupControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStartupControllerTests.swift; sourceTree = "<group>"; };
 		589C3DDFE98C3D2DC30D5704 /* CrashSparkleDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashSparkleDriver.swift; sourceTree = "<group>"; };
 		5C6055A4D0EC00D86134284B /* AndroidRuntimeMaintenance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AndroidRuntimeMaintenance.swift; sourceTree = "<group>"; };
+		6090A546B2B362215C6FFC65 /* StartupNewWindowGateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupNewWindowGateTests.swift; sourceTree = "<group>"; };
 		617A00084B74B412C7C3ACB9 /* NodeHTTPSpiderSiteProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeHTTPSpiderSiteProvider.swift; sourceTree = "<group>"; };
 		63284B4134B72C9ECD12EE1B /* ImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRepository.swift; sourceTree = "<group>"; };
 		670FEFE746E5D3B95EE9D347 /* FavoritesNativeRepairTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesNativeRepairTests.swift; sourceTree = "<group>"; };
@@ -202,6 +205,7 @@
 		A4931100F99FE989B7F1113E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "$(OKVIDEOMAC_SPARKLE_ROOT)/Sparkle.framework"; sourceTree = "<group>"; };
 		A58C091FE8CFD43402C7B9F0 /* CrashUploadControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashUploadControllerTests.swift; sourceTree = "<group>"; };
 		A7A7A801EDB50B498CC929A8 /* PlaybackDisplaySleepController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackDisplaySleepController.swift; sourceTree = "<group>"; };
+		A8DD230531D324E210ED7637 /* StartupNewWindowGate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupNewWindowGate.swift; sourceTree = "<group>"; };
 		AB9CAF08A930E4ABBA6B50F3 /* OKVideoMacRelauncher */ = {isa = PBXFileReference; includeInIndex = 0; path = OKVideoMacRelauncher; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADFC0D6C3C9A30793D7813B3 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		AE3BC2757E0FC9114B46572F /* LiveGuideGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveGuideGrid.swift; sourceTree = "<group>"; };
@@ -326,6 +330,7 @@
 				8EAE534A1AE9A12B967D27EF /* PlayerEpisodeNavigationTests.swift */,
 				303F9D189B3E37ACA85D261E /* PlayerInteractionTests.swift */,
 				1FEE61335C613C9E0064D774 /* SearchBrowseMigrationTests.swift */,
+				6090A546B2B362215C6FFC65 /* StartupNewWindowGateTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -477,6 +482,7 @@
 				1A0CE64294B74CF614CE6543 /* RelaunchParentExitMonitor.swift */,
 				115FFC7F2FD723B0F12E0D2D /* RootView.swift */,
 				3673D60112EC33FB72415BC4 /* SeekAcceptanceHarness.swift */,
+				A8DD230531D324E210ED7637 /* StartupNewWindowGate.swift */,
 				FFCEEED7CF7117EF82A78B48 /* Localization */,
 			);
 			path = App;
@@ -842,6 +848,7 @@
 				DC4A5F6740E30611013F079E /* PlayerEpisodeNavigationTests.swift in Sources */,
 				23F3274D09AD9ABB49C2870B /* PlayerInteractionTests.swift in Sources */,
 				5A7D0C55AA0CB6B952D533A1 /* SearchBrowseMigrationTests.swift in Sources */,
+				E9BEB01DD25B5D4C51A88CDA /* StartupNewWindowGateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -921,6 +928,7 @@
 				B1BEEF638AD2DF98A1887EA2 /* SearchView.swift in Sources */,
 				E52889A73B1E20D6D311931C /* SeekAcceptanceHarness.swift in Sources */,
 				6E4F5AA244E052ECA855ECA6 /* SettingsView.swift in Sources */,
+				37CB1F08D17B76FFF48218DF /* StartupNewWindowGate.swift in Sources */,
 				D8B5CD68B6C2E81A2E1B7BFA /* SystemMediaProxyResolver.swift in Sources */,
 				A460B1043453667657698834 /* VideoGrid.swift in Sources */,
 				3CE5EE6FA03482C30AE9FE0F /* WKWebSniffer.swift in Sources */,

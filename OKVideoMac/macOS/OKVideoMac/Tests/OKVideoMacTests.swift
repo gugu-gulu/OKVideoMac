@@ -16260,9 +16260,11 @@ final class OKVideoMacTests: XCTestCase {
         let bootGate = NodeReadinessTestGate()
         let discoveryCount = NodeReadinessTestCounter()
         let launcher = AndroidEmulatorLauncherMock()
+        let admitted = expectation(description: "All existing-boot callers joined startup")
+        admitted.expectedFulfillmentCount = 10
         let callers = (0..<10).map { _ in
             Task {
-                try await admission.ensureRuntime {
+                try await admission.ensureRuntimeForConcurrentTest(admitted: admitted) {
                     await discoveryCount.increment()
                     await bootGate.wait()
                 }
@@ -16279,6 +16281,9 @@ final class OKVideoMacTests: XCTestCase {
         XCTAssertTrue(observedOneDiscovery)
         let launchCount = await launcher.launchInvocationCount
         XCTAssertEqual(launchCount, 0)
+        // The boot flight must remain pending until every caller is admitted.
+        // Seeing the first discovery alone says nothing about the other tasks.
+        await fulfillment(of: [admitted], timeout: 5)
         await bootGate.open()
         for caller in callers { try await caller.value }
         let finalDiscoveryCount = await discoveryCount.value
@@ -30495,6 +30500,7 @@ final class LiveGuideGridTests: XCTestCase {
             XCTAssertGreaterThan(distinctPixels(NSRect(x: 12, y: 55, width: 155, height: 19)), 8, "channel text must paint")
             XCTAssertGreaterThan(distinctPixels(NSRect(x: 194, y: 10, width: 105, height: 23)), 8, "time text must paint")
             let output = URL(fileURLWithPath: "/private/tmp/OKVideoMac-NavH2/guide-B-\(name).png")
+            try FileManager.default.createDirectory(at: output.deletingLastPathComponent(), withIntermediateDirectories: true)
             try bitmap.representation(using: .png, properties: [:])?.write(to: output)
         }
     }
@@ -30783,6 +30789,7 @@ final class LiveGuidePresentationStateTests: XCTestCase {
     }
 
     func testFullGuideScreenVisualMatrixAndRefreshKeepsNativeHost() async throws {
+        try FileManager.default.createDirectory(atPath: "/private/tmp/OKVideoMac-NavH2", withIntermediateDirectories: true)
         let sourceID = LiveSourceID.imported(UUID())
         let source = EPGSourceKey(sourceID)
         let incarnation = UUID()
@@ -32270,7 +32277,9 @@ final class BrowserInteractionIntegrationTests: XCTestCase {
             let bitmap = try XCTUnwrap(host.bitmapImageRepForCachingDisplay(in: host.bounds))
             host.cacheDisplay(in: host.bounds, to: bitmap)
             let bytes = try XCTUnwrap(bitmap.representation(using: .png, properties: [:]))
-            try bytes.write(to: URL(fileURLWithPath: "/private/tmp/OKVideoMac-InteractionFix/poster-\(name).png"))
+            let output = URL(fileURLWithPath: "/private/tmp/OKVideoMac-InteractionFix/poster-\(name).png")
+            try FileManager.default.createDirectory(at: output.deletingLastPathComponent(), withIntermediateDirectories: true)
+            try bytes.write(to: output)
             return bytes
         }
         let initial = try capture("default")

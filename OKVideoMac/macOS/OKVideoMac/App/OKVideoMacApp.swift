@@ -103,14 +103,6 @@ private struct StartupCommands: Commands {
     @ObservedObject var startup: AppStartupController
     let appDelegate: OKVideoMacAppDelegate
     var body: some Commands {
-        CommandGroup(replacing: .newItem) {
-            Button(L10n.string("crash.window.new", fallback: "New Window")) {
-                guard startup.canRunBusinessEvents else { return }
-                NSApp.sendAction(#selector(NSWindow.newWindowForTab(_:)), to: nil, from: nil)
-            }
-            .keyboardShortcut("n", modifiers: .command)
-            .disabled(!startup.canRunBusinessEvents)
-        }
         CommandGroup(replacing: .appSettings) {
             Button(L10n.string("crash.settings.menu", fallback: "Settings…")) { appDelegate.showSettingsWindow(nil) }
                 .keyboardShortcut(",", modifiers: .command)
@@ -139,6 +131,7 @@ final class OKVideoMacAppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private let mainMenuLocalizer = MainMenuLocalizationController()
+    private let newWindowGate = StartupNewWindowGate()
     private weak var appState: AppState?
     private var settingsWindow: NSWindow?
     private var startupController: AppStartupController? { AppLaunchSession.current?.controller }
@@ -212,6 +205,7 @@ final class OKVideoMacAppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        newWindowGate.start()
         mainMenuLocalizer.start()
     }
 

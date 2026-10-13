@@ -4,6 +4,7 @@
 
 - Add bounded local crash capture/recovery, consent controls and coordinated shutdown. This build has no remote crash-upload endpoint.
 - Bound Android executable architecture inspection, preserve the selected SDK/AVD and allow retry after timeout.
+- Preserve the native WindowGroup factory when gating recovery, allowing New Window after every browser window closes.
 - Include static diagnostics SDK sources, notices, privacy resources and logical SBOM entries; validate exact final symbols without claiming complete third-party symbol coverage.
 - Distribution gates and public assets are pending; see [release preparation](Docs/RELEASE_READINESS_0.8.5.md).
 
