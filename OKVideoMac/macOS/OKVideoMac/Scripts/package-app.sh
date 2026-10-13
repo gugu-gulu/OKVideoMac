@@ -581,6 +581,12 @@ for ((index=${#processed[@]} - 1; index >= 0; index--)); do
   fi
   sign_code "$binary"
 done
+# Seal the generated static SDK resource stubs and their containers first.
+for sdk_name in CrashReporter Sentry; do
+  sdk_framework="$APP_DESTINATION/Contents/Frameworks/$sdk_name.framework"
+  sign_code "$sdk_framework/Versions/A/$sdk_name"
+  sign_code "$sdk_framework"
+done
 # Sparkle's helpers and their containers must be sealed inside out.
 SPARKLE_FRAMEWORK="$APP_DESTINATION/Contents/Frameworks/Sparkle.framework"
 while IFS= read -r -d '' binary; do
