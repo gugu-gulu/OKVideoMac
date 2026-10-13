@@ -11,9 +11,9 @@ Staple 和 Gatekeeper 验证后再通过 GitHub Release 分发。
 
 ## 当前版本
 
-- 当前稳定版本：0.8.4（Build 137）
-- Tag：`v0.8.4`；固定 exact release commit `58e83d0aa29c7a7ffa9a00b15011875678395481`。
-- source release index：`OKVideoMac-0.8.4-build137-SOURCE_RELEASE_INDEX.json`。
+- 当前发布候选：0.8.5（Build 138）
+- 目标 tag：`v0.8.5`；须通过完整分发门禁后发布，既有 v0.8.4 保持不变。
+- source release index：`OKVideoMac-0.8.5-build138-SOURCE_RELEASE_INDEX.json`。
 - 本轮修复工具栏归属与首页加载/空态标题，保留独立材质和零宽分隔；见[发布说明](../Docs/RELEASE_NOTES_0.8.4.md)与[正式验证](../Docs/RELEASE_VALIDATION_0.8.4.md)。
 - 最低系统：macOS 12.0
 - 支持架构：Apple Silicon / arm64
@@ -36,7 +36,12 @@ Staple 和 Gatekeeper 验证后再通过 GitHub Release 分发。
   [GitHub Release](https://github.com/yaolin-dev/OKVideoMac/releases/tag/v0.8.4)；
   [正式验证记录](../Docs/RELEASE_VALIDATION_0.8.4.md)
 
-## 0.8.4 新增与修复
+## 0.8.5 候选
+
+- 本机崩溃恢复、受控诊断清理与 SDK 检查有限等待。远程上传未配置。
+- 实际功能证据和未测范围见[发布准备](../Docs/RELEASE_READINESS_0.8.5.md)。
+
+## 0.8.4 历史新增与修复
 
 - 移除工具栏 KVO 同步回写，SwiftUI 统一管理工具栏；首页加载/空态保留真实标题。
 - 48 项相关回归通过；用户确认 macOS 27.0.1 实机测试正常。

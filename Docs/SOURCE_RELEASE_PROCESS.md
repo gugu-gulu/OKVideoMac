@@ -1,5 +1,9 @@
 # Immutable Corresponding-Source Release Process
 
+## 0.8.5 candidate identity
+
+The candidate uses `OKVideoMac-0.8.5.dmg`, internal `OKVideoMac-0.8.5-macOS-arm64.zip`, and `OKVideoMac-0.8.5-build138-SOURCE_RELEASE_INDEX.json`. Public distribution requires the existing exact-main-commit, signing, notarization, install and source/asset gates. Static PLCrashReporter and Sentry source/notice records accompany this candidate. The existing 0.8.4 artifacts below remain immutable.
+
 The published 0.8.4 (Build 137) release uses `OKVideoMac-0.8.4-macOS-arm64.zip` as the internal identity carrier, `OKVideoMac-0.8.4.dmg` as the notarized public download, and `OKVideoMac-0.8.4-build137-SOURCE_RELEASE_INDEX.json` as its source-side identity.
 
 Tag `v0.8.4` pins `58e83d0aa29c7a7ffa9a00b15011875678395481`. Apple Notarization Accepted, stapling, Gatekeeper, installation and all 16 public asset checks passed; see [formal verification](RELEASE_VALIDATION_0.8.4.md). The branch candidate was not reused. Documentation updates preserve signed artifacts and immutable build-time source/notes snapshots.

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.5] - 2026-10-14
+
+- Add bounded local crash capture/recovery, consent controls and coordinated shutdown. This build has no remote crash-upload endpoint.
+- Bound Android executable architecture inspection, preserve the selected SDK/AVD and allow retry after timeout.
+- Include static diagnostics SDK sources, notices, privacy resources and logical SBOM entries; validate exact final symbols without claiming complete third-party symbol coverage.
+- Distribution gates and public assets are pending; see [release preparation](Docs/RELEASE_READINESS_0.8.5.md).
+
 ## [0.8.4] - 2026-10-09
 
 - Release Build 137 passed Developer ID / Hardened Runtime, Apple Accepted, staple, Gatekeeper, final installation and all 16 published asset checks; see [formal verification](Docs/RELEASE_VALIDATION_0.8.4.md).

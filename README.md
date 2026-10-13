@@ -1,5 +1,7 @@
 # OKVideoMac
 
+The current release candidate is **0.8.5 (Build 138)**, adding local crash recovery and bounded Android SDK inspection. Remote crash uploading is not configured in this build. See [release notes](Docs/RELEASE_NOTES_0.8.5.md) and [release preparation](Docs/RELEASE_READINESS_0.8.5.md). The existing stable 0.8.4 assets below remain unchanged until formal publication.
+
 **0.8.4 (Build 137)** fixes the SwiftUI/AppKit toolbar ownership path associated with the 0.8.3 startup crash. The user confirmed successful macOS 27.0.1 testing; see [release notes](Docs/RELEASE_NOTES_0.8.4.md) and [formal verification](Docs/RELEASE_VALIDATION_0.8.4.md).
 
 English | [简体中文](README_zh-CN.md)

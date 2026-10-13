@@ -1,10 +1,12 @@
 # Compatibility
 
-- 对照版本：0.8.4（Build 137）
-- 最近更新：2026-10-09
+- 对照版本：0.8.5（Build 138）
+- 最近更新：2026-10-14
 - 当前稳定版本：0.8.4（Build 137），Apple Silicon / arm64 / macOS 12.0+
 - 最新公开公证 DMG：0.8.4（Build 137）；Developer ID、Apple Accepted、Staple、Gatekeeper 与安装 smoke 均通过
 - 发布 tag `v0.8.4` 固定 `58e83d0aa29c7a7ffa9a00b15011875678395481`；正式门禁结果见[发布验证记录](../../../../Docs/RELEASE_VALIDATION_0.8.4.md)。
+
+0.8.5 当前为发布候选，目标 tag `v0.8.5`。本机诊断/SDK 检查证据及未测范围见[发布准备](../../../../Docs/RELEASE_READINESS_0.8.5.md)；下方历史保证不自动扩大为本次覆盖。
 
 ## 0.8.4 验证边界
 

@@ -1,5 +1,7 @@
 # OKVideoMac
 
+当前发布候选为 **0.8.5（Build 138）**，新增本机崩溃恢复及有限等待的 Android SDK 检查。本次没有配置远程崩溃上传。见[发布说明](Docs/RELEASE_NOTES_0.8.5.md)和[发布准备](Docs/RELEASE_READINESS_0.8.5.md)；正式公开前，下方既有 0.8.4 稳定资产保持不变。
+
 **0.8.4（Build 137）**修复与 0.8.3 启动崩溃相关的工具栏归属路径，用户已确认 macOS 27.0.1 实机测试正常。见[发布说明](Docs/RELEASE_NOTES_0.8.4.md)和[正式验证](Docs/RELEASE_VALIDATION_0.8.4.md)。
 
 [English](README.md) | 简体中文
