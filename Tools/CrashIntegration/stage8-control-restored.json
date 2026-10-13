@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-13",
+  "status": "PASS",
+  "repl_reset": true,
+  "native_app_list_available": true,
+  "window_read": true,
+  "menu_click": true,
+  "screenshot": "build/stage8-20261013/control-restored.png",
+  "recovery_settings_disabled": true,
+  "database_before_continue": false,
+  "children_before_consent": 0,
+  "app_path": "/private/tmp/OKVideoMac-CrashIntegration/Stage8UI/OKVideoMac.app",
+  "pid": 30504,
+  "root": "/private/tmp/OKVideoMac-8B3B-stage8-ui-3s5xmg29",
+  "observations": [
+    "Prior timeout did not reproduce in current host session. Original timeout root cause remains unproven.",
+    "Bundle ID is ambiguous across archived artifacts; exact path used.",
+    "Screenshot unavailable while menu remained open; canceling menu via exposed Cancel action restored window capture."
+  ]
+}

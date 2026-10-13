@@ -169,7 +169,7 @@
       "backend_verification": "Swift/C source lines, exact UUIDs, release/environment, retry same IDs, post-revoke event absent"
     },
     "8": {
-      "status": "PARTIAL_BLOCKED_UI_TOOL",
+      "status": "IN_PROGRESS",
       "date": "2026-10-12",
       "implementation_commit": "59e8a80",
       "stage7_checkpoint": "ba1f2c5",
@@ -193,7 +193,7 @@
       "startup_resource_gate": "PASS",
       "same_process_retry_attempts": 30,
       "retry_resources_scope": "Actual adapter and Release entry, no SwiftUI business initialization; no zero-leak claim",
-      "native_ui_blocker": "getApp twice timed out after 120s; listApps also timed out/reset after 20s; no actual App interaction recorded in this stage",
+      "native_ui_blocker": "Resolved 2026-10-13: list, read, click and screenshot validated; remaining actual UI acceptance in progress",
       "not_yet_tested": [
         "actual whole-App configuration import, video/seek/fullscreen/history and recovery-consent cycles through UI",
         "physical sleep/wake and active Node/Android workloads (model and lifecycle regressions passed)",
