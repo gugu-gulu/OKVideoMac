@@ -1,0 +1,181 @@
+{
+  "status": "PASS_CURRENT_MACHINE_FUNCTIONAL_SLEEP_WAKE_WITH_DOCUMENTED_EXCLUSIONS",
+  "scope": "current machine; playing then paused; stage 9 gated",
+  "app": "/private/tmp/OKVideoMac-CrashIntegration/Stage8SDKAcceptance/OKVideoMac.app",
+  "app_pid": 5035,
+  "implementation_commit": "f52e290",
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "INCONCLUSIVE_DARKWAKE",
+      "system_state": "DarkWake/Deep Idle for 96 seconds with InternetSharing DenySystemSleep",
+      "observer_limitation": "v1 launched in sandbox; no notifications received, not reliable evidence"
+    },
+    {
+      "attempt": 2,
+      "status": "CANCELLED_BY_HID_ACTIVITY",
+      "will_sleep_unix_time": 1791892921.520616,
+      "did_wake_unix_time": 1791892921.943428,
+      "interval_seconds": 0.42281198501586914,
+      "kernel_evidence": "2026-10-13 20:02:01.642: Magic Trackpad eventType:11 activity while display asleep; Requesting full wake due to dark wake activity tickle",
+      "app_evidence": "App released display assertion at 20:02:01.477 and recreated it at 20:02:02.013; remained alive; FD 47 unchanged; owned Android process IDs unchanged; consent false and pending/cache empty",
+      "long_sleep_gate_passed": false
+    },
+    {
+      "attempt": 3,
+      "status": "REAL_SLEEP_PASS_PLAYING_PRECONDITION_UNCONFIRMED",
+      "pmset_sleep_seconds": 112,
+      "notification_interval_seconds": 116.34497117996216,
+      "user_confirmed": "Did not confirm playing before sleep",
+      "before_sleep_play_assertion_recorded": false,
+      "after_position_seconds": 0.5833333333333334,
+      "after_state": "paused",
+      "long_sleep_gate_passed": true,
+      "automatic_resume_gate_passed": false,
+      "android_get_state": "device",
+      "android_sys_boot_completed": "1",
+      "pending_reports": 0,
+      "upload_cache_exists": false,
+      "app_defect_not_established": true
+    },
+    {
+      "attempt": 4,
+      "status": "PASS_FUNCTIONAL_REAL_SLEEP_WAKE_AUTO_RESUME",
+      "sleep_notification_interval_seconds": 62.54277491569519,
+      "pmset_sleep_segments_seconds": [
+        5,
+        6
+      ],
+      "background_darkwake_seconds": [
+        45,
+        1
+      ],
+      "background_wake_reason": "usb3 pcie-xhci",
+      "continuous_deep_sleep_30_seconds_verified": false,
+      "playing_before_confirmed": true,
+      "after_playing_confirmed": true,
+      "after_ui_time": "03:12/21:20",
+      "after_history_seconds": 113.91666666666667,
+      "assertion_released_at": "2026-10-13 20:20:10",
+      "assertion_recreated_at": "2026-10-13 20:21:12",
+      "fds_before_after": [
+        47,
+        47
+      ],
+      "app_and_owned_android_pids_unchanged": true,
+      "android_get_state": "device",
+      "android_sys_boot_completed": "1",
+      "pending_reports": 0,
+      "upload_cache_exists": false,
+      "scope": "Functional physical system sleep/wake with ordinary background maintenance wake; not uninterrupted 30-second deep sleep or power efficiency acceptance"
+    }
+  ],
+  "sharing": {
+    "original": "on",
+    "current": "on",
+    "authorized_by_user": true,
+    "restore_required": false,
+    "changed_unix_time": 1791892527.805399,
+    "reason": "real sleep wake retest",
+    "restored_unix_time": 1791895547.5930471,
+    "restored_verified_by": "System Settings internet sharing Toggle on; original configuration preserved"
+  },
+  "prepared": "Long fixture paused at approximately 03:45/21:20; second round must retain pause and exact saved position",
+  "no_desktop_replacement": true,
+  "no_publish": true,
+  "long_fixture": {
+    "construction": "AVFoundation video-only passthrough; project original fixture repeated 10 times",
+    "duration_seconds": 1280,
+    "audio_tracks": 0,
+    "sha256": "9b38d99693b8fb848f188a1ed9a00ac614026c5382e656a7642ff89ebe6f04db",
+    "serving": "127.0.0.1:9481, same isolated demo configuration; original repository assets unchanged"
+  },
+  "round2_before_position_seconds": 225.33333333333334,
+  "round2_attempts": [
+    {
+      "attempt": 1,
+      "status": "CANCELLED_BY_USB_HID_ACTIVITY_NO_REAL_SLEEP_RECORD",
+      "notification_interval_seconds": 0.47899889945983887,
+      "source": "USB Receiver eventType:17",
+      "after_state": "paused",
+      "ui_before_after": "03:45/21:20",
+      "db_position_before": 225.33333333333334,
+      "db_position_after": 225.41666666666669,
+      "db_delta_seconds": 0.08333333333334281,
+      "exact_position_check": "Failed exact equality against pre-sleep DB sample; after-sleep checkpoint now stable; cannot prove exact equality for this attempt",
+      "pending_reports": 0,
+      "upload_cache_exists": false,
+      "fds_before_after": [
+        47,
+        47
+      ],
+      "android_online": true,
+      "real_sleep_gate_passed": false
+    },
+    {
+      "attempt": 2,
+      "status": "PASS_FUNCTIONAL_REAL_SLEEP_WAKE_PAUSE_PRESERVED",
+      "notification_interval_seconds": 124.77592515945435,
+      "pmset_sleep_segments_seconds": [
+        6,
+        4,
+        4
+      ],
+      "background_darkwake_seconds": [
+        45,
+        45,
+        16
+      ],
+      "background_wake_reason": "usb3 pcie-xhci",
+      "continuous_deep_sleep_30_seconds_verified": false,
+      "paused_before_after": true,
+      "ui_before_after": "03:45/21:20",
+      "db_position_before": 225.41666666666669,
+      "db_position_after": 225.41666666666669,
+      "db_exact_equal": true,
+      "fds_before_after": [
+        47,
+        47
+      ],
+      "app_and_owned_android_pids_unchanged": true,
+      "android_get_state": "device",
+      "android_sys_boot_completed": "1",
+      "pending_reports": 0,
+      "upload_cache_exists": false
+    }
+  ],
+  "round2_retest_before_position_seconds": 225.41666666666669,
+  "normal_quit": {
+    "unix_time": 1791895675.9272802,
+    "expected_owned_pids": [
+      5035,
+      5132,
+      5141,
+      5150
+    ],
+    "remaining": [],
+    "all_gone": true,
+    "history_position_seconds": 225.41666666666669,
+    "history_preserved": true,
+    "upload_cache_exists": false,
+    "pending_reports": 0,
+    "ui_quit_tool_result": "timeoutReached; termination verified independently, no precise quit latency claim"
+  },
+  "post_wake_sdk_check": {
+    "elapsed_ms": 516,
+    "sdk_available": true,
+    "android_ready": true,
+    "elapsed_scope": "CUA click plus state-read latency; not precise SDK subprocess duration"
+  },
+  "test_services_and_observer_stopped": true,
+  "not_tested": [
+    "Uninterrupted deep sleep of 30 seconds / power efficiency",
+    "macOS 12",
+    "AirPods/Bluetooth audio",
+    "Two unsupplied external Node Contract B samples"
+  ],
+  "ui_tool_limitations": [
+    "System Settings getApp returned after about 374 seconds; no settings changed during that delay",
+    "Normal Quit CUA call returned timeoutReached; exact owned PIDs independently verified gone; no precise latency claim"
+  ]
+}

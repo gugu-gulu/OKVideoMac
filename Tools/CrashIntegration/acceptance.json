@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "date": "2026-10-12",
+  "date": "2026-10-13",
   "scope": "isolated formal App integration; no Desktop installation or publication",
   "branch": "codex/crash-reporting-integration",
   "baseline_commit": "ca0a169",
@@ -169,7 +169,7 @@
       "backend_verification": "Swift/C source lines, exact UUIDs, release/environment, retry same IDs, post-revoke event absent"
     },
     "8": {
-      "status": "PARTIAL_PENDING_SLEEP_WAKE",
+      "status": "PASS_CURRENT_MACHINE_WITH_DOCUMENTED_EXCLUSIONS",
       "date": "2026-10-13",
       "implementation_commit": "f52e290dc3abde3a4bf1b19b8278c4576d7d01ce",
       "stage7_checkpoint": "ba1f2c5",
@@ -193,10 +193,10 @@
       "startup_resource_gate": "PASS",
       "same_process_retry_attempts": 30,
       "retry_resources_scope": "Actual adapter and Release entry, no SwiftUI business initialization; no zero-leak claim",
-      "native_ui_blocker": "RESOLVED: actual recovery, settings, import, playback, fullscreen, history, 30 consent cycles and active runtimes verified; see stage8-ui-acceptance.json",
+      "native_ui_blocker": "Actual OKVideoMac regression completed; external System Settings launch delay and quit timeout remain documented tool limitations",
       "not_yet_tested": [
-        "Physical sleep/wake deferred by user",
-        "macOS 12 and AirPods/Bluetooth excluded by current-machine-only scope"
+        "macOS 12 and AirPods/Bluetooth excluded by current-machine-only scope",
+        "Uninterrupted 30-second deep sleep / power efficiency; USB maintenance wakes occurred"
       ],
       "stage9": "NOT_STARTED",
       "artifact_root": "Tools/CrashIntegration/build/stage8-20261012",
@@ -213,8 +213,11 @@
       "sdk_evidence": "stage8-sdk-probe-acceptance.json",
       "sdk_normal_release_passed": 69,
       "sdk_acceptance_release_passed": 107,
-      "unique_count_scope": "Cumulative distinct Stage 8 tests across checkpoints; 107 relevant tests rerun on SDK fix"
+      "unique_count_scope": "Cumulative distinct Stage 8 tests across checkpoints; 107 relevant tests rerun on SDK fix",
+      "physical_sleep_wake": "PASS: playing auto-resumes; paused position exact-equal; Internet Sharing restored; all owned processes normally exited",
+      "sleep_wake_evidence": "stage8-sleep-wake-acceptance.json",
+      "sleep_wake_artifact_root": "Tools/CrashIntegration/build/stage8-sleep-20261013"
     }
   },
-  "next_stage": 8
+  "next_stage": 9
 }
