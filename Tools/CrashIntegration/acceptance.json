@@ -227,7 +227,7 @@
         "CFBundleShortVersionString": "0.8.4",
         "CFBundleVersion": "137"
       },
-      "artifact_root": "/Users/linyao/.codex/worktrees/crash-reporting-integration/ok影视 mac 版本/Tools/CrashIntegration/build/stage9-20261013/Artifacts",
+      "artifact_root": "${ISOLATED_WORKTREE}/Tools/CrashIntegration/build/stage9-20261013/Artifacts",
       "evidence_root": "Tools/CrashIntegration/build/stage9-20261013",
       "artifact_gates": {
         "full_package_script": "PASS",
@@ -323,5 +323,6 @@
     }
   },
   "next_stage": null,
-  "local_delivery_state": "Reviewable local Release package prepared; documented runtime limits remain. No public release or Desktop install."
+  "local_delivery_state": "Reviewable local Release package prepared; documented runtime limits remain. No public release or Desktop install.",
+  "local_path_redaction": "Public evidence replaces machine-specific home/worktree paths with placeholders. Original records are retained only in local ignored release evidence; measured values, hashes and UUIDs are unchanged."
 }

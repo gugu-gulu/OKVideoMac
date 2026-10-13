@@ -11,13 +11,13 @@
     "CFBundleShortVersionString": "0.8.4",
     "CFBundleVersion": "137"
   },
-  "artifact_root": "/Users/linyao/.codex/worktrees/crash-reporting-integration/ok影视 mac 版本/Tools/CrashIntegration/build/stage9-20261013/Artifacts",
+  "artifact_root": "${ISOLATED_WORKTREE}/Tools/CrashIntegration/build/stage9-20261013/Artifacts",
   "evidence_root": "Tools/CrashIntegration/build/stage9-20261013",
-  "app": "/Users/linyao/.codex/worktrees/crash-reporting-integration/ok影视 mac 版本/Tools/CrashIntegration/build/stage9-20261013/Artifacts/OKVideoMac.app",
-  "zip": "/Users/linyao/.codex/worktrees/crash-reporting-integration/ok影视 mac 版本/Tools/CrashIntegration/build/stage9-20261013/Artifacts/OKVideoMac-0.8.4-macOS-arm64.zip",
-  "dmg": "/Users/linyao/.codex/worktrees/crash-reporting-integration/ok影视 mac 版本/Tools/CrashIntegration/build/stage9-20261013/Artifacts/OKVideoMac-0.8.4.dmg",
-  "source_release": "/Users/linyao/.codex/worktrees/crash-reporting-integration/ok影视 mac 版本/Tools/CrashIntegration/build/stage9-20261013/Artifacts/SourceRelease",
-  "symbol_archive": "/Users/linyao/.codex/worktrees/crash-reporting-integration/ok影视 mac 版本/Tools/CrashIntegration/build/stage9-20261013/Artifacts/CrashSymbols.GYjjw3",
+  "app": "${ISOLATED_WORKTREE}/Tools/CrashIntegration/build/stage9-20261013/Artifacts/OKVideoMac.app",
+  "zip": "${ISOLATED_WORKTREE}/Tools/CrashIntegration/build/stage9-20261013/Artifacts/OKVideoMac-0.8.4-macOS-arm64.zip",
+  "dmg": "${ISOLATED_WORKTREE}/Tools/CrashIntegration/build/stage9-20261013/Artifacts/OKVideoMac-0.8.4.dmg",
+  "source_release": "${ISOLATED_WORKTREE}/Tools/CrashIntegration/build/stage9-20261013/Artifacts/SourceRelease",
+  "symbol_archive": "${ISOLATED_WORKTREE}/Tools/CrashIntegration/build/stage9-20261013/Artifacts/CrashSymbols.GYjjw3",
   "artifact_gates": {
     "full_package_script": "PASS",
     "standalone_app": "PASS",
@@ -169,5 +169,6 @@
     "control_status": "PASS_APP_ACCESS_PREFLIGHT_STABLE_ID_AND_SCOPED_RECOVERY",
     "startup_status": "INVESTIGATED_NOT_REPRODUCED_ORIGINAL_CAUSE_UNPROVEN",
     "app_implementation_changed": false
-  }
+  },
+  "local_path_redaction": "Public evidence replaces machine-specific home/worktree paths with placeholders. Original records are retained only in local ignored release evidence; measured values, hashes and UUIDs are unchanged."
 }
