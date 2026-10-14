@@ -7,6 +7,7 @@
 - exact release commit：`b7fd9026bfee95d2d815dbb39e985225c3004e67`，从干净 main 经 `package-app.sh --mode distribution --notarize` 重新构建；annotated tag `v0.8.5` 固定同一提交。
 - App 0.8.5（138），Android Bridge 0.3.48（60）；arm64 / 最低 macOS 12.0；构建主机 macOS 14.8.9、Xcode 16.2 / SDK 15.2。商业工作树未参与构建。
 - 新增本机过滤后的崩溃捕获/恢复、诊断控制及协同退出；SDK 文件架构检查 2 秒截止与有限清理。恢复门禁保留 WindowGroup 原生创建动作，修复关闭所有浏览窗口后无法重开的回归。
+- 相比公开 v0.8.4，包含 `ca0a16997acbc42e2b99af238c204a4fffadc98e` 的弹幕渲染改进：保留文字填充/颜色，柔和黑色阴影替代描边，普通屏与 Retina 屏保持同一阴影逻辑大小。原发布说明遗漏，见[发布后补充](RELEASE_NOTES_0.8.5_ADDENDUM.md)；普通视频字幕轨道未新增改动。
 - 正式包 `OKCrashReportDSN` 为空，不上传崩溃报告。未向 Sentry 上传本次最终 UUID 的符号或新事件；旧验收 Build1377001 后台证据不代表本包。
 
 ## 本轮验证
@@ -14,6 +15,7 @@
 | 项目 | 结果 |
 | --- | --- |
 | 完整 Release XCTest | 1287 通过、0 失败、17 条件跳过；共 1304 |
+| 弹幕文字栅格 | 完整 Release XCTest 内 4 项全部通过：中英文填充、彩色填充、1x/2x 阴影范围、阴影边距 |
 | 菜单/真实窗口定向 | 16 通过、0 失败、0 跳过 |
 | 静态 SDK 许可证/SBOM 回归 | 6 通过 |
 | Android Bridge Release | assembleRelease 与既有签名身份验证通过；未把历史 JVM 全套测试当作重跑 |

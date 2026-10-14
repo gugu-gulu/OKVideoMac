@@ -1,6 +1,6 @@
 # OKVideoMac
 
-The latest stable release is **0.8.5 (Build 138)**, adding local crash recovery, bounded Android SDK inspection and native window reopening. Developer ID, Apple notarization and all 16 public assets passed verification. Remote crash uploading is not configured. See [release notes](Docs/RELEASE_NOTES_0.8.5.md) and [verification](Docs/RELEASE_VALIDATION_0.8.5.md).
+The latest stable release is **0.8.5 (Build 138)**, adding local crash recovery, bounded Android SDK inspection, native window reopening and improved danmaku text rendering. Developer ID, Apple notarization and all 16 public assets passed verification. Remote crash uploading is not configured. See [release notes](Docs/RELEASE_NOTES_0.8.5.md) and [verification](Docs/RELEASE_VALIDATION_0.8.5.md).
 
 **0.8.4 (Build 137)** fixes the SwiftUI/AppKit toolbar ownership path associated with the 0.8.3 startup crash. The user confirmed successful macOS 27.0.1 testing; see [release notes](Docs/RELEASE_NOTES_0.8.4.md) and [formal verification](Docs/RELEASE_VALIDATION_0.8.4.md).
 
@@ -35,7 +35,7 @@ Open the DMG and drag `OKVideoMac.app` to Applications. You do not need to disab
 
 ## New in 0.8.5
 
-Local crash recovery and coordinated shutdown, bounded Android SDK file checks, and native window creation after all browser windows close. This build has no remote crash-upload endpoint. See [verification](Docs/RELEASE_VALIDATION_0.8.5.md).
+Local crash recovery and coordinated shutdown, bounded Android SDK file checks, and native window creation after all browser windows close. Danmaku keeps filled, colored glyphs with a soft black shadow whose logical size matches at 1x and Retina 2x. This rendering change was already included in the October 11 local test build; ordinary subtitle tracks have no new changes in 0.8.5. See the [release-note addendum](Docs/RELEASE_NOTES_0.8.5_ADDENDUM.md). This build has no remote crash-upload endpoint. See [verification](Docs/RELEASE_VALIDATION_0.8.5.md).
 
 ## 0.8.4 history
 

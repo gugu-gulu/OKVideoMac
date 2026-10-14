@@ -3,6 +3,7 @@
 ## [0.8.5] - 2026-10-14
 
 - Add bounded local crash capture/recovery, consent controls and coordinated shutdown. This build has no remote crash-upload endpoint.
+- Improve danmaku text rendering: preserve filled and colored glyphs, replace stroke outlines with a soft black shadow, and keep its logical size consistent at 1x and Retina 2x. This change was already present in the October 11 local danmaku test build; ordinary subtitle tracks have no new changes in this release. See the [release-note addendum](Docs/RELEASE_NOTES_0.8.5_ADDENDUM.md).
 - Bound Android executable architecture inspection, preserve the selected SDK/AVD and allow retry after timeout.
 - Preserve the native WindowGroup factory when gating recovery, allowing New Window after every browser window closes.
 - Include static diagnostics SDK sources, notices, privacy resources and logical SBOM entries; validate exact final symbols without claiming complete third-party symbol coverage.
